@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroFit | Custom Sportswear</title>
+    <!-- Font del sito -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Font sportivi per la maglia -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Ops+One&family=Teko:wght@600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #CCFF00;
+            --dark: #0F0F0F;
+            --gray: #222222;
+            --text-light: #F5F5F5;
+        }
+
+        * {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--text-light);
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Navigazione */
+        nav {
+            background-color: rgba(15, 15, 15, 0.95);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 5%; position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid #333;
+        }
+        .logo { font-size: 2.2rem; font-weight: 700; color: white; cursor: pointer;}
+        .logo span { color: var(--primary); }
+        
+        .btn-cart { 
+            background: transparent; color: white; border: 2px solid white; 
+            padding: 8px 20px; cursor: pointer; border-radius: 4px; font-weight: bold;
+            position: relative;
+        }
+        .btn-cart:hover { background: white; color: var(--dark); }
+        .cart-badge {
+            position: absolute; top: -10px; right: -10px;
+            background: var(--primary); color: var(--dark);
+            width: 24px; height: 24px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 0.9rem;
+        }
+
+        /* Hero */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(to right, rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.5)), url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex; align-items: center; padding: 0 5%;
+        }
+        .hero h1 { font-size: 5rem; margin-bottom: 1rem; line-height: 1.1;}
+        .hero h1 span { color: var(--primary); }
+        .btn-primary { 
+            background: var(--primary); color: var(--dark); padding: 15px 35px; 
+            font-size: 1.2rem; font-family: 'Oswald', sans-serif; border: none; 
+            cursor: pointer; font-weight: bold; transition: 0.3s; 
+        }
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(204, 255, 0, 0.3); }
+
+        /* Negozio */
+        .shop-section { padding: 5rem 5%; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem;}
+        .product-card { background: var(--gray); transition: transform 0.3s; }
+        .product-card:hover { transform: translateY(-10px); }
+        .product-img { height: 350px; background-size: cover; background-position: center; }
+        .product-info { padding: 1.5rem; text-align: center; }
+        .price { color: var(--primary); font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; display: block; }
+        .btn-customize { background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 10px; width: 100%; font-family: 'Oswald', sans-serif; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
+        .btn-customize:hover { background: var(--primary); color: var(--dark); }
+
+        /* -------------------------------------------
+           MODALE DEL CONFIGURATORE 3D / PERSONALIZZATORE
+           ------------------------------------------- */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 1000;
+            align-items: center; justify-content: center;
+        }
+        .configurator {
+            background: var(--gray); width: 90%; max-width: 1000px; height: 85vh;
+            border-radius: 10px; display: flex; overflow: hidden; position: relative;
+        }
+        
+        .preview-area {
+            flex: 1; background: #e0e0e0; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; position: relative;
+        }
+        
+        .tshirt-wrapper {
+            position: relative; width: 320px; height: 420px;
+        }
+        .tshirt-img {
+            width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 2;
+        }
+        .tshirt-color-layer {
+            position: absolute; top: 12%; left: 16%; width: 68%; height: 75%;
+            background-color: white; z-index: 1; transition: background-color 0.4s;
+            border-radius: 20px;
+        }
+
+        /* Testo iper-realistico tramite mix-blend-mode */
+        .print-area {
+            position: absolute; top: 32%; left: 0; width: 100%;
+            text-align: center; z-index: 10; display: flex; flex-direction: column; gap: 5px;
+            /* Questo fonde la scritta con le pieghe della maglia sotto! */
+            mix-blend-mode: color-burn; 
+            opacity: 0.85;
+            transform: rotate(-1deg); /* Leggera inclinazione naturale */
+        }
+        #shirtText {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem; color: #111; letter-spacing: 2px; line-height: 1;
+        }
+        #shirtNumber {
+            font-family: 'Black Ops One', sans-serif;
+            font-size: 5.5rem; color: #111; line-height: 0.9;
+        }
+        .preview-note {
+            margin-top: 20px; font-size: 0.85rem; color: #777; text-align: center; max-width: 80%;
+        }
+
+        /* Pannello Controlli Destro */
+        .controls-area {
+            flex: 1; padding: 3rem 2rem; background: var(--dark);
+            border-left: 1px solid #333; overflow-y: auto;
+        }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: #fff; cursor: pointer; z-index: 100; }
+        .controls-area h2 { margin-bottom: 2rem; color: var(--primary); }
+        .control-group { margin-bottom: 1.5rem; }
+        .control-group label { display: block; margin-bottom: 8px; color: #aaa; font-size: 0.9rem; text-transform: uppercase; }
+        
+        .color-picker { display: flex; gap: 15px; }
+        .color-btn { width: 40px; height: 40px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: transform 0.2s; }
+        .color-btn:hover { transform: scale(1.1); }
+        .color-btn.active { border-color: white; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+
+        .input-text, .font-select {
+            width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #444; color: white;
+            font-size: 1rem; border-radius: 5px;
+        }
+        .input-text:focus, .font-select:focus { border-color: var(--primary); outline: none; }
+
+        .btn-add-cart {
+            width: 100%; background: var(--primary); color: var(--dark); padding: 15px; 
+            font-size: 1.2rem; font-family: 'Oswald', sans-serif; border: none; border-radius: 5px; 
+            font-weight: bold; cursor: pointer; text-transform: uppercase; margin-top: 1rem; transition: 0.3s;
+        }
+        .btn-add-cart:hover { background: white; }
+
+        /* -------------------------------------------
+           MODALE CARRELLO (SIDEBAR)
+           ------------------------------------------- */
+        .cart-sidebar {
+            position: fixed; top: 0; right: -400px; width: 400px; height: 100%;
+            background: var(--gray); z-index: 2000; transition: right 0.4s ease;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5); padding: 2rem;
+            display: flex; flex-direction: column;
+        }
+        .cart-sidebar.open { right: 0; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #444; padding-bottom: 1rem; margin-bottom: 1rem; }
+        .cart-items { flex: 1; overflow-y: auto; }
+        .cart-item { background: var(--dark); padding: 15px; border-radius: 5px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;}
+        .cart-item-details h4 { color: var(--primary); margin-bottom: 5px;}
+        .cart-item-details p { font-size: 0.85rem; color: #ccc;}
+        .cart-total { border-top: 1px solid #444; padding-top: 1rem; font-size: 1.5rem; display: flex; justify-content: space-between;}
+        .btn-checkout { background: white; color: var(--dark); width: 100%; padding: 15px; font-weight: bold; font-family: 'Oswald', sans-serif; border: none; border-radius: 5px; margin-top: 1rem; cursor: pointer; font-size: 1.2rem;}
+
+        @media (max-width: 768px) {
+            .configurator { flex-direction: column; height: 95vh; overflow-y: scroll; }
+            .preview-area { padding: 2rem 0; height: auto; }
+            .cart-sidebar { width: 100%; right: -100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">AERO<span>FIT</span></div>
+        <button class="btn-cart" onclick="toggleCarrello()">
+            Carrello
+            <span class="cart-badge" id="cartCount">0</span>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>LA TUA MAGLIA. <br><span>IL TUO NOME.</span></h1>
+            <button class="btn-primary" onclick="apriConfiguratore()">Personalizza Ora</button>
+        </div>
+    </header>
+
+    <section class="shop-section">
+        <h2>PRODOTTI PERSONALIZZABILI</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1581655353564-df123a1eb820?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="product-info">
+                    <h3>T-Shirt Running Pro</h3>
+                    <span class="price">€ 24.90</span>
+                    <button class="btn-customize" onclick="apriConfiguratore()">Personalizza Maglia</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1556815302-9aade243ea84?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="product-info">
+                    <h3>Maglia Gara Calcio</h3>
+                    <span class="price">€ 29.90</span>
+                    <button class="btn-customize" onclick="apriConfiguratore()">Personalizza Maglia</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARRELLO (SIDEBAR) -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Il tuo Carrello</h2>
+            <span style="font-size: 2rem; cursor: pointer;" onclick="toggleCarrello()">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            <!-- Gli oggetti del carrello finiranno qui -->
+            <p style="color: #777; text-align: center; margin-top: 2rem;">Il carrello è vuoto.</p>
+        </div>
+        <div>
+            <div class="cart-total">
+                <span>Totale</span>
+                <span style="color: var(--primary);" id="cartTotalPrice">€ 0.00</span>
+            </div>
+            <button class="btn-checkout" onclick="alert('Checkout simulato!')">Vai alla Cassa</button>
+        </div>
+    </div>
+
+    <!-- IL CONFIGURATORE (MODALE) -->
+    <div id="customizerModal" class="modal">
+        <div class="configurator">
+            <span class="close-btn" onclick="chiudiConfiguratore()">&times;</span>
+            
+            <!-- Sinistra: Anteprima -->
+            <div class="preview-area">
+                <div class="tshirt-wrapper">
+                    <div class="tshirt-color-layer" id="tshirtColorBox"></div>
+                    <img src="https://www.freeiconspng.com/uploads/blank-t-shirt-png-14.png" alt="T-Shirt" class="tshirt-img">
+                    
+                    <div class="print-area">
+                        <div id="shirtText">AEROFIT</div>
+                        <div id="shirtNumber">10</div>
+                    </div>
+                </div>
+                <p class="preview-note">L'anteprima è indicativa. Il nostro reparto grafico ottimizzerà proporzioni, centratura e resa cromatica prima della stampa reale.</p>
+            </div>
+
+            <!-- Destra: Controlli -->
+            <div class="controls-area">
+                <h2>Crea il tuo Design</h2>
+                
+                <div class="control-group">
+                    <label>1. Colore Base</label>
+                    <div class="color-picker">
+                        <div class="color-btn active" style="background-color: white;" onclick="cambiaColore('white', '#111', 'color-burn', this, 'Bianco')"></div>
+                        <div class="color-btn" style="background-color: #CCFF00;" onclick="cambiaColore('#CCFF00', '#111', 'color-burn', this, 'Giallo Fluo')"></div>
+                        <div class="color-btn" style="background-color: #ff2a2a;" onclick="cambiaColore('#ff2a2a', '#111', 'color-burn', this, 'Rosso')"></div>
+                        <div class="color-btn" style="background-color: #1a53ff;" onclick="cambiaColore('#1a53ff', '#111', 'color-burn', this, 'Blu Royal')"></div>
+                        <!-- Per il nero usiamo 'screen' o 'normal' per la scritta per farla vedere -->
+                        <div class="color-btn" style="background-color: #222;" onclick="cambiaColore('#222', '#ddd', 'normal', this, 'Nero')"></div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>2. Font Stile</label>
+                    <select class="font-select" id="fontSelect" onchange="aggiornaTesto()">
+                        <option value="'Bebas Neue', sans-serif">Modern Athletic (Bebas)</option>
+                        <option value="'Black Ops One', sans-serif">Military Block (Black Ops)</option>
+                        <option value="'Teko', sans-serif">Squadra Tech (Teko)</option>
+                        <option value="'Oswald', sans-serif">Classico (Oswald)</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>3. Nome Squadra/Atleta</label>
+                    <input type="text" class="input-text" id="inputName" placeholder="Es. AEROFIT" oninput="aggiornaTesto()" maxlength="12">
+                </div>
+
+                <div class="control-group">
+                    <label>4. Numero</label>
+                    <input type="number" class="input-text" id="inputNumber" placeholder="Es. 10" oninput="aggiornaTesto()" min="0" max="99">
+                </div>
+
+                <button class="btn-add-cart" onclick="aggiungiAlCarrello()">Aggiungi al Carrello - € 24.90</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Javascript -->
+    <script>
+        const modal = document.getElementById('customizerModal');
+        const colorBox = document.getElementById('tshirtColorBox');
+        const shirtText = document.getElementById('shirtText');
+        const shirtNum = document.getElementById('shirtNumber');
+        const printArea = document.querySelector('.print-area');
+        
+        const inputName = document.getElementById('inputName');
+        const inputNum = document.getElementById('inputNumber');
+        const fontSelect = document.getElementById('fontSelect');
+        
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartCountBadge = document.getElementById('cartCount');
+        const cartTotalPrice = document.getElementById('cartTotalPrice');
+
+        let articoliInCarrello = [];
+        let coloreAttualeNome = "Bianco";
+        let prezzoUnitario = 24.90;
+
+        function apriConfiguratore() { modal.style.display = 'flex'; }
+        function chiudiConfiguratore() { modal.style.display = 'none'; }
+        function toggleCarrello() { cartSidebar.classList.toggle('open'); }
+
+        // Cambia colore e metodo di fusione per realismo
+        function cambiaColore(coloreMaglia, coloreTesto, blendMode, elementoCliccato, nomeColore) {
+            colorBox.style.backgroundColor = coloreMaglia;
+            shirtText.style.color = coloreTesto;
+            shirtNum.style.color = coloreTesto;
+            
+            // Imposta il blend mode per far fondere il colore alle pieghe della maglia (iper-realismo)
+            printArea.style.mixBlendMode = blendMode;
+            
+            document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
+            elementoCliccato.classList.add('active');
+            coloreAttualeNome = nomeColore;
+        }
+
+        // Aggiorna testo e font in tempo reale
+        function aggiornaTesto() {
+            shirtText.innerText = inputName.value.toUpperCase() || 'AEROFIT';
+            shirtNum.innerText = inputNum.value || '10';
+            
+            // Applica il font scelto per il NOME. Il numero resta Black Ops per stile.
+            shirtText.style.fontFamily = fontSelect.value;
+        }
+
+        function aggiungiAlCarrello() {
+            let nome = inputName.value.toUpperCase() || 'AEROFIT';
+            let num = inputNum.value || '10';
+            
+            // Crea l'oggetto articolo
+            let articolo = {
+                titolo: `T-Shirt Custom (${coloreAttualeNome})`,
+                dettagli: `Nome: ${nome} | Numero: ${num}`,
+                prezzo: prezzoUnitario
+            };
+            
+            articoliInCarrello.push(articolo);
+            aggiornaUI_Carrello();
+            chiudiConfiguratore();
+            
+            // Apre la barra laterale per mostrare il successo
+            setTimeout(() => { toggleCarrello(); }, 300);
+        }
+
+        function aggiornaUI_Carrello() {
+            cartCountBadge.innerText = articoliInCarrello.length;
+            
+            if (articoliInCarrello.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="color: #777; text-align: center; margin-top: 2rem;">Il carrello è vuoto.</p>';
+                cartTotalPrice.innerText = "€ 0.00";
+                return;
+            }
+
+            cartItemsContainer.innerHTML = '';
+            let totale = 0;
+
+            articoliInCarrello.forEach((item, index) => {
+                totale += item.prezzo;
+                cartItemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-details">
+                            <h4>${item.titolo}</h4>
+                            <p>${item.dettagli}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="display:block; font-weight:bold;">€ ${item.prezzo.toFixed(2)}</span>
+                            <span style="font-size:0.8rem; color:#ff4444; cursor:pointer;" onclick="rimuoviDaCarrello(${index})">Rimuovi</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartTotalPrice.innerText = `€ ${totale.toFixed(2)}`;
+        }
+
+        function rimuoviDaCarrello(index) {
+            articoliInCarrello.splice(index, 1);
+            aggiornaUI_Carrello();
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) chiudiConfiguratore();
+        }
+    </script>
+</body>
+</html>
