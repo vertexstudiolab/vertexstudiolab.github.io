@@ -3,236 +3,607 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VertexStudio | Eccellenza Digitale</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>VERTEX | Digital Agency - Web Design, Ingegneria Software & Brand Identity</title>
+    <meta name="description" content="VERTEX è una digital agency specializzata in Web Design su misura, Menu Digitali interattivi e Social Media Visual Design orientato ai risultati.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-light: #FBFBFC; 
+            --bg-dark: #0A0E17;
+            --bg-card-dark: #111726;
+            --bg-light: #F8FAFC;
             --white: #FFFFFF;
-            --text-dark: #0F172A; 
+            --text-dark: #0F172A;
             --text-muted: #64748B;
-            --primary: #2563EB; 
+            --text-light: #F1F5F9;
+            --text-light-muted: #94A3B8;
+            --primary: #2563EB;
+            --primary-hover: #1D4ED8;
             --primary-light: #EFF6FF;
+            --primary-glow: rgba(37, 99, 235, 0.25);
             --border: #E2E8F0;
+            --border-dark: #1E293B;
+            --accent-cyan: #06B6D4;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth;}
-        body { background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; }
-        h1, h2, h3, h4, .logo { font-family: 'Outfit', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; line-height: 1.6; }
+        h1, h2, h3, h4, .logo, .stat-num { font-family: 'Outfit', sans-serif; }
+        code, .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- NAVBAR MINIMALE --- */
+        /* --- NAVBAR MODERNA AD ALTO CONTRASTO --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 1.5rem 5%; position: fixed; width: 100%; top: 0;
-            background: rgba(251, 251, 252, 0.95); z-index: 100;
-            transition: all 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            padding: 1.2rem 6%; position: fixed; width: 100%; top: 0;
+            background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(14px);
+            z-index: 100; transition: all 0.3s; border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
-        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; z-index: 101;}
-        .logo span { color: var(--primary); }
+        .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -0.5px; display: flex; align-items: center; z-index: 101; text-decoration: none; color: var(--text-dark); }
+        .logo img { height: 75px; width: auto; border-radius: 6px; margin: -15px 0; }
         
-        .nav-links { display: flex; gap: 3rem; list-style: none; transition: 0.3s;}
-        .nav-links a { color: var(--text-dark); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s;}
-        .nav-links a:hover { color: var(--primary); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .nav-links a { color: var(--text-dark); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px; background: var(--primary); border-radius: 2px; }
         
-        /* Mobile Menu Icon */
         .hamburger { display: none; font-size: 2rem; cursor: pointer; z-index: 101; color: var(--text-dark); }
 
         .btn-primary {
-            background: var(--primary); color: var(--white); padding: 14px 32px; border-radius: 50px; text-decoration: none;
-            font-family: 'Outfit'; font-weight: 600; font-size: 1rem; transition: all 0.3s; display: inline-block;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2); border: none; cursor: pointer;
+            background: var(--primary); color: var(--white); padding: 13px 28px; border-radius: 50px; text-decoration: none;
+            font-family: 'Outfit'; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; display: inline-flex;
+            align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 25px var(--primary-glow); border: none; cursor: pointer;
         }
-        .btn-primary:hover { background: #1D4ED8; transform: translateY(-2px); box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3); }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35); color: var(--white); }
+        
+        .btn-secondary {
+            background: var(--white); color: var(--text-dark); padding: 13px 28px; border-radius: 50px; text-decoration: none;
+            font-family: 'Outfit'; font-weight: 600; font-size: 0.95rem; border: 1px solid var(--border); transition: all 0.3s;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); background: #F8FAFC; }
 
-        /* --- HERO SECTION --- */
+        /* --- 1. HERO SECTION (ELEVERA / TECH GRID STYLE) --- */
         .hero {
-            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-            padding: 8rem 5% 4rem; max-width: 1200px; margin: 0 auto; position: relative;
+            min-height: 100vh; padding: 8.5rem 6% 5rem; max-width: 1380px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem; align-items: center; position: relative;
         }
-        .hero::before {
-            content: ''; position: absolute; width: 600px; height: 600px; background: var(--primary);
-            filter: blur(150px); opacity: 0.1; top: 10%; z-index: -1; border-radius: 50%;
+        .hero-glow {
+            position: absolute; width: 550px; height: 550px; background: var(--primary);
+            filter: blur(160px); opacity: 0.12; top: 15%; right: 10%; z-index: -1; border-radius: 50%; pointer-events: none;
         }
         .hero-badge {
-            background: var(--primary-light); color: var(--primary); padding: 8px 24px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; margin-bottom: 2rem; border: 1px solid rgba(37, 99, 235, 0.2);
+            display: inline-flex; align-items: center; gap: 8px; background: var(--primary-light); color: var(--primary);
+            padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 0.85rem; margin-bottom: 1.8rem;
+            border: 1px solid rgba(37, 99, 235, 0.2); letter-spacing: 0.5px; text-transform: uppercase;
         }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 5.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 1.5rem; color: var(--text-dark);}
-        .hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 750px; line-height: 1.6; margin-bottom: 3rem;}
+        .hero-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--primary); display: inline-block; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.8; } 50% { transform: scale(1.3); opacity: 1; } 100% { transform: scale(0.9); opacity: 0.8; } }
         
-        /* --- L'ECCELLENZA E' IL NOSTRO STANDARD --- */
-        .features { padding: 8rem 5%; background: var(--white); }
-        .section-head { text-align: center; margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto;}
-        .section-head h2 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 1rem;}
-        .section-head p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6;}
+        .hero h1 { font-size: clamp(2.8rem, 5.2vw, 4.6rem); font-weight: 900; line-height: 1.1; letter-spacing: -1.8px; margin-bottom: 1.5rem; color: var(--text-dark); }
+        .hero h1 span.highlight { color: var(--primary); background: linear-gradient(135deg, #2563EB 0%, #06B6D4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.18rem; color: var(--text-muted); max-width: 620px; line-height: 1.7; margin-bottom: 2.5rem; }
+        .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
         
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1300px; margin: 0 auto; }
-        .feat-card { padding: 2.5rem; background: var(--bg-light); border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s;}
-        .feat-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.03); border-color: var(--primary);}
-        .feat-icon { width: 60px; height: 60px; background: var(--primary-light); color: var(--primary); font-size: 1.8rem; display: flex; align-items: center; justify-content: center; border-radius: 16px; margin-bottom: 1.5rem;}
-        .feat-card h3 { font-size: 1.4rem; margin-bottom: 1rem;}
-        .feat-card p { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;}
+        .hero-metrics { display: flex; gap: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+        .metric-item .stat-num { font-size: 1.8rem; font-weight: 800; color: var(--text-dark); line-height: 1; }
+        .metric-item p { font-size: 0.85rem; color: var(--text-muted); margin: 4px 0 0; }
 
-        /* --- I MIEI LAVORI --- */
-        .works { padding: 8rem 5%; background: var(--white); border-top: 1px solid var(--border); }
-        .works-list { max-width: 1200px; margin: 3rem auto 0; display: flex; flex-direction: column; gap: 6rem; }
+        /* MOCKUP HERO INTERATTIVO */
+        .hero-mockup-wrap { position: relative; width: 100%; perspective: 1000px; }
+        .browser-mockup {
+            background: var(--white); border-radius: 20px; border: 1px solid var(--border);
+            box-shadow: 0 30px 70px rgba(15, 23, 42, 0.12); overflow: hidden; transition: transform 0.5s ease;
+        }
+        .browser-mockup:hover { transform: translateY(-6px); }
+        .browser-header {
+            background: #F1F5F9; padding: 12px 18px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border);
+        }
+        .browser-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+        .dot-red { background: #EF4444; } .dot-yellow { background: #F59E0B; } .dot-green { background: #10B981; }
+        .browser-url {
+            margin-left: 12px; background: var(--white); padding: 5px 16px; border-radius: 30px; font-size: 0.75rem;
+            color: var(--text-muted); flex: 1; border: 1px solid var(--border);
+        }
+        .browser-body { position: relative; width: 100%; aspect-ratio: 16/11; overflow: hidden; background: #0F172A; }
+        .browser-body img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.95; }
         
+        /* Floating Badge sull'Hero */
+        .floating-badge {
+            position: absolute; bottom: -20px; left: -25px; background: var(--white); border: 1px solid var(--border);
+            padding: 14px 22px; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 14px;
+        }
+        .floating-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+        .floating-text h4 { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); margin: 0; }
+        .floating-text p { font-size: 0.78rem; color: var(--text-muted); margin: 0; }
+
+        /* --- 2. CHI SIAMO / AGENZIA (ANTEPRIMA A 2 COLONNE) --- */
+        .agency-preview { padding: 8rem 6%; background: var(--white); border-top: 1px solid var(--border); }
+        .agency-wrap { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        
+        .agency-text-col .section-tag {
+            color: var(--primary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.8rem; display: block;
+        }
+        .agency-text-col h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 1.5rem; line-height: 1.2; }
+        .agency-text-col p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.5rem; }
+        
+        .agency-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; margin-bottom: 2.2rem; }
+        .pillar-card { background: var(--bg-light); border: 1px solid var(--border); padding: 1.4rem; border-radius: 14px; }
+        .pillar-card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-dark); display: flex; align-items: center; gap: 8px;}
+        .pillar-card p { font-size: 0.88rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+        .agency-visual-col { position: relative; }
+        .agency-media-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.2rem; }
+        .media-box-1 { border-radius: 20px; overflow: hidden; aspect-ratio: 4/5; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid var(--border); }
+        .media-box-1 img { width: 100%; height: 100%; object-fit: cover; }
+        .media-box-2 { display: flex; flex-direction: column; gap: 1.2rem; }
+        .media-box-sub { border-radius: 18px; overflow: hidden; height: 100%; box-shadow: 0 15px 30px rgba(0,0,0,0.06); border: 1px solid var(--border); }
+        .media-box-sub img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- 3. GRIGLIA I NOSTRI SERVIZI (3 CARD INTERATTIVE) --- */
+        .services-section { padding: 8rem 6%; background: var(--bg-light); border-top: 1px solid var(--border); }
+        .section-header { text-align: center; max-width: 800px; margin: 0 auto 5rem; }
+        .section-header .section-tag { color: var(--primary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.8rem; display: block; }
+        .section-header h2 { font-size: clamp(2.4rem, 4.5vw, 3.5rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 1.2rem; }
+        .section-header p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; }
+
+        .services-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem; max-width: 1350px; margin: 0 auto; }
+        .service-card {
+            background: var(--white); border-radius: 24px; border: 1px solid var(--border);
+            overflow: hidden; display: flex; flex-direction: column; transition: all 0.35s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+        .service-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 25px 50px rgba(37, 99, 235, 0.12); }
+        
+        .service-card-media {
+            width: 100%; aspect-ratio: 16/10; overflow: hidden; background: #0F172A; position: relative; border-bottom: 1px solid var(--border);
+        }
+        .service-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .service-card:hover .service-card-media img { transform: scale(1.06); }
+        .service-card-badge {
+            position: absolute; top: 16px; left: 16px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px);
+            color: var(--white); padding: 5px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+
+        .service-card-content { padding: 2.4rem 2rem; display: flex; flex-direction: column; flex: 1; }
+        .service-card-icon {
+            width: 54px; height: 54px; border-radius: 14px; background: var(--primary-light); color: var(--primary);
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.5rem;
+        }
+        .service-card-content h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--text-dark); line-height: 1.3; }
+        .service-card-content p { color: var(--text-muted); font-size: 0.98rem; line-height: 1.65; margin-bottom: 1.8rem; flex: 1; }
+        
+        .service-features-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 2rem; border-top: 1px solid var(--border); padding-top: 1.4rem; }
+        .service-features-list li { font-size: 0.88rem; color: var(--text-dark); display: flex; align-items: center; gap: 10px; font-weight: 500; }
+        .service-features-list li span { color: var(--primary); font-weight: bold; }
+        
+        .service-card-link {
+            display: inline-flex; align-items: center; gap: 8px; font-family: 'Outfit'; font-weight: 700;
+            color: var(--primary); text-decoration: none; font-size: 0.95rem; transition: gap 0.2s;
+        }
+        .service-card-link:hover { gap: 14px; }
+
+        /* --- 4. PERCHÉ SCEGLIERE VERTEX (GRID FEATURE 4 COLONNE) --- */
+        .why-us-section { padding: 8rem 6%; background: var(--white); border-top: 1px solid var(--border); }
+        .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.8rem; max-width: 1350px; margin: 0 auto; }
+        .why-card {
+            background: var(--bg-light); border: 1px solid var(--border); border-radius: 20px; padding: 2.2rem 1.8rem;
+            transition: all 0.3s;
+        }
+        .why-card:hover { border-color: var(--primary); background: var(--white); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.04); }
+        .why-icon {
+            width: 52px; height: 52px; border-radius: 14px; background: var(--primary-light); color: var(--primary);
+            display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.4rem;
+        }
+        .why-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--text-dark); }
+        .why-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+        /* --- 5. COME LAVORIAMO (PROCESSO IN 4 STEP LINEARE) --- */
+        .process-section { padding: 8rem 6%; background: var(--bg-light); border-top: 1px solid var(--border); }
+        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1350px; margin: 0 auto; position: relative; }
+        .process-grid::before {
+            content: ''; position: absolute; top: 38px; left: 10%; width: 80%; height: 2px;
+            background: var(--border); z-index: 1;
+        }
+        .process-step { position: relative; z-index: 2; }
+        .step-num-badge {
+            width: 52px; height: 52px; border-radius: 50%; background: var(--white); border: 2px solid var(--primary);
+            color: var(--primary); font-family: 'Outfit'; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center;
+            justify-content: center; margin-bottom: 1.8rem; box-shadow: 0 0 0 6px var(--bg-light);
+        }
+        .process-step:hover .step-num-badge { background: var(--primary); color: var(--white); }
+        .process-step h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--text-dark); }
+        .process-step p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* --- SEZIONE PROGETTI SELEZIONATI (CASE STUDY RICONFERMATI) --- */
+        .works { padding: 8rem 6%; background: var(--white); border-top: 1px solid var(--border); }
+        .works-list { max-width: 1200px; margin: 3rem auto 0; display: flex; flex-direction: column; gap: 5.5rem; }
         .project-row { display: flex; align-items: center; gap: 4rem; }
         .project-row:nth-child(even) { flex-direction: row-reverse; }
         .project-image-col { flex: 1.2; position: relative; }
         .project-text-col { flex: 0.8; }
-
         .img-wrapper { 
             width: 100%; aspect-ratio: 16/10; border-radius: 20px; overflow: hidden; 
             background: #eee; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.06); 
         }
         .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .project-row:hover .project-img { transform: scale(1.04); }
-
         .project-tag { 
             display: inline-block; background: var(--primary-light); color: var(--primary); 
             padding: 6px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; 
             text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; 
         }
-        .project-text-col h3 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-dark); letter-spacing: -1px;}
+        .project-text-col h3 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-dark); letter-spacing: -1px;}
         .project-text-col p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem;}
-        
         .btn-outline {
             display: inline-flex; align-items: center; gap: 10px; color: var(--text-dark); font-weight: 600;
             text-decoration: none; padding-bottom: 5px; border-bottom: 2px solid var(--text-dark); transition: all 0.3s;
         }
         .btn-outline:hover { color: var(--primary); border-color: var(--primary); gap: 15px; }
 
-        /* --- FAQ --- */
-        .faq { padding: 8rem 5%; background: var(--bg-light); border-top: 1px solid var(--border); }
-        .faq-container { max-width: 800px; margin: 0 auto; }
-        details { border-bottom: 1px solid var(--border); padding: 1.2rem 0; cursor: pointer; }
-        summary { font-family: 'Outfit'; font-size: 1.2rem; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--text-dark); transition: color 0.3s;}
-        summary::after { content: '+'; font-size: 1.8rem; font-weight: 300; color: var(--primary); transition: transform 0.3s;}
-        details[open] summary::after { content: '−'; }
-        details[open] summary { color: var(--primary); }
-        .faq-answer { padding-top: 1rem; color: var(--text-muted); line-height: 1.6; font-size: 1rem; animation: fadein 0.3s ease-in-out;}
-        @keyframes fadein { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        /* --- 6. CALL TO ACTION FINALE (HIGH CONTRAST TECH BANNER) --- */
+        .cta-section { padding: 6rem 6%; background: var(--bg-light); border-top: 1px solid var(--border); }
+        .cta-banner-card {
+            max-width: 1250px; margin: 0 auto; background: linear-gradient(135deg, #0A0E17 0%, #111827 50%, #1E3A8A 100%);
+            border-radius: 30px; padding: 5rem 4rem; color: var(--white); display: flex; justify-content: space-between;
+            align-items: center; gap: 3rem; position: relative; overflow: hidden; box-shadow: 0 30px 70px rgba(10, 14, 23, 0.25);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .cta-banner-card::before {
+            content: ''; position: absolute; top: -40%; right: -20%; width: 500px; height: 500px;
+            background: var(--primary); filter: blur(120px); opacity: 0.3; border-radius: 50%; pointer-events: none;
+        }
+        .cta-banner-content { max-width: 680px; position: relative; z-index: 2; }
+        .cta-banner-tag { color: var(--accent-cyan); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1rem; display: block; }
+        .cta-banner-content h2 { font-size: clamp(2.3rem, 4vw, 3.6rem); font-weight: 800; letter-spacing: -1.2px; line-height: 1.15; margin-bottom: 1.2rem; color: var(--white); }
+        .cta-banner-content p { font-size: 1.15rem; color: var(--text-light-muted); line-height: 1.7; margin: 0; }
+        .cta-banner-btn-wrap { position: relative; z-index: 2; flex-shrink: 0; }
+        .btn-banner {
+            background: var(--white); color: #0F172A; padding: 18px 42px; border-radius: 50px; text-decoration: none;
+            font-family: 'Outfit'; font-weight: 800; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 12px;
+            transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.3); white-space: nowrap;
+        }
+        .btn-banner:hover { background: #F1F5F9; color: var(--primary); transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
 
-        /* --- RICHIEDI PREVENTIVO --- */
-        .cta-footer { padding: 8rem 5% 4rem; background: var(--text-dark); color: var(--white); text-align: center; }
-        .cta-box { max-width: 900px; margin: 0 auto 6rem; }
-        .cta-box h2 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 700; letter-spacing: -1.5px; margin-bottom: 1.5rem;}
-        .cta-box p { color: #94A3B8; font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;}
+        /* --- FOOTER COMPLETO --- */
+        footer { background: #0A0E17; color: var(--text-light-muted); padding: 5rem 6% 3rem; border-top: 1px solid #1E293B; }
+        .footer-top { max-width: 1350px; margin: 0 auto 4rem; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 3.5rem; }
+        .footer-brand h3 { font-size: 1.8rem; font-weight: 900; color: var(--white); margin-bottom: 1rem; letter-spacing: -0.5px; }
+        .footer-brand h3 span { color: var(--primary); }
+        .footer-brand p { font-size: 0.95rem; line-height: 1.7; color: #94A3B8; max-width: 320px; }
         
-        .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; color: #64748B; font-size: 0.9rem;}
-        .footer-social { display: flex; gap: 1.5rem; }
-        .footer-social a { color: var(--white); text-decoration: none; font-weight: 500;}
+        .footer-col h4 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 1.4rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-col ul a { color: #94A3B8; text-decoration: none; font-size: 0.92rem; transition: color 0.2s; }
+        .footer-col ul a:hover { color: var(--white); }
 
-        /* =========================================
-           VERSIONE MOBILE (MEDIA QUERIES)
-           ========================================= */
+        .footer-bottom {
+            max-width: 1350px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid #1E293B; padding-top: 2.2rem; font-size: 0.88rem; color: #64748B;
+        }
+        .footer-socials { display: flex; gap: 1.5rem; }
+        .footer-socials a { color: var(--white); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .footer-socials a:hover { color: var(--primary); }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 1100px) {
+            .services-grid-3, .why-grid, .process-grid { grid-template-columns: 1fr 1fr; }
+            .process-grid::before { display: none; }
+            .hero { grid-template-columns: 1fr; gap: 3rem; padding-top: 8rem; text-align: center; }
+            .hero p { margin: 0 auto 2.5rem; }
+            .hero-actions, .hero-metrics { justify-content: center; }
+            .agency-wrap { grid-template-columns: 1fr; gap: 3.5rem; }
+            .cta-banner-card { flex-direction: column; text-align: center; padding: 3.5rem 2.5rem; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+        }
+
         @media (max-width: 900px) {
-            /* Fix Menu Mobile */
             .hamburger { display: block; }
             .nav-links {
                 position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
                 background: var(--white); flex-direction: column; align-items: center; justify-content: center;
-                gap: 2.5rem; z-index: 100;
+                gap: 2.2rem; z-index: 100; transition: 0.3s;
             }
             .nav-links.active { right: 0; }
-            .nav-links a { font-size: 1.5rem; font-weight: 600; }
-            
-            /* Fix Hero */
-            .hero { padding: 7rem 5% 4rem; }
-            .hero::before { width: 300px; height: 300px; }
-            
-            /* Fix Progetti Alternati -> Incolonnati */
-            .works-list { gap: 4rem; margin-top: 2rem;}
-            .project-row, .project-row:nth-child(even) { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+            .nav-links a { font-size: 1.4rem; font-weight: 600; }
+            .project-row, .project-row:nth-child(even) { flex-direction: column; gap: 1.5rem; }
             .project-image-col { width: 100%; }
-            .img-wrapper { border-radius: 12px; }
-            .project-text-col h3 { margin-bottom: 0.5rem; }
-
-            /* Fix Spaziature Generali */
-            .features, .works, .faq, .cta-footer { padding-top: 5rem; padding-bottom: 5rem; }
-            .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .footer-social { justify-content: center; }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 640px) {
             nav { padding: 1rem 5%; }
-            .logo img { height: 65px !important; margin-top: -10px !important; margin-bottom: -10px !important; }
-            .hero { padding: 6.5rem 5% 3.5rem; }
-            .hero h1 { font-size: 2.3rem; }
-            .hero p { font-size: 1rem; }
-            .btn-primary { width: 100%; text-align: center; }
-            .features-grid { grid-template-columns: 1fr; }
-            .feat-card { padding: 1.8rem; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero-actions { flex-direction: column; width: 100%; }
+            .hero-actions a { width: 100%; }
+            .services-grid-3, .why-grid, .process-grid { grid-template-columns: 1fr; }
+            .agency-pillars { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 1.2rem; text-align: center; }
+            .btn-banner { width: 100%; justify-content: center; }
+            .floating-badge { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR MINIMALE -->
+    <!-- NAVBAR ELEGANTE VERTEX -->
     <nav>
-        <div class="logo"><img src="logo_clean.png" alt="VertexStudio Logo" style="height: 100px; width: auto; border-radius: 6px; margin-top: -20px; margin-bottom: -20px;"></div>
+        <a href="index.html" class="logo">
+            <img src="logo_clean.png" alt="VERTEX Digital Agency Logo">
+        </a>
         
         <div class="hamburger" onclick="toggleMenu()">☰</div>
         
         <ul class="nav-links" id="navLinks">
-            <li><a href="#eccellenza" onclick="toggleMenu()">Il Metodo</a></li>
-            <li><a href="#lavori" onclick="toggleMenu()">I Lavori</a></li>
-            <li><a href="#faq" onclick="toggleMenu()">FAQ</a></li>
-            <li><a href="#preventivo" style="color: var(--primary);" onclick="toggleMenu()">Contattami</a></li>
+            <li><a href="index.html" class="active" onclick="toggleMenu()">Home</a></li>
+            <li><a href="chi-siamo.html" onclick="toggleMenu()">Chi Siamo / Agenzia</a></li>
+            <li><a href="#servizi" onclick="toggleMenu()">Servizi</a></li>
+            <li><a href="#progetti" onclick="toggleMenu()">Progetti</a></li>
+            <li><a href="#contatti" style="color: var(--primary);" onclick="toggleMenu()">Contatti</a></li>
         </ul>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- 1. HERO SECTION -->
     <header class="hero">
-        <div class="hero-badge">Web Design & Sviluppo Avanzato</div>
-        <h1>Portiamo il tuo business <br>al vertice del digitale.</h1>
-        <p>Progettiamo esperienze digitali ad alte prestazioni, menù interattivi e piattaforme e-commerce pensate esclusivamente per farti vendere di più.</p>
-        <div style="margin-top: 1rem;">
-            <a href="#lavori" class="btn-primary" style="width: 100%; max-width: 300px;">Esplora i Lavori</a>
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Web Architecture &bull; Brand Performance</div>
+            <h1>Portiamo il tuo business al <span class="highlight">vertice del digitale</span>.</h1>
+            <p>
+                Progettiamo esperienze web sartoriali ad altissima conversione, menù e listini digitali interattivi e identità visive coordinate pensate esclusivamente per fare crescere il valore della tua impresa.
+            </p>
+            <div class="hero-actions">
+                <a href="#servizi" class="btn-primary">Scopri i Servizi &rarr;</a>
+                <a href="#contatti" class="btn-secondary">Richiedi Preventivo</a>
+            </div>
+            
+            <div class="hero-metrics">
+                <div class="metric-item">
+                    <div class="stat-num">&lt; 1.0s</div>
+                    <p>Velocità media di caricamento</p>
+                </div>
+                <div class="metric-item">
+                    <div class="stat-num">100%</div>
+                    <p>Design su misura senza template</p>
+                </div>
+                <div class="metric-item">
+                    <div class="stat-num">360&deg;</div>
+                    <p>Presenza digitale integrata</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-mockup-wrap">
+            <div class="browser-mockup">
+                <div class="browser-header">
+                    <span class="browser-dot dot-red"></span>
+                    <span class="browser-dot dot-yellow"></span>
+                    <span class="browser-dot dot-green"></span>
+                    <span class="browser-url">https://vertexagency.it/digital-experience</span>
+                </div>
+                <div class="browser-body">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                         alt="Interfaccia UI/UX Moderna sviluppata da VERTEX">
+                </div>
+            </div>
+            
+            <!-- Floating Tech Badge -->
+            <div class="floating-badge">
+                <div class="floating-icon">⚡</div>
+                <div class="floating-text">
+                    <h4>High-End Engineering</h4>
+                    <p>Codice puro, zero bloatware</p>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- L'ECCELLENZA E' IL NOSTRO STANDARD -->
-    <section id="eccellenza" class="features">
-        <div class="section-head">
-            <h2>L'eccellenza è il nostro standard.</h2>
-            <p>Offriamo servizi digitali completi a 360 gradi, garantendo un vantaggio competitivo reale sul mercato per la tua attività.</p>
-        </div>
-        <div class="features-grid">
-            <div class="feat-card">
-                <div class="feat-icon">🎯</div>
-                <h3>Design su Misura</h3>
-                <p>Niente template precompilati. Studiamo il tuo target e creiamo un design unico che rispecchi perfettamente il prestigio del tuo brand.</p>
+    <!-- 2. CHI SIAMO / AGENZIA (ANTEPRIMA) -->
+    <section class="agency-preview" id="agenzia">
+        <div class="agency-wrap">
+            <div class="agency-text-col">
+                <span class="section-tag">Chi Siamo &bull; L'Agenzia</span>
+                <h2>Ingegneria del codice, eleganza del design.</h2>
+                <p>
+                    VERTEX nasce per colmare la distanza tra creatività grafica di alto livello e precisione tecnologica. Non ci limitiamo a consegnare siti web: creiamo asset digitali strategici per brand che rifiutano la mediocrità.
+                </p>
+                <p>
+                    Rifiutiamo i template precompilati e le piattaforme lente e vulnerabili. Ogni nostro lavoro è ingegnerizzato riga per riga per assicurare tempi di risposta istantanei, posizionamento sui motori di ricerca e una user experience memorabile.
+                </p>
+                
+                <div class="agency-pillars">
+                    <div class="pillar-card">
+                        <h4><span>🎯</span> Visione Strategica</h4>
+                        <p>Studio mirato del mercato e del target per trasformare i visitatori in acquirenti.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <h4><span>💎</span> Sviluppo Sartoriale</h4>
+                        <p>Architettura modulare scalabile, pulita e conforme ai più rigidi standard web moderni.</p>
+                    </div>
+                </div>
+
+                <a href="chi-siamo.html" class="btn-secondary">Scopri la nostra filosofia &rarr;</a>
             </div>
-            <div class="feat-card">
-                <div class="feat-icon">⚡</div>
-                <h3>Performance Estreme</h3>
-                <p>Codice pulito e server ultra-rapidi. I nostri siti si caricano in meno di 1 secondo, migliorando il posizionamento su Google.</p>
-            </div>
-            <div class="feat-card">
-                <div class="feat-icon">📈</div>
-                <h3>Orientato alle Vendite</h3>
-                <p>Implementiamo Call To Action strategiche e sistemi di prenotazione per trasformare i visitatori in clienti paganti.</p>
-            </div>
-            <div class="feat-card">
-                <div class="feat-icon">📱</div>
-                <h3>Menù Digitali</h3>
-                <p>Creiamo menù digitali interattivi tramite QR code, eleganti e sempre aggiornati, perfetti per ristoranti e locali.</p>
-            </div>
-            <div class="feat-card">
-                <div class="feat-icon">🎨</div>
-                <h3>Grafica per i Social</h3>
-                <p>Curiamo l'immagine delle tue pagine social (Instagram, Facebook) con grafiche professionali per catturare l'attenzione.</p>
+
+            <div class="agency-visual-col">
+                <div class="agency-media-grid">
+                    <div class="media-box-1">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Team VERTEX durante una sessione di design e strategia">
+                    </div>
+                    <div class="media-box-2">
+                        <div class="media-box-sub">
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Scrittura codice pulito ad alte prestazioni">
+                        </div>
+                        <div class="media-box-sub">
+                            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Progettazione UI per dispositivi mobile">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- I MIEI LAVORI (PORTFOLIO) -->
-    <section id="lavori" class="works">
-        <div class="section-head" style="margin-bottom: 2rem;">
-            <h2>Progetti Selezionati.</h2>
-            <p>Dai ristoranti stellati alle aziende industriali. Scopri come abbiamo trasformato la presenza online dei clienti.</p>
+    <!-- 3. GRIGLIA I NOSTRI SERVIZI (3 CARD INTERATTIVE) -->
+    <section class="services-section" id="servizi">
+        <div class="section-header">
+            <span class="section-tag">I Nostri Servizi Chiave</span>
+            <h2>Soluzioni digitali costruite per dominare.</h2>
+            <p>
+                Tre pilastri integrati per garantire alla tua attività autorevolezza, tecnologia all'avanguardia e una presenza omnicanale coordinata.
+            </p>
+        </div>
+
+        <div class="services-grid-3">
+            <!-- CARD 1: WEB DESIGN & SVILUPPO CHIAVI IN MANO -->
+            <div class="service-card">
+                <div class="service-card-media">
+                    <span class="service-card-badge">Web Architecture</span>
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Web Design e Sviluppo Chiavi in Mano">
+                </div>
+                <div class="service-card-content">
+                    <div class="service-card-icon">💻</div>
+                    <h3>Web Design &amp; Sviluppo Chiavi in Mano</h3>
+                    <p>
+                        Realizziamo siti corporate, landing page ad alta conversione e piattaforme web custom. Dalla progettazione wireframe UI/UX alla scrittura del codice frontend e backend, configurando server, hosting dedicati e domini per una consegna senza pensieri.
+                    </p>
+                    <ul class="service-features-list">
+                        <li><span>✓</span> Progettazione UI/UX su misura (Figma)</li>
+                        <li><span>✓</span> Sviluppo frontend ultra-reattivo &amp; SEO Friendly</li>
+                        <li><span>✓</span> Setup dominio, certificati SSL &amp; hosting ultra-veloce</li>
+                        <li><span>✓</span> Ottimizzazione Core Web Vitals</li>
+                    </ul>
+                    <a href="#contatti" class="service-card-link">Richiedi un Progetto Web &rarr;</a>
+                </div>
+            </div>
+
+            <!-- CARD 2: DIGITAL MENU & LISTINI INTERATTIVI -->
+            <div class="service-card">
+                <div class="service-card-media">
+                    <span class="service-card-badge">Food &amp; Hospitality</span>
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Menu Digitali e Listini Interattivi tramite QR Code">
+                </div>
+                <div class="service-card-content">
+                    <div class="service-card-icon">📱</div>
+                    <h3>Digital Menu &amp; Listini Interattivi</h3>
+                    <p>
+                        Web app leggere e senza obbligo di download per ristoranti, lounge bar, pizzerie e centri estetici. Consultabili istantaneamente via QR Code con immagini ad alta risoluzione, filtri per allergeni, traduzioni multilingua e gestione autonoma dei piatti.
+                    </p>
+                    <ul class="service-features-list">
+                        <li><span>✓</span> Accesso fulmineo da scansione QR Code</li>
+                        <li><span>✓</span> Fotografie appetizing &amp; filtri allergeni</li>
+                        <li><span>✓</span> Modulo prenotazione tavoli &amp; ordini rapidi</li>
+                        <li><span>✓</span> Zero app da scaricare per il cliente finale</li>
+                    </ul>
+                    <a href="#contatti" class="service-card-link">Configura il tuo Menù &rarr;</a>
+                </div>
+            </div>
+
+            <!-- CARD 3: SOCIAL MEDIA VISUAL DESIGN -->
+            <div class="service-card">
+                <div class="service-card-media">
+                    <span class="service-card-badge">Brand Identity</span>
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Social Media Visual Design e Feed Coordinato">
+                </div>
+                <div class="service-card-content">
+                    <div class="service-card-icon">🎨</div>
+                    <h3>Social Media Visual Design</h3>
+                    <p>
+                        Creiamo sistemi di design visivo coerenti per Instagram, Facebook e LinkedIn. Forniamo template grafici professionali, post carousel educativi, banner promozionali e copertine per proiettare un'immagine coordinata, autorevole e riconoscibile ovunque.
+                    </p>
+                    <ul class="service-features-list">
+                        <li><span>✓</span> Feed design &amp; palette visiva coordinata</li>
+                        <li><span>✓</span> Template editabili su misura</li>
+                        <li><span>✓</span> Grafiche per promozioni, lanci e campagne ads</li>
+                        <li><span>✓</span> Coerenza totale con l'identità del sito web</li>
+                    </ul>
+                    <a href="#contatti" class="service-card-link">Valorizza la tua Immagine &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PERCHÉ SCEGLIERE VERTEX (PUNTI DI FORZA IN GRIGLIA A 4 COLONNE) -->
+    <section class="why-us-section">
+        <div class="section-header" style="margin-bottom: 4rem;">
+            <span class="section-tag">Il Nostro Standard</span>
+            <h2>Perché le aziende scelgono VERTEX.</h2>
+            <p>Non accettiamo compromessi: ogni elemento è studiato per produrre risultati misurabili e stabilità a lungo termine.</p>
+        </div>
+
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">📐</div>
+                <h3>Design su Misura</h3>
+                <p>Nessun template prefabbricato o impaginazione anonima. Ogni pixel è disegnato attorno all'identità specifica del tuo brand.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">⚡</div>
+                <h3>Codice &amp; Prestazioni</h3>
+                <p>Struttura snella, caricamento in frazioni di secondo e codice ottimizzato per posizionarsi al vertice su Google e trattenere i visitatori.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">🔗</div>
+                <h3>Presenza Coerente</h3>
+                <p>Allineamento millimetrico tra sito web, menù interattivi e canali social per rafforzare la fiducia e la percezione del tuo valore.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">🤝</div>
+                <h3>Assistenza &amp; Trasparenza</h3>
+                <p>Un interlocutore tecnico diretto al tuo fianco: zero gergo incomprensibile, risposte tempestive e manutenzione continua.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. COME LAVORIAMO (PROCESSO IN 4 STEP LINEARE) -->
+    <section class="process-section">
+        <div class="section-header" style="margin-bottom: 4.5rem;">
+            <span class="section-tag">Metodo Rigoroso</span>
+            <h2>Dal concept al successo in 4 fasi.</h2>
+            <p>Un percorso collaudato e trasparente che elimina imprevisti e ritardi, garantendo la massima qualità di consegna.</p>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-num-badge">01</div>
+                <h3>Ascolto &amp; Analisi</h3>
+                <p>Studiamo a fondo la tua attività, il mercato di riferimento, i competitor e gli obiettivi di conversione che intendi raggiungere.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-num-badge">02</div>
+                <h3>Progettazione UI &amp; Grafica</h3>
+                <p>Creiamo i wireframe e i prototipi grafici completi ad alta fedeltà, concordando ogni dettaglio visivo prima della stesura del codice.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-num-badge">03</div>
+                <h3>Sviluppo Codice &amp; Setup</h3>
+                <p>Traduciamo il design in codice pulito, leggero e sicuro, configurando server, database, certificati di sicurezza e test responsive.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-num-badge">04</div>
+                <h3>Lancio &amp; Supporto</h3>
+                <p>Pubblichiamo la piattaforma online, verifichiamo le metriche di velocità e rimaniamo al tuo fianco con assistenza tecnica costante.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGETTI SELEZIONATI (CASE STUDY CON DEDICATE LANDING PAGE) -->
+    <section id="progetti" class="works">
+        <div class="section-header" style="margin-bottom: 2.5rem;">
+            <span class="section-tag">Portfolio Selezionato</span>
+            <h2>I Lavori VERTEX.</h2>
+            <p>Esplora i nostri Case Study per scoprire come abbiamo trasformato la presenza digitale e il business dei nostri clienti.</p>
         </div>
         
         <div class="works-list">
@@ -246,10 +617,10 @@
                     </a>
                 </div>
                 <div class="project-text-col">
-                    <span class="project-tag">E-Commerce</span>
+                    <span class="project-tag">E-Commerce &amp; Configuratore</span>
                     <h3>AeroFit Custom Sportswear</h3>
                     <p>Piattaforma e-commerce completa con simulatore grafico interattivo per la personalizzazione in tempo reale dei capi sportivi.</p>
-                    <a href="case-study-aerofit.html" class="btn-outline">Visualizza Progetto &rarr;</a>
+                    <a href="case-study-aerofit.html" class="btn-outline">Visualizza Case Study &rarr;</a>
                 </div>
             </div>
 
@@ -262,10 +633,10 @@
                     </a>
                 </div>
                 <div class="project-text-col">
-                    <span class="project-tag">Sito Corporate</span>
-                    <h3>De Santis & Associati</h3>
+                    <span class="project-tag">Sito Corporate Istituzionale</span>
+                    <h3>De Santis &amp; Associati</h3>
                     <p>Sito web istituzionale progettato per trasmettere autorità e competenza. Design minimale e palette blu navy e oro.</p>
-                    <a href="case-study-desantis.html" class="btn-outline">Visualizza Progetto &rarr;</a>
+                    <a href="case-study-desantis.html" class="btn-outline">Visualizza Case Study &rarr;</a>
                 </div>
             </div>
 
@@ -278,10 +649,10 @@
                     </a>
                 </div>
                 <div class="project-text-col">
-                    <span class="project-tag">Web App Ristorazione</span>
+                    <span class="project-tag">Web App Food &amp; Menù QR</span>
                     <h3>Il Forno Pizzeria</h3>
                     <p>Un'esperienza digitale con menù fotografico immersivo e sistema di prenotazione tavoli rapido e intuitivo.</p>
-                    <a href="case-study-ilforno.html" class="btn-outline">Visualizza Progetto &rarr;</a>
+                    <a href="case-study-ilforno.html" class="btn-outline">Visualizza Case Study &rarr;</a>
                 </div>
             </div>
 
@@ -294,59 +665,81 @@
                     </a>
                 </div>
                 <div class="project-text-col">
-                    <span class="project-tag">Sito B2B Industriale</span>
+                    <span class="project-tag">Piattaforma B2B Industriale</span>
                     <h3>TecnoMetal CNC</h3>
                     <p>Piattaforma B2B ad alta conversione per l'industria, con modulo avanzato per l'upload di file CAD 3D.</p>
-                    <a href="case-study-tecnometal.html" class="btn-outline">Visualizza Progetto &rarr;</a>
+                    <a href="case-study-tecnometal.html" class="btn-outline">Visualizza Case Study &rarr;</a>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- DOMANDE FREQUENTI (FAQ) -->
-    <section id="faq" class="faq">
-        <div class="section-head">
-            <h2>Domande Frequenti.</h2>
-        </div>
-        
-        <div class="faq-container">
-            <details>
-                <summary>Quanto tempo serve per avere il progetto finito?</summary>
-                <div class="faq-answer">
-                    I tempi di consegna variano in base alla complessità del lavoro e alla necessità o meno di un set fotografico. Si va da un minimo di <strong>48 ore</strong> per un menù digitale, fino a <strong>1-2 settimane</strong> per siti web più strutturati.
-                </div>
-            </details>
-            <details>
-                <summary>Quanto costa un sito web?</summary>
-                <div class="faq-answer">
-                    Non avendo soluzioni "pre-confezionate", ogni preventivo è su misura. Creare un menù QR per un bar ha un costo molto diverso rispetto allo sviluppo di una piattaforma di vendita complessa. Contattaci per un'analisi gratuita.
-                </div>
-            </details>
-            <details>
-                <summary>Fornite assistenza dopo la pubblicazione?</summary>
-                <div class="faq-answer">
-                    Assolutamente sì. Offriamo pacchetti di manutenzione per assicurarci che il sito sia sempre aggiornato, sicuro e veloce.
-                </div>
-            </details>
+    <!-- 6. CALL TO ACTION FINALE (HIGH CONTRAST BANNER) -->
+    <section class="cta-section" id="contatti">
+        <div class="cta-banner-card">
+            <div class="cta-banner-content">
+                <span class="cta-banner-tag">Let's Build Something Great</span>
+                <h2>Pronto a portare il tuo brand al vertice?</h2>
+                <p>
+                    Parlaci del tuo progetto. Ricevi un'analisi preliminare e una proposta su misura per trasformare la tua presenza digitale in un moltiplicatore di clienti.
+                </p>
+            </div>
+            <div class="cta-banner-btn-wrap">
+                <a href="mailto:vertexstudio@outlook.it" class="btn-banner">
+                    Richiedi Preventivo Gratuito &rarr;
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- RICHIEDI PREVENTIVO / FOOTER -->
-    <footer id="preventivo" class="cta-footer">
-        <div class="cta-box">
-            <h2>Pronto a dominare il mercato?</h2>
-            <p>Affidati a noi per una presenza online professionale e inizia a crescere davvero.</p>
-            <a href="mailto:vertexstudio@outlook.it" class="btn-primary" style="font-size: 1.1rem; padding: 16px 40px; margin-top: 10px;">Richiedi Informazioni</a>
+    <!-- FOOTER COMPLETO VERTEX -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h3>VERTEX<span>STUDIO</span></h3>
+                <p>
+                    Digital Agency dedicata a Web Design su misura, Ingegneria Software ad alte prestazioni e Brand Identity coordinate per aziende ambiziose.
+                </p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Navigazione</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chi-siamo.html">Chi Siamo / Agenzia</a></li>
+                    <li><a href="#servizi">I Nostri Servizi</a></li>
+                    <li><a href="#progetti">Portfolio &amp; Case Study</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Servizi</h4>
+                <ul>
+                    <li><a href="#servizi">Web Design Chiavi in Mano</a></li>
+                    <li><a href="#servizi">Menù Digitali QR Code</a></li>
+                    <li><a href="#servizi">Social Media Visual Design</a></li>
+                    <li><a href="#servizi">Consulenza Strategica</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contatti</h4>
+                <ul>
+                    <li><a href="mailto:vertexstudio@outlook.it">vertexstudio@outlook.it</a></li>
+                    <li><a href="https://www.instagram.com/vertexstudioweb/" target="_blank">Instagram: @vertexstudioweb</a></li>
+                    <li><span style="color: #64748B;">Disponibili per progetti in tutta Italia</span></li>
+                </ul>
+            </div>
         </div>
-        
+
         <div class="footer-bottom">
             <div>
-                <span style="font-family:'Outfit'; font-weight:800; color:var(--white); font-size:1.2rem; margin-right: 10px;">VERTEXSTUDIO</span>
-                <br>&copy; 2026. Tutti i diritti riservati.
+                &copy; 2026 VERTEX DIGITAL AGENCY. Tutti i diritti riservati.
             </div>
-            <div class="footer-social">
+            <div class="footer-socials">
                 <a href="https://www.instagram.com/vertexstudioweb/" target="_blank">Instagram</a>
+                <a href="mailto:vertexstudio@outlook.it">Email</a>
             </div>
         </div>
     </footer>
@@ -354,20 +747,11 @@
     <!-- Script Menu Mobile -->
     <script>
         function toggleMenu() {
-            // Su desktop ignora
             if(window.innerWidth > 900) return;
-            
             const nav = document.getElementById('navLinks');
             const hamburger = document.querySelector('.hamburger');
-            
             nav.classList.toggle('active');
-            
-            // Cambia l'icona dell'hamburger in una X
-            if(nav.classList.contains('active')) {
-                hamburger.innerHTML = '✕';
-            } else {
-                hamburger.innerHTML = '☰';
-            }
+            hamburger.innerHTML = nav.classList.contains('active') ? '✕' : '☰';
         }
     </script>
 </body>
