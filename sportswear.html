@@ -181,9 +181,14 @@
         .btn-checkout { background: white; color: var(--dark); width: 100%; padding: 15px; font-weight: bold; font-family: 'Oswald', sans-serif; border: none; border-radius: 5px; margin-top: 1rem; cursor: pointer; font-size: 1.2rem;}
 
         @media (max-width: 768px) {
-            .configurator { flex-direction: column; height: 95vh; overflow-y: scroll; }
-            .preview-area { padding: 2rem 0; height: auto; }
-            .cart-sidebar { width: 100%; right: -100%; }
+            nav { padding: 1rem 5%; }
+            .hero { height: auto; min-height: 60vh; padding: 4rem 5%; }
+            .hero h1 { font-size: clamp(2.5rem, 9vw, 3.8rem); }
+            .shop-section { padding: 3rem 5%; }
+            .configurator { flex-direction: column; width: 95%; height: 92vh; overflow-y: scroll; border-radius: 8px; }
+            .preview-area { padding: 1.5rem 0; min-height: 320px; }
+            .controls-area { padding: 1.5rem; }
+            .cart-sidebar { width: 100%; right: -100%; padding: 1.5rem; }
         }
     </style>
 </head>

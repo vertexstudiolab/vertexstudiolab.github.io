@@ -160,10 +160,23 @@
         footer { background: #051230; color: #888; padding: 4rem 5% 2rem; text-align: center; }
 
         @media (max-width: 900px) {
-            .stats-bar { flex-direction: column; gap: 2rem; }
-            .machines-section { flex-direction: column; }
-            .services-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 3.5rem; }
+            .top-bar { flex-direction: column; gap: 5px; text-align: center; }
+            nav { flex-direction: column; gap: 1rem; padding: 1rem 5%; text-align: center; }
+            .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+            .hero { height: auto; min-height: 80vh; padding: 6rem 5% 4rem; background-attachment: scroll; }
+            .hero h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); }
+            .hero p { font-size: 1.05rem; }
+            .stats-bar { flex-direction: column; gap: 2rem; margin-top: -20px; }
+            .services-section { padding: 4rem 5% 3rem; }
+            .section-header h2 { font-size: 2.2rem; }
+            .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .machines-section { flex-direction: column; padding: 4rem 5%; gap: 2.5rem; }
+            .machines-text h2 { font-size: 2.2rem; }
+            .tech-list { grid-template-columns: 1fr; }
+            .machines-img { grid-template-columns: 1fr; }
+            .img-large { grid-column: span 1; height: 220px !important; }
+            .modal-content { padding: 2rem 1.5rem; width: 95%; max-height: 90vh; overflow-y: auto; }
+            .form-row { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
