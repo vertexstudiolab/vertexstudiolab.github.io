@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Case Study: TecnoMetal CNC | Vertex Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+    <!-- NAVBAR MINIMALE VERTEX STUDIO -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="logo_clean.png" alt="VertexStudio Logo" style="height: 100px; width: auto; border-radius: 6px; margin-top: -20px; margin-bottom: -20px;">
+        </a>
+        
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#lavori" class="back-link">&larr; Tutti i Progetti</a></li>
+            <li><a href="index.html#eccellenza">Il Metodo</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="#preventivo" style="color: var(--primary);">Contattaci</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER / HERO CASE STUDY -->
+    <header class="cs-hero">
+        <div class="cs-breadcrumbs">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <a href="index.html#lavori">Progetti Selezionati</a>
+            <span>/</span>
+            <strong>TecnoMetal CNC</strong>
+        </div>
+
+        <span class="cs-tag">Piattaforma B2B &amp; Industria Meccanica</span>
+        <h1>TecnoMetal CNC</h1>
+        <p class="cs-hero-subtitle">
+            Piattaforma digitale B2B ad alta conversione per l'industria meccanica di precisione, con presentazione del parco macchine e modulo per l'upload di file CAD 3D e richieste di preventivo.
+        </p>
+
+        <!-- SCHEDA META DATI PROGETTO (MODIFICABILE) -->
+        <div class="cs-meta-grid">
+            <div class="cs-meta-item">
+                <span class="cs-meta-label">Cliente</span>
+                <span class="cs-meta-value">TecnoMetal Meccanica di Precisione</span>
+            </div>
+            <div class="cs-meta-item">
+                <span class="cs-meta-label">Settore</span>
+                <span class="cs-meta-value">Manifattura Meccanica &amp; Lavorazioni CNC</span>
+            </div>
+            <div class="cs-meta-item">
+                <span class="cs-meta-label">Servizi Forniti</span>
+                <span class="cs-meta-value">Architettura Informazioni B2B, UI/UX, Lead Generation</span>
+            </div>
+            <div class="cs-meta-item cs-meta-cta">
+                <a href="meccanica.html" target="_blank" class="btn-primary" style="width: 100%;">
+                    Visita il Progetto &rarr;
+                </a>
+            </div>
+        </div>
+
+        <!-- ANTEPRIMA PRINCIPALE HERO -->
+        <div class="cs-main-image-wrap">
+            <img src="tecnometal.jpg" 
+                 alt="TecnoMetal CNC - Mockup Principale" 
+                 class="cs-main-image">
+        </div>
+    </header>
+
+    <!-- CONTENUTI DETTAGLIATI DEL CASE STUDY -->
+    <main class="cs-content-section">
+
+        <!-- 01. IL CLIENTE -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">01</div>
+                <h2>Il Cliente</h2>
+            </div>
+            <p>
+                TecnoMetal CNC è un'officina meccanica di precisione specializzata nella fresatura a 5 assi, tornitura e lavorazione di componenti complessi per settori ad alta intensità tecnologica come l'automotive, l'aerospaziale, l'oleodinamica e l'energia.
+            </p>
+            <p>
+                L'azienda opera prevalentemente su commesse B2B per conto terzi, lavorando su tolleranze centesimali con certificazioni di conformità ISO e collaudi tridimensionali.
+            </p>
+            <div class="cs-pill-list">
+                <span class="cs-pill"><span class="icon">&bull;</span> Settore Manifatturiero &amp; Meccanica Pesante</span>
+                <span class="cs-pill"><span class="icon">&bull;</span> Modello Commerciale B2B</span>
+                <span class="cs-pill"><span class="icon">&bull;</span> Lavorazioni a Disegno Tecnico e File CAD</span>
+            </div>
+        </section>
+
+        <!-- 02. LA SFIDA -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">02</div>
+                <h2>La Sfida</h2>
+            </div>
+            <p>
+                Nel settore metalmeccanico, la maggior parte dei contatti commerciali richiede l'invio e la valutazione di disegni tecnici (file STEP, IGES, DXF). La gestione tradizionale tramite lunghe catene di email risultava dispersiva, causando rallentamenti nella formulazione dei preventivi e una percezione meno strutturata dell'azienda verso i responsabili degli uffici acquisti esteri.
+            </p>
+            <div class="cs-subgrid">
+                <div class="cs-subcard">
+                    <h3>Ricezione File CAD 3D</h3>
+                    <p>Fornire all'ufficio acquisti dei clienti un canale immediato e sicuro per allegare direttamente le matematiche 3D e i disegni 2D.</p>
+                </div>
+                <div class="cs-subcard">
+                    <h3>Valorizzazione del Parco Macchine</h3>
+                    <p>Esporre con chiarezza le capacità produttive (campi di lavoro, assi di fresatura, materiali lavorabili come ergal, inox e titanio).</p>
+                </div>
+                <div class="cs-subcard">
+                    <h3>Certificazioni &amp; Fiducia B2B</h3>
+                    <p>Rendere subito evidenti gli standard qualitativi e i protocolli di controllo metrologico per rassicurare i grandi committenti industriali.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. LA SOLUZIONE -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">03</div>
+                <h2>La Soluzione Vertex Studio</h2>
+            </div>
+            <p>
+                Vertex Studio ha impostato una piattaforma web B2B solida, improntata all'efficienza operativa e alla credibilità tecnica:
+            </p>
+            <p>
+                Il layout combina tonalità blu industriale profondo, dettagli antracite metallico e accenti di contrasto per guidare l'occhio verso le azioni cardine. È stata data grande visibilità al reparto macchine utensili e alle schede tecniche dei materiali trattati.
+            </p>
+            <p>
+                Il fulcro dell'esperienza è il <strong>modulo rapido di richiesta quotazione</strong>, studiato per guidare gli ingegneri e i buyer nell'indicazione dei volumi di fornitura, delle tempistiche desiderate e nell'upload guidato dei formati tecnici necessari alla preventivazione.
+            </p>
+            <div class="cs-pill-list">
+                <span class="cs-pill"><span class="icon">&check;</span> Portale B2B Orientato alla Generazione di Lead</span>
+                <span class="cs-pill"><span class="icon">&check;</span> Modulo per Upload Specifiche &amp; File CAD 3D</span>
+                <span class="cs-pill"><span class="icon">&check;</span> Schede Tecniche su Materiali e Tolleranze</span>
+                <span class="cs-pill"><span class="icon">&check;</span> Ottimizzazione SEO per Ricerche Industriali B2B</span>
+            </div>
+        </section>
+
+        <!-- 04. IL RISULTATO FINALE & ANTEPRIME -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">04</div>
+                <h2>Il Risultato Finale</h2>
+            </div>
+            <p>
+                Il nuovo portale di TecnoMetal CNC trasmette fin dal primo impatto l'eccellenza produttiva dell'officina meccanica, snellendo la fase di primo contatto con gli uffici acquisti e qualificando i contatti commerciali in entrata.
+            </p>
+
+            <!-- GALLERIA MOCKUP E DETTAGLI DEL PROGETTO (CON ASSET REALI) -->
+            <div class="cs-gallery">
+                <div class="cs-gallery-item">
+                    <div class="cs-gallery-img-wrap">
+                        <img src="tecnometal.jpg" 
+                             alt="TecnoMetal - Home Page e Parco Macchine" 
+                             class="cs-gallery-img">
+                    </div>
+                    <div class="cs-gallery-caption">
+                        <h4>Hero &amp; Reparto Lavorazioni</h4>
+                        <p>Visualizzazione di forte impatto per attestare la solidità dell'infrastruttura produttiva.</p>
+                    </div>
+                </div>
+
+                <div class="cs-gallery-item">
+                    <div class="cs-gallery-img-wrap">
+                        <img src="tecnometal2.jpg" 
+                             alt="TecnoMetal - Dettaglio Macchinari e CNC" 
+                             class="cs-gallery-img">
+                    </div>
+                    <div class="cs-gallery-caption">
+                        <h4>Parco Macchine e Tolleranze</h4>
+                        <p>Focus sulle caratteristiche dei centri di lavoro e sui controlli di precisione.</p>
+                    </div>
+                </div>
+
+                <div class="cs-gallery-item">
+                    <div class="cs-gallery-img-wrap">
+                        <img src="tecnometal3.jpg" 
+                             alt="TecnoMetal - Modulo Preventivo e Upload CAD" 
+                             class="cs-gallery-img">
+                    </div>
+                    <div class="cs-gallery-caption">
+                        <h4>Modulo Preventivi Tecnici</h4>
+                        <p>Sezione dedicata all'invio dei file CAD e dei disegni tecnici per quotazioni veloci.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANNER EVIDENTE: VISITA IL PROGETTO -->
+        <section class="cs-live-banner">
+            <div class="cs-live-info">
+                <h3>Visualizza il sito industriale live.</h3>
+                <p>
+                    Esplora la piattaforma B2B completa realizzata per TecnoMetal CNC e testa il flusso di preventivazione.
+                </p>
+            </div>
+            <div class="cs-live-action">
+                <a href="meccanica.html" target="_blank" class="btn-white">
+                    Visita il Progetto Live ↗
+                </a>
+            </div>
+        </section>
+
+        <!-- NAVIGAZIONE TRA I CASE STUDY -->
+        <div class="cs-nav-projects">
+            <a href="case-study-ilforno.html" class="btn-secondary">
+                &larr; Progetto Precedente: Il Forno Pizzeria
+            </a>
+            <a href="index.html#lavori" class="btn-secondary">
+                Torna a tutti i progetti &rarr;
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER VERTEX STUDIO -->
+    <footer id="preventivo" class="cta-footer">
+        <div class="cta-box">
+            <h2>Pronto a valorizzare il tuo brand?</h2>
+            <p>Realizziamo esperienze web su misura orientate all'eccellenza e ai risultati per la tua attività.</p>
+            <a href="mailto:vertexstudio@outlook.it" class="btn-primary" style="font-size: 1.1rem; padding: 16px 40px; margin-top: 10px;">Richiedi Informazioni</a>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>
+                <span style="font-family:'Outfit'; font-weight:800; color:var(--white); font-size:1.2rem; margin-right: 10px;">VERTEXSTUDIO</span>
+                <br>&copy; 2026. Tutti i diritti riservati.
+            </div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/vertexstudioweb/" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Menu Mobile -->
+    <script>
+        function toggleMenu() {
+            if(window.innerWidth > 900) return;
+            const nav = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            nav.classList.toggle('active');
+            if(nav.classList.contains('active')) {
+                hamburger.innerHTML = '✕';
+            } else {
+                hamburger.innerHTML = '☰';
+            }
+        }
+    </script>
+</body>
+</html>

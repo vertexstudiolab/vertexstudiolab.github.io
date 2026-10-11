@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- TITOLO DEL CASE STUDY -->
+    <title>Case Study: [NOME PROGETTO] | Vertex Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+    <!-- NAVBAR VERTEX STUDIO (NON MODIFICARE) -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="logo_clean.png" alt="VertexStudio Logo" style="height: 100px; width: auto; border-radius: 6px; margin-top: -20px; margin-bottom: -20px;">
+        </a>
+        
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#lavori" class="back-link">&larr; Tutti i Progetti</a></li>
+            <li><a href="index.html#eccellenza">Il Metodo</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="#preventivo" style="color: var(--primary);">Contattaci</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER / HERO CASE STUDY -->
+    <header class="cs-hero">
+        <div class="cs-breadcrumbs">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <a href="index.html#lavori">Progetti Selezionati</a>
+            <span>/</span>
+            <strong>[Nome Progetto]</strong>
+        </div>
+
+        <span class="cs-tag">[CATEGORIA / TIPOLOGIA SITO]</span>
+        <h1>[Titolo del Progetto]</h1>
+        <p class="cs-hero-subtitle">
+            [Sottotitolo descrittivo: sintesi in due righe del lavoro svolto da Vertex Studio e del valore aggiunto].
+        </p>
+
+        <!-- SCHEDA META DATI PROGETTO (MODIFICABILE) -->
+        <div class="cs-meta-grid">
+            <div class="cs-meta-item">
+                <span class="cs-meta-label">Cliente</span>
+                <span class="cs-meta-value">[Nome Cliente / Azienda]</span>
+            </div>
+            <div class="cs-meta-item">
+                <span class="cs-meta-label">Settore</span>
+                <span class="cs-meta-value">[Settore di Mercato]</span>
+            </div>
+            <div class="cs-meta-item">
+                <span class="cs-meta-label">Servizi Forniti</span>
+                <span class="cs-meta-value">[es. UI/UX Design, Sviluppo Web, SEO]</span>
+            </div>
+            <div class="cs-meta-item cs-meta-cta">
+                <!-- INSERIRE QUI IL LINK AL SITO VERO DEL CLIENTE -->
+                <a href="[LINK_SITO_CLIENTE]" target="_blank" class="btn-primary" style="width: 100%;">
+                    Visita il Progetto &rarr;
+                </a>
+            </div>
+        </div>
+
+        <!-- ANTEPRIMA PRINCIPALE HERO -->
+        <div class="cs-main-image-wrap">
+            <img src="[URL_IMMAGINE_PRINCIPALE]" 
+                 alt="[Nome Progetto] - Mockup Principale" 
+                 class="cs-main-image">
+        </div>
+    </header>
+
+    <!-- CONTENUTI DETTAGLIATI DEL CASE STUDY -->
+    <main class="cs-content-section">
+
+        <!-- 01. IL CLIENTE -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">01</div>
+                <h2>Il Cliente</h2>
+            </div>
+            <p>
+                [Descrizione del cliente: chi è l'azienda, in che settore opera, quali sono i suoi punti di forza e il suo target di riferimento].
+            </p>
+            <p>
+                [Posizionamento e contesto in cui si è inserito il progetto digitale].
+            </p>
+            <div class="cs-pill-list">
+                <span class="cs-pill"><span class="icon">&bull;</span> [Caratteristica 1]</span>
+                <span class="cs-pill"><span class="icon">&bull;</span> [Caratteristica 2]</span>
+                <span class="cs-pill"><span class="icon">&bull;</span> [Caratteristica 3]</span>
+            </div>
+        </section>
+
+        <!-- 02. LA SFIDA -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">02</div>
+                <h2>La Sfida</h2>
+            </div>
+            <p>
+                [Descrizione dei problemi iniziali, delle necessità e degli obiettivi commerciali o di immagine del cliente].
+            </p>
+            <div class="cs-subgrid">
+                <div class="cs-subcard">
+                    <h3>[Obiettivo / Sfida 1]</h3>
+                    <p>[Spiegazione sintetica della prima necessità affrontata].</p>
+                </div>
+                <div class="cs-subcard">
+                    <h3>[Obiettivo / Sfida 2]</h3>
+                    <p>[Spiegazione sintetica della seconda necessità affrontata].</p>
+                </div>
+                <div class="cs-subcard">
+                    <h3>[Obiettivo / Sfida 3]</h3>
+                    <p>[Spiegazione sintetica della terza necessità affrontata].</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. LA SOLUZIONE -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">03</div>
+                <h2>La Soluzione Vertex Studio</h2>
+            </div>
+            <p>
+                [Come Vertex Studio ha ideato e sviluppato il progetto: approccio al design, architettura dell'informazione, scelte tecniche e stile visivo].
+            </p>
+            <p>
+                [Funzionalità chiave sviluppate per soddisfare le esigenze del cliente].
+            </p>
+            <div class="cs-pill-list">
+                <span class="cs-pill"><span class="icon">&check;</span> [Punto di forza 1]</span>
+                <span class="cs-pill"><span class="icon">&check;</span> [Punto di forza 2]</span>
+                <span class="cs-pill"><span class="icon">&check;</span> [Punto di forza 3]</span>
+                <span class="cs-pill"><span class="icon">&check;</span> [Punto di forza 4]</span>
+            </div>
+        </section>
+
+        <!-- 04. IL RISULTATO FINALE & ANTEPRIME -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">04</div>
+                <h2>Il Risultato Finale</h2>
+            </div>
+            <p>
+                [Descrizione del risultato raggiunto: impatto del nuovo sito o web app, facilità d'uso per gli utenti, miglioramento dell'immagine del brand].
+            </p>
+
+            <!-- GALLERIA MOCKUP E DETTAGLI DEL PROGETTO -->
+            <div class="cs-gallery">
+                <div class="cs-gallery-item">
+                    <div class="cs-gallery-img-wrap">
+                        <img src="[URL_IMMAGINE_1]" alt="[Descrizione Immagine 1]" class="cs-gallery-img">
+                    </div>
+                    <div class="cs-gallery-caption">
+                        <h4>[Titolo Mockup 1]</h4>
+                        <p>[Didascalia esplicativa del dettaglio visivo 1].</p>
+                    </div>
+                </div>
+
+                <div class="cs-gallery-item">
+                    <div class="cs-gallery-img-wrap">
+                        <img src="[URL_IMMAGINE_2]" alt="[Descrizione Immagine 2]" class="cs-gallery-img">
+                    </div>
+                    <div class="cs-gallery-caption">
+                        <h4>[Titolo Mockup 2]</h4>
+                        <p>[Didascalia esplicativa del dettaglio visivo 2].</p>
+                    </div>
+                </div>
+
+                <div class="cs-gallery-item">
+                    <div class="cs-gallery-img-wrap">
+                        <img src="[URL_IMMAGINE_3]" alt="[Descrizione Immagine 3]" class="cs-gallery-img">
+                    </div>
+                    <div class="cs-gallery-caption">
+                        <h4>[Titolo Mockup 3]</h4>
+                        <p>[Didascalia esplicativa del dettaglio visivo 3].</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANNER EVIDENTE: VISITA IL PROGETTO -->
+        <section class="cs-live-banner">
+            <div class="cs-live-info">
+                <h3>Visualizza il progetto live.</h3>
+                <p>
+                    Esplora la versione completa e interattiva realizzata per [Nome Progetto].
+                </p>
+            </div>
+            <div class="cs-live-action">
+                <!-- LINK AL SITO WEB ORIGINALE DEL CLIENTE -->
+                <a href="[LINK_SITO_CLIENTE]" target="_blank" class="btn-white">
+                    Visita il Progetto Live ↗
+                </a>
+            </div>
+        </section>
+
+        <!-- NAVIGAZIONE TRA I CASE STUDY -->
+        <div class="cs-nav-projects">
+            <a href="index.html#lavori" class="btn-secondary">
+                &larr; Torna a tutti i progetti
+            </a>
+            <a href="[LINK_PROSSIMO_CASE_STUDY]" class="btn-secondary">
+                Prossimo Progetto &rarr;
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER VERTEX STUDIO (NON MODIFICARE) -->
+    <footer id="preventivo" class="cta-footer">
+        <div class="cta-box">
+            <h2>Pronto a valorizzare il tuo brand?</h2>
+            <p>Realizziamo esperienze web su misura orientate all'eccellenza e ai risultati per la tua attività.</p>
+            <a href="mailto:vertexstudio@outlook.it" class="btn-primary" style="font-size: 1.1rem; padding: 16px 40px; margin-top: 10px;">Richiedi Informazioni</a>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>
+                <span style="font-family:'Outfit'; font-weight:800; color:var(--white); font-size:1.2rem; margin-right: 10px;">VERTEXSTUDIO</span>
+                <br>&copy; 2026. Tutti i diritti riservati.
+            </div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/vertexstudioweb/" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Menu Mobile -->
+    <script>
+        function toggleMenu() {
+            if(window.innerWidth > 900) return;
+            const nav = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            nav.classList.toggle('active');
+            if(nav.classList.contains('active')) {
+                hamburger.innerHTML = '✕';
+            } else {
+                hamburger.innerHTML = '☰';
+            }
+        }
+    </script>
+</body>
+</html>

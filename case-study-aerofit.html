@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Case Study: AeroFit Custom Sportswear | Vertex Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+    <!-- NAVBAR MINIMALE VERTEX STUDIO -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="logo_clean.png" alt="VertexStudio Logo" style="height: 100px; width: auto; border-radius: 6px; margin-top: -20px; margin-bottom: -20px;">
+        </a>
+        
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#lavori" class="back-link">&larr; Tutti i Progetti</a></li>
+            <li><a href="index.html#eccellenza">Il Metodo</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="#preventivo" style="color: var(--primary);">Contattaci</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER / HERO CASE STUDY -->
+    <header class="cs-hero">
+        <div class="cs-breadcrumbs">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <a href="index.html#lavori">Progetti Selezionati</a>
+            <span>/</span>
+            <strong>AeroFit</strong>
+        </div>
+
+        <span class="cs-tag">E-Commerce &amp; Configuratore Web</span>
+        <h1>AeroFit Custom Sportswear</h1>
+        <p class="cs-hero-subtitle">
+            Piattaforma e-commerce sportiva ad alte prestazioni dotata di un simulatore grafico interattivo per la personalizzazione in tempo reale di divise tecniche e abbigliamento sportivo.
+        </p>
+
+        <!-- SCHEDA META DATI PROGETTO (MODIFICABILE) -->
+        <div class="cs-meta-grid">
+            <div class="cs-meta-item">
+                <span class="cs-meta-label">Cliente</span>
+                <span class="cs-meta-value">AeroFit Sportswear</span>
+            </div>
+            <div class="cs-meta-item">
+                <span class="cs-meta-label">Settore</span>
+                <span class="cs-meta-value">Sportswear &amp; Abbigliamento Tecnico</span>
+            </div>
+            <div class="cs-meta-item">
+                <span class="cs-meta-label">Servizi Forniti</span>
+                <span class="cs-meta-value">UI/UX Design, Sviluppo Web, Configuratore</span>
+            </div>
+            <div class="cs-meta-item cs-meta-cta">
+                <a href="sportswear.html" target="_blank" class="btn-primary" style="width: 100%;">
+                    Visita il Progetto &rarr;
+                </a>
+            </div>
+        </div>
+
+        <!-- ANTEPRIMA PRINCIPALE HERO -->
+        <div class="cs-main-image-wrap">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                 alt="AeroFit Sportswear - Mockup Principale" 
+                 class="cs-main-image">
+        </div>
+    </header>
+
+    <!-- CONTENUTI DETTAGLIATI DEL CASE STUDY -->
+    <main class="cs-content-section">
+
+        <!-- 01. IL CLIENTE -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">01</div>
+                <h2>Il Cliente</h2>
+            </div>
+            <p>
+                AeroFit è un brand operante nel settore dell'abbigliamento sportivo e delle forniture per team, atleti professionisti e palestre. L'attività si distingue per la produzione di capi tecnici ad alte prestazioni, con una forte enfasi sul design aerodinamico e sulla personalizzazione su misura per singole squadre e sportivi.
+            </p>
+            <p>
+                L'obiettivo aziendale era dotarsi di un'infrastruttura digitale contemporanea in grado di competere con i principali player globali del settore sportswear, mettendo al centro la customizzazione dei prodotti.
+            </p>
+            <div class="cs-pill-list">
+                <span class="cs-pill"><span class="icon">&bull;</span> Settore Sportivo &amp; Fitness</span>
+                <span class="cs-pill"><span class="icon">&bull;</span> Target B2C &amp; Team B2B</span>
+                <span class="cs-pill"><span class="icon">&bull;</span> Vendita di Abbigliamento Personalizzato</span>
+            </div>
+        </section>
+
+        <!-- 02. LA SFIDA -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">02</div>
+                <h2>La Sfida</h2>
+            </div>
+            <p>
+                Nei tradizionali negozi online di abbigliamento per team, il processo di personalizzazione (scelta di colori, inserimento nomi, numeri di maglia e font) risulta spesso macchinoso, richiedendo scambi ripetuti di bozze grafiche via email e allungando i tempi decisionali del cliente.
+            </p>
+            <div class="cs-subgrid">
+                <div class="cs-subcard">
+                    <h3>Visualizzazione Istantanea</h3>
+                    <p>Permettere all'utente di vedere in anteprima fotorealistica e in tempo reale ogni singola modifica applicata alla maglia sportiva.</p>
+                </div>
+                <div class="cs-subcard">
+                    <h3>Velocità d'Uso su Mobile</h3>
+                    <p>Garantire che l'esperienza di configurazione grafica fosse rapida e intuitiva anche da dispositivi mobili, senza rallentamenti o complicazioni.</p>
+                </div>
+                <div class="cs-subcard">
+                    <h3>Chiarezza del Checkout</h3>
+                    <p>Sincronizzare istantaneamente le opzioni scelte (taglie, colore primario, tipografia) con il riepilogo del carrello per ridurre l'abbandono.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. LA SOLUZIONE -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">03</div>
+                <h2>La Soluzione Vertex Studio</h2>
+            </div>
+            <p>
+                Vertex Studio ha ideato e sviluppato una soluzione personalizzata incentrata sull'energia visiva del brand e sulla praticità interattiva:
+            </p>
+            <p>
+                È stato implementato un <strong>configuratore grafico live</strong> che consente di variare combinazioni cromatiche, inserire nomi personalizzati, selezionare il numero preferito e scegliere lo stile tipografico dei numeri sportivi (tra cui font audaci e dinamici) con anteprima immediata sul capo.
+            </p>
+            <p>
+                Il design adotta una palette Dark High-Tech con accenti giallo-verde fluo (Volt Lime), capace di valorizzare il carattere atletico e la modernità del prodotto. L'architettura è stata sviluppata in codice leggero e reattivo per assicurare fluidità totale anche con connessioni mobili.
+            </p>
+            <div class="cs-pill-list">
+                <span class="cs-pill"><span class="icon">&check;</span> Simulatore Grafico Interattivo</span>
+                <span class="cs-pill"><span class="icon">&check;</span> Design ad Alto Impatto Energetico</span>
+                <span class="cs-pill"><span class="icon">&check;</span> Gestione Carrello &amp; Selettore Taglie</span>
+                <span class="cs-pill"><span class="icon">&check;</span> Architettura Mobile-First Super Veloce</span>
+            </div>
+        </section>
+
+        <!-- 04. IL RISULTATO FINALE & ANTEPRIME -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">04</div>
+                <h2>Il Risultato Finale</h2>
+            </div>
+            <p>
+                L'applicazione web realizzata offre un'esperienza fluida e coinvolgente, accorciando drasticamente il ciclo d'acquisto per divise sportive personalizzate e fornendo un'interfaccia limpida e professionale.
+            </p>
+
+            <!-- GALLERIA MOCKUP E DETTAGLI DEL PROGETTO -->
+            <div class="cs-gallery">
+                <div class="cs-gallery-item">
+                    <div class="cs-gallery-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             alt="Configuratore Maglie Sportive" 
+                             class="cs-gallery-img">
+                    </div>
+                    <div class="cs-gallery-caption">
+                        <h4>Simulatore Maglia Personalizzata</h4>
+                        <p>Modulo interattivo con selezione istantanea di colore, numero e tipografia sportiva.</p>
+                    </div>
+                </div>
+
+                <div class="cs-gallery-item">
+                    <div class="cs-gallery-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             alt="Esperienza E-commerce Mobile" 
+                             class="cs-gallery-img">
+                    </div>
+                    <div class="cs-gallery-caption">
+                        <h4>Interfaccia Utente Mobile-First</h4>
+                        <p>Layout ottimizzato per garantire una navigazione rapida e precisa da smartphone.</p>
+                    </div>
+                </div>
+
+                <div class="cs-gallery-item">
+                    <div class="cs-gallery-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             alt="Dettaglio Prodotti e Materiali" 
+                             class="cs-gallery-img">
+                    </div>
+                    <div class="cs-gallery-caption">
+                        <h4>Schede Tecniche &amp; Materiali</h4>
+                        <p>Presentazione dettagliata delle tecnologie di traspirazione e delle varianti di taglia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANNER EVIDENTE: VISITA IL PROGETTO -->
+        <section class="cs-live-banner">
+            <div class="cs-live-info">
+                <h3>Esplora la piattaforma live.</h3>
+                <p>
+                    Scopri di persona il simulatore grafico e tutte le funzionalità dell'e-commerce realizzato per AeroFit Custom Sportswear.
+                </p>
+            </div>
+            <div class="cs-live-action">
+                <a href="sportswear.html" target="_blank" class="btn-white">
+                    Visita il Progetto Live ↗
+                </a>
+            </div>
+        </section>
+
+        <!-- NAVIGAZIONE TRA I CASE STUDY -->
+        <div class="cs-nav-projects">
+            <a href="index.html#lavori" class="btn-secondary">
+                &larr; Torna a tutti i progetti
+            </a>
+            <a href="case-study-desantis.html" class="btn-secondary">
+                Prossimo Progetto: De Santis &amp; Associati &rarr;
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER VERTEX STUDIO -->
+    <footer id="preventivo" class="cta-footer">
+        <div class="cta-box">
+            <h2>Pronto a valorizzare il tuo brand?</h2>
+            <p>Realizziamo esperienze web su misura orientate all'eccellenza e ai risultati per la tua attività.</p>
+            <a href="mailto:vertexstudio@outlook.it" class="btn-primary" style="font-size: 1.1rem; padding: 16px 40px; margin-top: 10px;">Richiedi Informazioni</a>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>
+                <span style="font-family:'Outfit'; font-weight:800; color:var(--white); font-size:1.2rem; margin-right: 10px;">VERTEXSTUDIO</span>
+                <br>&copy; 2026. Tutti i diritti riservati.
+            </div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/vertexstudioweb/" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Menu Mobile -->
+    <script>
+        function toggleMenu() {
+            if(window.innerWidth > 900) return;
+            const nav = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            nav.classList.toggle('active');
+            if(nav.classList.contains('active')) {
+                hamburger.innerHTML = '✕';
+            } else {
+                hamburger.innerHTML = '☰';
+            }
+        }
+    </script>
+</body>
+</html>

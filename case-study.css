@@ -1,0 +1,572 @@
+/* ========================================================
+   VERTEX STUDIO - CASE STUDY SYSTEM STYLESHEET
+   Stile condiviso e coerente con la brand identity di Vertex Studio
+   ======================================================== */
+
+:root {
+    --bg-light: #FBFBFC; 
+    --white: #FFFFFF;
+    --text-dark: #0F172A; 
+    --text-muted: #64748B;
+    --primary: #2563EB; 
+    --primary-light: #EFF6FF;
+    --border: #E2E8F0;
+    --border-hover: #CBD5E1;
+    --card-bg: #FFFFFF;
+    --badge-bg: #EFF6FF;
+    --badge-text: #2563EB;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+    scroll-behavior: smooth;
+}
+
+body { 
+    background-color: var(--bg-light); 
+    color: var(--text-dark); 
+    overflow-x: hidden; 
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, .logo, .stat-value { 
+    font-family: 'Outfit', sans-serif; 
+}
+
+/* --- NAVBAR --- */
+nav {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 1.5rem 5%; 
+    position: fixed; 
+    width: 100%; 
+    top: 0;
+    background: rgba(251, 251, 252, 0.96); 
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    transition: all 0.3s;
+}
+
+.logo { 
+    font-size: 1.8rem; 
+    font-weight: 800; 
+    letter-spacing: -0.5px; 
+    display: flex; 
+    align-items: center; 
+    z-index: 101;
+    text-decoration: none;
+    color: var(--text-dark);
+}
+.logo span { color: var(--primary); }
+
+.nav-links { 
+    display: flex; 
+    gap: 2.5rem; 
+    list-style: none; 
+    align-items: center;
+}
+.nav-links a { 
+    color: var(--text-dark); 
+    text-decoration: none; 
+    font-size: 0.95rem; 
+    font-weight: 500; 
+    transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--primary); }
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--primary) !important;
+}
+
+.hamburger { 
+    display: none; 
+    font-size: 2rem; 
+    cursor: pointer; 
+    z-index: 101; 
+    color: var(--text-dark); 
+}
+
+/* BUTTONS */
+.btn-primary {
+    background: var(--primary); 
+    color: var(--white); 
+    padding: 14px 32px; 
+    border-radius: 50px; 
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif; 
+    font-weight: 600; 
+    font-size: 1rem; 
+    transition: all 0.3s; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2); 
+    border: none; 
+    cursor: pointer;
+}
+.btn-primary:hover { 
+    background: #1D4ED8; 
+    transform: translateY(-2px); 
+    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3); 
+    color: var(--white);
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--text-dark);
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.btn-secondary:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* HERO CASE STUDY */
+.cs-hero {
+    padding: 9rem 5% 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.cs-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+.cs-breadcrumbs a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.cs-breadcrumbs a:hover {
+    color: var(--primary);
+}
+.cs-breadcrumbs span {
+    color: var(--border-hover);
+}
+
+.cs-tag {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(37, 99, 235, 0.15);
+}
+
+.cs-hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 1.2rem;
+    color: var(--text-dark);
+}
+
+.cs-hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    max-width: 850px;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+/* META INFO GRID (Cliente, Settore, Ruolo, Anno) */
+.cs-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 18px;
+    margin-bottom: 3.5rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.02);
+}
+
+.cs-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.cs-meta-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+.cs-meta-value {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.cs-meta-cta {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* FEATURED HERO IMAGE */
+.cs-main-image-wrap {
+    width: 100%;
+    aspect-ratio: 16/9;
+    max-height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #E2E8F0;
+    box-shadow: 0 25px 50px rgba(15, 23, 42, 0.08);
+    margin-bottom: 5rem;
+    position: relative;
+    border: 1px solid var(--border);
+}
+.cs-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* BODY CONTENT LAYOUT */
+.cs-content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5% 5rem;
+}
+
+.cs-section-block {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 3.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+
+.cs-block-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.cs-block-badge {
+    width: 44px;
+    height: 44px;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.cs-section-block h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text-dark);
+}
+
+.cs-section-block p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+}
+.cs-section-block p:last-child {
+    margin-bottom: 0;
+}
+
+/* HIGHLIGHT PILLS / LISTS */
+.cs-pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 1.8rem;
+}
+.cs-pill {
+    background: var(--bg-light);
+    border: 1px solid var(--border);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.cs-pill svg, .cs-pill span.icon {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* TWO-COL CARDS WITHIN SECTION */
+.cs-subgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+    margin-top: 2rem;
+}
+.cs-subcard {
+    background: var(--bg-light);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+}
+.cs-subcard h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-dark);
+}
+.cs-subcard p {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* RESULTS & MOCKUP GALLERY */
+.cs-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+.cs-gallery-item {
+    background: var(--bg-light);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.cs-gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+}
+.cs-gallery-img-wrap {
+    width: 100%;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: #E2E8F0;
+}
+.cs-gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.cs-gallery-item:hover .cs-gallery-img {
+    transform: scale(1.04);
+}
+.cs-gallery-caption {
+    padding: 1.2rem 1.5rem;
+}
+.cs-gallery-caption h4 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+}
+.cs-gallery-caption p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* FULL-WIDTH BANNER VISITA IL PROGETTO */
+.cs-live-banner {
+    background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
+    border-radius: 24px;
+    padding: 4rem 3.5rem;
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+    box-shadow: 0 20px 45px rgba(37, 99, 235, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+.cs-live-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    filter: blur(40px);
+}
+.cs-live-info {
+    max-width: 650px;
+    position: relative;
+    z-index: 2;
+}
+.cs-live-info h3 {
+    font-size: clamp(2rem, 3.5vw, 2.7rem);
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+    color: var(--white);
+}
+.cs-live-info p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.6;
+}
+.cs-live-action {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+}
+.btn-white {
+    background: var(--white);
+    color: var(--primary);
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    white-space: nowrap;
+}
+.btn-white:hover {
+    background: #F1F5F9;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    color: #1D4ED8;
+}
+
+/* NAVIGATION BETWEEN CASE STUDIES */
+.cs-nav-projects {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+    gap: 1.5rem;
+}
+
+/* FOOTER */
+.cta-footer { 
+    padding: 8rem 5% 4rem; 
+    background: var(--text-dark); 
+    color: var(--white); 
+    text-align: center; 
+}
+.cta-box { 
+    max-width: 900px; 
+    margin: 0 auto 6rem; 
+}
+.cta-box h2 { 
+    font-size: clamp(2.5rem, 5vw, 4.5rem); 
+    font-weight: 700; 
+    letter-spacing: -1.5px; 
+    margin-bottom: 1.5rem;
+}
+.cta-box p { 
+    color: #94A3B8; 
+    font-size: 1.1rem; 
+    margin-bottom: 2.5rem; 
+    max-width: 600px; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.footer-bottom { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    padding-top: 2rem; 
+    color: #64748B; 
+    font-size: 0.9rem;
+}
+.footer-social { display: flex; gap: 1.5rem; }
+.footer-social a { color: var(--white); text-decoration: none; font-weight: 500;}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 900px) {
+    .hamburger { display: block; }
+    .nav-links {
+        position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+        background: var(--white); flex-direction: column; align-items: center; justify-content: center;
+        gap: 2.5rem; z-index: 100;
+    }
+    .nav-links.active { right: 0; }
+    .nav-links a { font-size: 1.5rem; font-weight: 600; }
+
+    .cs-hero { padding: 7rem 5% 2rem; }
+    .cs-section-block { padding: 2.5rem 1.8rem; }
+    .cs-meta-grid { grid-template-columns: 1fr 1fr; padding: 1.5rem; }
+    
+    .cs-live-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 3rem 2rem;
+    }
+    .btn-white { width: 100%; justify-content: center; }
+
+    .cs-nav-projects {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .cs-nav-projects .btn-secondary {
+        justify-content: center;
+    }
+
+    .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-social { justify-content: center; }
+}
+
+@media (max-width: 600px) {
+    nav { padding: 1rem 5%; }
+    .logo img { height: 65px !important; margin-top: -10px !important; margin-bottom: -10px !important; }
+    .cs-meta-grid { grid-template-columns: 1fr; }
+    .cs-hero h1 { font-size: 2.2rem; }
+    .cs-hero-subtitle { font-size: 1.05rem; }
+    .cs-section-block { padding: 2rem 1.25rem; border-radius: 16px; }
+    .cs-gallery { grid-template-columns: 1fr; }
+}

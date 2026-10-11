@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Case Study: Il Forno Pizzeria | Vertex Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+    <!-- NAVBAR MINIMALE VERTEX STUDIO -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="logo_clean.png" alt="VertexStudio Logo" style="height: 100px; width: auto; border-radius: 6px; margin-top: -20px; margin-bottom: -20px;">
+        </a>
+        
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#lavori" class="back-link">&larr; Tutti i Progetti</a></li>
+            <li><a href="index.html#eccellenza">Il Metodo</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="#preventivo" style="color: var(--primary);">Contattaci</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER / HERO CASE STUDY -->
+    <header class="cs-hero">
+        <div class="cs-breadcrumbs">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <a href="index.html#lavori">Progetti Selezionati</a>
+            <span>/</span>
+            <strong>Il Forno Pizzeria</strong>
+        </div>
+
+        <span class="cs-tag">Web App Food &amp; Menù Digitale</span>
+        <h1>Il Forno Pizzeria</h1>
+        <p class="cs-hero-subtitle">
+            Esperienza digitale immersiva per la ristorazione con menù fotografico interattivo, filtri allergeni e sistema di prenotazione tavoli online rapido e senza attriti.
+        </p>
+
+        <!-- SCHEDA META DATI PROGETTO (MODIFICABILE) -->
+        <div class="cs-meta-grid">
+            <div class="cs-meta-item">
+                <span class="cs-meta-label">Cliente</span>
+                <span class="cs-meta-value">Pizzeria Il Forno</span>
+            </div>
+            <div class="cs-meta-item">
+                <span class="cs-meta-label">Settore</span>
+                <span class="cs-meta-value">Ristorazione &amp; Food &amp; Beverage</span>
+            </div>
+            <div class="cs-meta-item">
+                <span class="cs-meta-label">Servizi Forniti</span>
+                <span class="cs-meta-value">Menù Digitale Interattivo, Prenotazione Tavoli, Web App</span>
+            </div>
+            <div class="cs-meta-item cs-meta-cta">
+                <a href="pizzeria.html" target="_blank" class="btn-primary" style="width: 100%;">
+                    Visita il Progetto &rarr;
+                </a>
+            </div>
+        </div>
+
+        <!-- ANTEPRIMA PRINCIPALE HERO -->
+        <div class="cs-main-image-wrap">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                 alt="Pizzeria Il Forno - Mockup Principale" 
+                 class="cs-main-image">
+        </div>
+    </header>
+
+    <!-- CONTENUTI DETTAGLIATI DEL CASE STUDY -->
+    <main class="cs-content-section">
+
+        <!-- 01. IL CLIENTE -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">01</div>
+                <h2>Il Cliente</h2>
+            </div>
+            <p>
+                Il Forno è una pizzeria artigianale dedicata all'eccellenza della vera pizza napoletana a lunga lievitazione, con ingredienti DOP e materie prime selezionate dal territorio campano. L'attività accoglie ogni giorno sia clienti locali che turisti alla ricerca di un'esperienza gastronomica genuina.
+            </p>
+            <p>
+                Il locale necessitava di un'identità digitale che riflettesse il calore, i colori e la passione per la tradizione, offrendo contemporaneamente strumenti moderni per agevolare il flusso dei clienti sia in sala che nella fase di prenotazione pre-serata.
+            </p>
+            <div class="cs-pill-list">
+                <span class="cs-pill"><span class="icon">&bull;</span> Ristorazione Tradizionale &amp; Gourmet</span>
+                <span class="cs-pill"><span class="icon">&bull;</span> Consumo in Sala &amp; Asporto</span>
+                <span class="cs-pill"><span class="icon">&bull;</span> Elevato Flusso Serale di Clienti</span>
+            </div>
+        </section>
+
+        <!-- 02. LA SFIDA -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">02</div>
+                <h2>La Sfida</h2>
+            </div>
+            <p>
+                La gestione quotidiana dei menù cartacei comportava frequenti ristampe a ogni cambio di impasto o fornitura stagionale, oltre a sovraccaricare il personale di sala con telefonate continue durante il servizio per la prenotazione dei tavoli.
+            </p>
+            <div class="cs-subgrid">
+                <div class="cs-subcard">
+                    <h3>Menù Sempre Aggiornato</h3>
+                    <p>Sostituire i menù cartacei o PDF statici con un'esperienza digitale dinamica fruibile rapidamente via QR code ai tavoli.</p>
+                </div>
+                <div class="cs-subcard">
+                    <h3>Valorizzazione Visiva delle Pizze</h3>
+                    <p>Presentare ogni portata con immagini appetizing ad alta qualità, ingredienti espliciti e indicazioni chiare per allergeni o intolleranze.</p>
+                </div>
+                <div class="cs-subcard">
+                    <h3>Prenotazione Tavolo Guidata</h3>
+                    <p>Fornire ai clienti una procedura intuitiva in pochi passaggi (data, orario, numero persone) per riservare il posto direttamente online.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. LA SOLUZIONE -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">03</div>
+                <h2>La Soluzione Vertex Studio</h2>
+            </div>
+            <p>
+                Vertex Studio ha progettato una Web App mobile-first su misura che fonde l'atmosfera calda della tradizione con un'ergonomia d'uso immediata:
+            </p>
+            <p>
+                È stato realizzato un <strong>menù fotografico immersivo</strong> suddiviso per sezioni (Pizze Classiche, Speciali, Sfizi e Dolci), con schede prodotto ricche di dettagli e filtri rapidi. Il sistema è ottimizzato per aprirsi istantaneamente tramite scansione di QR Code sul tavolo, senza richiedere il download di alcuna applicazione esterna.
+            </p>
+            <p>
+                A supporto della gestione del locale, è stato integrato un <strong>modulo di prenotazione tavoli</strong> visivo e interattivo, che guida il cliente nella selezione di coperti, turno orario e dettagli speciali con conferma immediata.
+            </p>
+            <div class="cs-pill-list">
+                <span class="cs-pill"><span class="icon">&check;</span> Menù QR Code Ultra-Veloce Senza App</span>
+                <span class="cs-pill"><span class="icon">&check;</span> Fotografie ad Alta Definizione &amp; Ingredienti DOP</span>
+                <span class="cs-pill"><span class="icon">&check;</span> Modulo Prenotazione Tavoli Integrato</span>
+                <span class="cs-pill"><span class="icon">&check;</span> Palette Calda &amp; Tipografia Cinzel / Poppins</span>
+            </div>
+        </section>
+
+        <!-- 04. IL RISULTATO FINALE & ANTEPRIME -->
+        <section class="cs-section-block">
+            <div class="cs-block-header">
+                <div class="cs-block-badge">04</div>
+                <h2>Il Risultato Finale</h2>
+            </div>
+            <p>
+                La Web App offre una fruizione accattivante che esalta l'arte della pizza napoletana, alleggerisce il lavoro del personale durante le ore di punta e offre ai clienti uno strumento comodo per prenotare e consultare i piatti in totale autonomia.
+            </p>
+
+            <!-- GALLERIA MOCKUP E DETTAGLI DEL PROGETTO -->
+            <div class="cs-gallery">
+                <div class="cs-gallery-item">
+                    <div class="cs-gallery-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             alt="Menù Fotografico Pizzeria" 
+                             class="cs-gallery-img">
+                    </div>
+                    <div class="cs-gallery-caption">
+                        <h4>Menù Fotografico Immersivo</h4>
+                        <p>Schede delle pizze studiate per ingolosire il cliente ed evidenziare gli ingredienti tipici.</p>
+                    </div>
+                </div>
+
+                <div class="cs-gallery-item">
+                    <div class="cs-gallery-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             alt="Modulo Prenotazione Tavoli" 
+                             class="cs-gallery-img">
+                    </div>
+                    <div class="cs-gallery-caption">
+                        <h4>Prenotazione Tavoli Intuitiva</h4>
+                        <p>Flusso di selezione data, ora e coperti progettato per azzerare gli attriti da mobile.</p>
+                    </div>
+                </div>
+
+                <div class="cs-gallery-item">
+                    <div class="cs-gallery-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             alt="Fruizione da QR Code" 
+                             class="cs-gallery-img">
+                    </div>
+                    <div class="cs-gallery-caption">
+                        <h4>Esperienza QR Code al Tavolo</h4>
+                        <p>Apertura immediata della pagina in meno di un secondo per agevolare l'ordine dei clienti in sala.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANNER EVIDENTE: VISITA IL PROGETTO -->
+        <section class="cs-live-banner">
+            <div class="cs-live-info">
+                <h3>Esplora la web app live.</h3>
+                <p>
+                    Scopri il menù interattivo e il sistema di prenotazione realizzato per Il Forno Pizzeria.
+                </p>
+            </div>
+            <div class="cs-live-action">
+                <a href="pizzeria.html" target="_blank" class="btn-white">
+                    Visita il Progetto Live ↗
+                </a>
+            </div>
+        </section>
+
+        <!-- NAVIGAZIONE TRA I CASE STUDY -->
+        <div class="cs-nav-projects">
+            <a href="case-study-desantis.html" class="btn-secondary">
+                &larr; Progetto Precedente: De Santis &amp; Associati
+            </a>
+            <a href="case-study-tecnometal.html" class="btn-secondary">
+                Prossimo Progetto: TecnoMetal CNC &rarr;
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER VERTEX STUDIO -->
+    <footer id="preventivo" class="cta-footer">
+        <div class="cta-box">
+            <h2>Pronto a valorizzare il tuo locale?</h2>
+            <p>Realizziamo menù digitali e web app ad alta conversione pensate per far crescere la tua attività ristorativa.</p>
+            <a href="mailto:vertexstudio@outlook.it" class="btn-primary" style="font-size: 1.1rem; padding: 16px 40px; margin-top: 10px;">Richiedi Informazioni</a>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>
+                <span style="font-family:'Outfit'; font-weight:800; color:var(--white); font-size:1.2rem; margin-right: 10px;">VERTEXSTUDIO</span>
+                <br>&copy; 2026. Tutti i diritti riservati.
+            </div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/vertexstudioweb/" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Menu Mobile -->
+    <script>
+        function toggleMenu() {
+            if(window.innerWidth > 900) return;
+            const nav = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            nav.classList.toggle('active');
+            if(nav.classList.contains('active')) {
+                hamburger.innerHTML = '✕';
+            } else {
+                hamburger.innerHTML = '☰';
+            }
+        }
+    </script>
+</body>
+</html>
