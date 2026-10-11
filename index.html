@@ -198,6 +198,48 @@
         .why-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--text-dark); }
         .why-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
 
+        /* --- FILOSOFIA PREZZI & VALORE: "CRESCIAMO INSIEME" --- */
+        .pricing-philosophy-section {
+            padding: 8rem 6%; background: var(--white); border-top: 1px solid var(--border);
+        }
+        .pricing-banner {
+            max-width: 1350px; margin: 0 auto; background: var(--bg-light); border: 1px solid var(--border);
+            border-radius: 28px; padding: 4.5rem 4rem; position: relative; overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.02);
+        }
+        .pricing-banner-header { max-width: 850px; margin-bottom: 3.5rem; }
+        .pricing-banner-header .tag {
+            color: var(--primary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase;
+            letter-spacing: 1.5px; margin-bottom: 0.8rem; display: block;
+        }
+        .pricing-banner-header h2 { font-size: clamp(2.3rem, 4.2vw, 3.4rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 1.2rem; line-height: 1.2; }
+        .pricing-banner-header p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; }
+
+        .pricing-pillars-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+        }
+        .pricing-pillar-card {
+            background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 2.4rem 2rem;
+            transition: all 0.3s; display: flex; flex-direction: column;
+        }
+        .pricing-pillar-card:hover {
+            transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(37, 99, 235, 0.08);
+        }
+        .pricing-pillar-badge {
+            display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px; color: var(--primary); background: var(--primary-light);
+            padding: 5px 12px; border-radius: 50px; width: fit-content; margin-bottom: 1.2rem;
+        }
+        .pricing-pillar-card h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.9rem; color: var(--text-dark); }
+        .pricing-pillar-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; margin: 0; flex: 1; }
+        
+        .pricing-cta-box {
+            margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap;
+        }
+        .pricing-cta-text h4 { font-size: 1.25rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.3rem; }
+        .pricing-cta-text p { font-size: 0.95rem; color: var(--text-muted); margin: 0; }
+
         /* --- 5. COME LAVORIAMO (PROCESSO IN 4 STEP LINEARE) --- */
         .process-section { padding: 8rem 6%; background: var(--bg-light); border-top: 1px solid var(--border); }
         .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1350px; margin: 0 auto; position: relative; }
@@ -559,6 +601,58 @@
                 <div class="why-icon">🤝</div>
                 <h3>Assistenza &amp; Trasparenza</h3>
                 <p>Un interlocutore tecnico diretto al tuo fianco: zero gergo incomprensibile, risposte tempestive e manutenzione continua.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- POSIZIONAMENTO PREZZI & VALORE (FILOSOFIA "CRESCIAMO INSIEME") -->
+    <section class="pricing-philosophy-section">
+        <div class="pricing-banner">
+            <div class="pricing-banner-header">
+                <span class="tag">Valore Trasparente &bull; Cresciamo Insieme</span>
+                <h2>Qualità da grande agenzia, prezzi equi da vero partner di crescita.</h2>
+                <p>
+                    Non troverai listini preconfezionati o costi opachi. Siamo una realtà digitale snella, ambiziosa e orientata al valore reale: abbattiamo i costi gonfiati delle strutture tradizionali per offrirti tariffe d'ingresso altamente competitive e un'attenzione sartoriale su misura.
+                </p>
+            </div>
+
+            <div class="pricing-pillars-grid">
+                <!-- LEVA 1: PARTNER DI CRESCITA SNELLO -->
+                <div class="pricing-pillar-card">
+                    <span class="pricing-pillar-badge">Zero Costi Gonfiati</span>
+                    <h3>Partner di Crescita</h3>
+                    <p>
+                        Le grandi agenzie ti addebitano strutture pesanti e decine di intermediari. Essendo un team focalizzato e dinamico, abbattiamo i costi superflui, garantendoti la stessa eccellenza tecnica a tariffe d'accesso accessibili a ogni azienda in crescita.
+                    </p>
+                </div>
+
+                <!-- LEVA 2: VANTAGGIO RECIPROCO WIN-WIN -->
+                <div class="pricing-pillar-card">
+                    <span class="pricing-pillar-badge">Modello Win-Win</span>
+                    <h3>Crescita Condivisa</h3>
+                    <p>
+                        Il nostro modello è semplice: aiutiamo la tua attività a digitalizzarsi con investimenti sostenibili e ad alto ritorno. In cambio, noi costruiamo un caso studio di successo e una relazione duratura. Il tuo successo sul mercato è la migliore pubblicità per VERTEX.
+                    </p>
+                </div>
+
+                <!-- LEVA 3: CURA SARTORIALE E ATTENZIONE DIRETTA -->
+                <div class="pricing-pillar-card">
+                    <span class="pricing-pillar-badge">Attenzione Maniacale</span>
+                    <h3>Mai Solo un Numero</h3>
+                    <p>
+                        Non accettiamo decine di commesse a catena di montaggio. Selezioniamo i progetti per dedicare cura millimetrica a ciascuno: dalla prima bozza grafica UI alla scrittura del codice fino alla messa online, parlerai sempre direttamente con chi lavora al tuo sito.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pricing-cta-box">
+                <div class="pricing-cta-text">
+                    <h4>Vuoi una stima trasparente per il tuo progetto?</h4>
+                    <p>Spiegaci i tuoi obiettivi: ti invieremo una proposta economica chiara, personalizzata e senza alcun vincolo.</p>
+                </div>
+                <div>
+                    <a href="#contatti" class="btn-primary">Richiedi un Preventivo Trasparente &rarr;</a>
+                </div>
             </div>
         </div>
     </section>
