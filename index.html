@@ -861,13 +861,16 @@
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(37, 99, 235, 0.25);
         }
         .service-card-media {
-            height: 115px; position: relative; overflow: hidden;
+            height: 130px; position: relative; overflow: hidden;
+            background: #070B14;
         }
-        .service-card-media img {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: contrast(1.08) brightness(0.9); transition: transform 0.6s ease;
+        .service-card-media img,
+        .service-card-media video {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            filter: contrast(1.06) brightness(0.92); transition: transform 0.6s ease;
         }
-        .service-card:hover .service-card-media img { transform: scale(1.08); }
+        .service-card:hover .service-card-media img,
+        .service-card:hover .service-card-media video { transform: scale(1.08); }
         .service-card-badge {
             position: absolute; top: 10px; right: 10px; z-index: 2;
             background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.4);
@@ -1923,6 +1926,7 @@
                 gap: 1.4rem;
             }
             .service-card { border-radius: 18px; }
+            .service-card-media { height: 160px; }
             .why-card { padding: 2rem 1.4rem; border-radius: 18px; }
 
             /* AGENCY CHI SIAMO MEDIA GRID */
@@ -2043,9 +2047,11 @@
                     </div>
                     <div class="terminal-body">
                         <!-- Video UI/UX Design Persona che disegna nel mockup -->
-                        <video id="terminalVideo" class="terminal-video-preview" autoplay muted loop playsinline preload="auto">
+                        <video id="terminalVideo" class="terminal-video-preview" autoplay muted loop playsinline preload="auto" poster="assets/images/persona_preview.jpg" aria-label="Sessione live render interfaccia UI/UX e web design su display grafico">
+                            <source src="assets/videos/persona-che-disegna.mp4" type="video/mp4">
                             <source src="persona-che-disegna.mp4" type="video/mp4">
                             <source src="peronsa che disegna.mp4" type="video/mp4">
+                            <img src="assets/images/persona_preview.jpg" alt="Sessione di UI/UX Web Design su display grafico con layout interattivo" style="width:100%;height:100%;object-fit:cover;">
                         </video>
                         <div class="terminal-overlay-glow"></div>
                         <div class="terminal-code-bar">
@@ -2084,7 +2090,8 @@
     <div class="video-modal" id="videoModal" onclick="closeVideoModal(event)">
         <div class="video-modal-content" onclick="event.stopPropagation()">
             <button class="video-modal-close" onclick="closeVideoModal()">✕</button>
-            <video id="modalVideo" controls playsinline>
+            <video id="modalVideo" controls playsinline poster="assets/images/persona_preview.jpg">
+                <source src="assets/videos/persona-che-disegna.mp4" type="video/mp4">
                 <source src="persona-che-disegna.mp4" type="video/mp4">
                 <source src="peronsa che disegna.mp4" type="video/mp4">
             </video>
@@ -2285,8 +2292,11 @@
                         </div>
                         <div class="service-card-media">
                             <span class="service-card-badge">Web Architecture</span>
-                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                                 alt="Web Design e Sviluppo Chiavi in Mano">
+                            <video class="service-card-video" autoplay muted loop playsinline preload="auto" poster="assets/images/figma_preview.jpg" aria-label="Mockup Figma e codice IDE con griglia attiva per web design e sviluppo">
+                                <source src="assets/videos/figma.mp4" type="video/mp4">
+                                <source src="figma.mp4" type="video/mp4">
+                                <img src="assets/images/figma_preview.jpg" alt="Flusso tra design Figma e codice IDE con griglia attiva per Web Design e Sviluppo" loading="lazy">
+                            </video>
                         </div>
                         <div class="service-card-content">
                             <div class="service-card-icon">💻</div>
@@ -2310,8 +2320,12 @@
                         </div>
                         <div class="service-card-media">
                             <span class="service-card-badge">Food &amp; Hospitality</span>
-                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                                 alt="Menu Digitali e Listini Interattivi tramite QR Code">
+                            <video class="service-card-video" autoplay muted loop playsinline preload="auto" poster="assets/images/menuvideo_preview.jpg" aria-label="Smartphone con mockup di menù digitale interattivo e scansione QR code">
+                                <source src="assets/videos/menuvideo-digitale.mp4" type="video/mp4">
+                                <source src="menuvideo-digitale.mp4" type="video/mp4">
+                                <source src="menuvideo digitale.mp4" type="video/mp4">
+                                <img src="assets/images/menuvideo_preview.jpg" alt="Smartphone con scansione QR code e mockup menù digitale interattivo per ristoranti" loading="lazy">
+                            </video>
                         </div>
                         <div class="service-card-content">
                             <div class="service-card-icon">📱</div>
@@ -2335,8 +2349,11 @@
                         </div>
                         <div class="service-card-media">
                             <span class="service-card-badge">Video &amp; Social</span>
-                            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                                 alt="Social Video Design e Identità Visiva">
+                            <video class="service-card-video" autoplay muted loop playsinline preload="auto" poster="assets/images/socialmedia3d_preview.jpg" aria-label="Interfaccia timeline video motion graphics e reel verticali 9:16">
+                                <source src="assets/videos/socialmedia3d.mp4" type="video/mp4">
+                                <source src="socialmedia3d.mp4" type="video/mp4">
+                                <img src="assets/images/socialmedia3d_preview.jpg" alt="Interfaccia di montaggio e reel verticali in formato 9:16 con grafiche animate" loading="lazy">
+                            </video>
                         </div>
                         <div class="service-card-content">
                             <div class="service-card-icon">🎬</div>
@@ -2978,6 +2995,9 @@
                     if (wasHidden) {
                         setTimeout(alignServiceBeams, 60);
                         setTimeout(alignServiceBeams, 260);
+                        document.querySelectorAll('.service-card-video').forEach(v => {
+                            if (v.paused) v.play().catch(() => {});
+                        });
                     }
                 }
             } else {
@@ -3148,6 +3168,12 @@
             updateProcessReveal();
         }
 
+        function ensureVideosPlayback() {
+            document.querySelectorAll('.service-card-video').forEach(v => {
+                if (v.paused) v.play().catch(() => {});
+            });
+        }
+
         window.addEventListener('scroll', handleScroll, { passive: true });
         window.addEventListener('resize', () => {
             handleScroll();
@@ -3156,6 +3182,7 @@
         window.addEventListener('load', () => {
             alignServiceBeams();
             setTimeout(alignServiceBeams, 250);
+            ensureVideosPlayback();
         });
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -3165,6 +3192,7 @@
             alignServiceBeams();
             setTimeout(animateHeroCounters, 350);
             setTimeout(alignServiceBeams, 400);
+            ensureVideosPlayback();
         });
 
         updateMasterStoryTrack();
@@ -3172,6 +3200,7 @@
         updateProcessReveal();
         alignServiceBeams();
         setTimeout(animateHeroCounters, 350);
+        ensureVideosPlayback();
     </script>
 </body>
 </html>
