@@ -929,14 +929,77 @@
         }
 
         @media (max-width: 1024px) {
-            .master-story-track { height: auto !important; }
-            .master-sticky-frame { position: relative !important; height: auto !important; padding: 4rem 5% !important; display: block !important; }
-            .story-stage { position: relative !important; transform: none !important; opacity: 1 !important; filter: none !important; pointer-events: all !important; padding: 2.5rem 0 !important; }
-            .agency-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
-            .stage-services .services-grid-3 { grid-template-columns: 1fr; gap: 1.8rem; }
-            .stage-services .service-card { opacity: 1 !important; transform: none !important; }
-            .stage-services .section-footer-header { opacity: 1 !important; transform: none !important; filter: none !important; margin-top: 2rem; }
+            .master-story-track { height: auto !important; position: relative !important; }
+            .master-sticky-frame {
+                position: relative !important;
+                height: auto !important;
+                padding: 3.5rem 5% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 4rem !important;
+            }
             .fiber-pipeline-stage { display: none !important; }
+            
+            .story-stage {
+                position: relative !important;
+                transform: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                filter: none !important;
+                pointer-events: all !important;
+                padding: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            .stage-agency {
+                transform: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                filter: none !important;
+                pointer-events: all !important;
+            }
+            .stage-agency.is-collapsed {
+                transform: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                filter: none !important;
+                pointer-events: all !important;
+            }
+            .agency-wrap { grid-template-columns: 1fr; gap: 2.2rem; }
+
+            /* STAGE SERVICES VISIBILE E CONTINUO SU MOBILE (ELIMINA IL BUCO DI SCORRIMENTO) */
+            .stage-services {
+                position: relative !important;
+                transform: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                filter: none !important;
+                pointer-events: all !important;
+                display: flex !important;
+                flex-direction: column !important;
+                width: 100% !important;
+            }
+            .services-beams-connector { display: none !important; }
+            .stage-services .services-grid-3 {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+            }
+            .stage-services .service-card {
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+            }
+            .stage-services .section-footer-header {
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                filter: none !important;
+                margin-top: 1.8rem !important;
+            }
             .reveal-item { opacity: 1 !important; transform: none !important; filter: none !important; }
         }
 
@@ -1205,11 +1268,12 @@
         .why-card p { font-size: 0.92rem; color: #94A3B8; line-height: 1.6; margin: 0; }
 
         @media (max-width: 1024px) {
-            .why-us-track { height: auto !important; }
-            .why-sticky-frame { position: relative !important; height: auto !important; padding: 6rem 6% !important; }
-            .why-header { opacity: 1 !important; transform: none !important; filter: none !important; }
-            .why-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .why-card { opacity: 1 !important; transform: none !important; filter: none !important; }
+            .why-us-track { height: auto !important; position: relative !important; }
+            .why-sticky-frame { position: relative !important; height: auto !important; padding: 3.5rem 5% !important; display: block !important; }
+            .why-content-container { width: 100% !important; max-width: 100% !important; }
+            .why-header { opacity: 1 !important; visibility: visible !important; transform: none !important; filter: none !important; margin-bottom: 2rem !important; }
+            .why-grid { display: grid !important; grid-template-columns: 1fr !important; gap: 1.4rem !important; }
+            .why-card { opacity: 1 !important; visibility: visible !important; transform: none !important; filter: none !important; }
         }
 
         /* --- MONDO CYBER GRID: LO SFONDO CAMBIA E DIVENTA TUTTO A QUADRATI --- */
@@ -2022,9 +2086,6 @@
     <!-- 2. CHI SIAMO / AGENZIA (APPLE-STYLE PINNED SCROLL EXPERIENCE) -->
     <!-- 2 & 3. MASTER STORY TRACK: CHI SIAMO -> DISPATCH -> SERVIZI (PINNED CHOREOGRAPHY) -->
     <section class="master-story-track" id="agenzia">
-        <!-- Anchor invisibile per mantenere reattivo il link "Servizi" del menu -->
-        <div id="servizi" style="position: absolute; top: 52%; pointer-events: none;"></div>
-
         <div class="master-sticky-frame">
             <!-- CAVO INTERNET IN FIBRA OTTICA + FRASI AD ALTA ENERGIA -->
             <div class="fiber-pipeline-stage" id="fiberPipeline">
@@ -2146,6 +2207,7 @@
             </div>
 
             <!-- STAGE 2: I NOSTRI SERVIZI CHIAVE (ALIMENTATI DAI 3 FASCI LASER DALL'ALTO, CON TITOLO E TESTO SOTTO) -->
+            <div id="servizi" style="scroll-margin-top: 85px;"></div>
             <div class="story-stage stage-services" id="stageServices">
                 <!-- 3 FASCI LASER CHE SCENDONO DALL'ALTO E SI CONNETTONO DIRETTAMENTE ALLE 3 CARD -->
                 <div class="services-beams-connector" id="servicesBeams">
