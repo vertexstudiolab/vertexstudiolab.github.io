@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Case Study: AURA Lounge — Social Media & Visual Identity | VERTEX</title>
+    <meta name="description" content="Case study completo sulla gestione social, creazione contenuti e visual feed strategy realizzato da VERTEX per AURA Lounge & Mixology.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #060911;
+            --bg-card: rgba(13, 20, 36, 0.78);
+            --bg-card-hover: rgba(18, 28, 48, 0.9);
+            --white: #FFFFFF;
+            --text-main: #F1F5F9;
+            --text-muted: #94A3B8;
+            --primary: #2563EB;
+            --primary-glow: #38BDF8;
+            --accent-cyan: #38BDF8;
+            --accent-purple: #A855F7;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-glow: rgba(56, 189, 248, 0.35);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.65;
+            background-image: 
+                radial-gradient(circle at 15% 10%, rgba(37, 99, 235, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 85% 35%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 60%);
+        }
+
+        h1, h2, h3, h4, .outfit {
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* --- NAVBAR GLASSMORPHISM ULTRA-MODERNA --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.1rem 6%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #FFFFFF;
+            font-weight: 800;
+            font-size: 1.35rem;
+            letter-spacing: -0.5px;
+        }
+        .logo img {
+            height: 52px;
+            width: auto;
+            border-radius: 6px;
+            filter: drop-shadow(0 2px 10px rgba(37, 99, 235, 0.4));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #CBD5E1;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.25s ease;
+        }
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+        .nav-back-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--accent-cyan) !important;
+            padding: 6px 16px;
+            border-radius: 30px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            font-size: 0.88rem !important;
+            transition: all 0.3s ease;
+        }
+        .nav-back-pill:hover {
+            background: rgba(56, 189, 248, 0.22);
+            transform: translateX(-3px);
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #FFFFFF;
+        }
+
+        /* --- HERO CASE STUDY --- */
+        .cs-hero {
+            padding: 8.5rem 6% 4.5rem;
+            max-width: 1350px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cs-breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 1.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cs-breadcrumbs a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .cs-breadcrumbs a:hover {
+            opacity: 0.8;
+        }
+
+        .cs-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(168, 85, 247, 0.18));
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.4rem;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+        }
+
+        .cs-hero h1 {
+            font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1.8px;
+            color: #FFFFFF;
+            margin-bottom: 1.5rem;
+        }
+        .cs-hero h1 span.gradient-text {
+            background: linear-gradient(135deg, #60A5FA 0%, #38BDF8 50%, #C084FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cs-hero-desc {
+            font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+            color: var(--text-muted);
+            max-width: 880px;
+            line-height: 1.7;
+            margin-bottom: 3.2rem;
+        }
+
+        /* --- SCHEDA METADATI PROGETTO (CYBER BAR) --- */
+        .cs-meta-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            margin-bottom: 4rem;
+        }
+        .cs-meta-col {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .cs-meta-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.74rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .cs-meta-val {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        /* --- MAIN COVER BANNER --- */
+        .cs-cover-wrap {
+            width: 100%;
+            aspect-ratio: 21/9;
+            border-radius: 26px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 35px 80px rgba(0, 0, 0, 0.65), 0 0 50px rgba(37, 99, 235, 0.2);
+            margin-bottom: 6rem;
+        }
+        .cs-cover-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.08) brightness(0.92);
+        }
+        .cs-cover-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(6, 9, 17, 0.95) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 3rem 4rem;
+        }
+        .cs-cover-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: #FFFFFF;
+            background: rgba(15, 23, 42, 0.85);
+            padding: 8px 18px;
+            border-radius: 30px;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        /* --- SEZIONI DETTAGLIO CONTENUTO --- */
+        .cs-body {
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 0 6% 6rem;
+        }
+
+        .cs-section {
+            margin-bottom: 6rem;
+        }
+
+        .cs-section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 1.8rem;
+        }
+        .cs-num-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(56, 189, 248, 0.15));
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 1.15rem;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+        }
+        .cs-section-header h2 {
+            font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+            font-weight: 800;
+            color: #FFFFFF;
+        }
+
+        .cs-text-p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.4rem;
+        }
+        .cs-text-p strong {
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        /* --- KPI HIGHLIGHT GRID --- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.4rem;
+            margin: 3rem 0;
+        }
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.2rem 1.8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+            transition: all 0.35s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-glow);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.5), 0 0 30px rgba(56, 189, 248, 0.2);
+        }
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+        }
+        .kpi-num {
+            font-size: clamp(2.4rem, 4vw, 3.4rem);
+            font-weight: 900;
+            color: #FFFFFF;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #FFFFFF 30%, #38BDF8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .kpi-label {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* --- INSTAGRAM FEED INTERATTIVO MOCKUP --- */
+        .ig-mockup-wrapper {
+            background: #090E19;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 28px;
+            padding: 3rem;
+            box-shadow: 0 35px 80px rgba(0, 0, 0, 0.6), 0 0 50px rgba(37, 99, 235, 0.15);
+            margin: 3.5rem 0;
+            position: relative;
+        }
+        
+        .ig-phone-frame {
+            max-width: 820px;
+            margin: 0 auto;
+            background: #000000;
+            border-radius: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Instagram Profile Header */
+        .ig-header {
+            padding: 1.8rem 2rem 1.4rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+        }
+        .ig-profile-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .ig-avatar-ring {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #F59E0B, #EC4899, #8B5CF6, #38BDF8);
+            padding: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .ig-avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #000000;
+        }
+        .ig-stats-row {
+            display: flex;
+            flex: 1;
+            justify-content: space-around;
+            text-align: center;
+        }
+        .ig-stat-col strong {
+            display: block;
+            font-size: 1.25rem;
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+        .ig-stat-col span {
+            font-size: 0.78rem;
+            color: #94A3B8;
+        }
+        
+        .ig-bio {
+            font-size: 0.92rem;
+            line-height: 1.5;
+            color: #E2E8F0;
+        }
+        .ig-bio h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 2px;
+        }
+        .ig-bio a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Stories in evidenza */
+        .ig-highlights {
+            display: flex;
+            gap: 1.2rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+            scrollbar-width: none;
+        }
+        .ig-highlight-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            color: #CBD5E1;
+            flex-shrink: 0;
+        }
+        .ig-highlight-circle {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            transition: transform 0.2s ease;
+        }
+        .ig-highlight-item:hover .ig-highlight-circle {
+            transform: scale(1.08);
+            border-color: var(--accent-cyan);
+        }
+
+        /* Tabs Navigazione Feed */
+        .ig-feed-tabs {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 10px 0;
+        }
+        .ig-tab {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+        .ig-tab.active {
+            color: #FFFFFF;
+            border-bottom: 2px solid #FFFFFF;
+            padding-bottom: 4px;
+        }
+
+        /* GRIGLIA 3x3 DEI POST */
+        .ig-grid-3x3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            background: #000000;
+        }
+        .ig-post-item {
+            aspect-ratio: 1/1;
+            position: relative;
+            overflow: hidden;
+            background: #0A0F1D;
+            cursor: pointer;
+        }
+        .ig-post-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+        .ig-post-item:hover img {
+            transform: scale(1.06);
+            filter: brightness(0.75);
+        }
+        .ig-post-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            gap: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+        .ig-post-item:hover .ig-post-overlay {
+            opacity: 1;
+        }
+        .ig-post-overlay span {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ig-post-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.65);
+            color: #FFFFFF;
+            font-size: 0.8rem;
+            padding: 3px 6px;
+            border-radius: 6px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* --- CAROSELLI & POST GRAFICI SPECIFICI --- */
+        .social-assets-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3.5rem 0;
+        }
+        .social-asset-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+            transition: all 0.35s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .social-asset-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-glow);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.2);
+        }
+        .asset-img-wrap {
+            width: 100%;
+            aspect-ratio: 4/5; /* Formato perfetto per Instagram Post verticale */
+            overflow: hidden;
+            position: relative;
+            background: #0C1220;
+        }
+        .asset-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .social-asset-card:hover .asset-img-wrap img {
+            transform: scale(1.05);
+        }
+        .asset-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(6, 9, 17, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: var(--accent-cyan);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .asset-info {
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+        .asset-info h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+        .asset-info p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        /* --- REELS & VIDEO FORMAT PRODUCION (9:16) --- */
+        .reels-showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            align-items: center;
+            background: rgba(13, 20, 36, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 3.5rem;
+            margin: 4rem 0;
+        }
+        .reel-phone-mockup {
+            max-width: 340px;
+            margin: 0 auto;
+            aspect-ratio: 9/16;
+            background: #000000;
+            border-radius: 36px;
+            border: 4px solid #1E293B;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 45px rgba(56, 189, 248, 0.25);
+        }
+        .reel-phone-mockup img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.1) brightness(0.95);
+        }
+        .reel-overlay-ui {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 20%, transparent 60%, rgba(0,0,0,0.85) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.8rem 1.4rem;
+        }
+        .reel-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+        .reel-sound-badge {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .reel-bottom-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .reel-author {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .reel-hook-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.25;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+        .reel-stats-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.78rem;
+            color: #CBD5E1;
+            margin-top: 4px;
+        }
+
+        .reels-desc-col h3 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+        }
+        .reels-features-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+        .reels-features-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            font-size: 1.02rem;
+            color: #CBD5E1;
+        }
+        .reels-features-list li span.check-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* --- STRATEGIA IN 4 FASI VERTEX --- */
+        .process-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 3.5rem 0;
+        }
+        .step-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.2rem 1.6rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+        .step-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-glow);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.5);
+        }
+        .step-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            background: rgba(56, 189, 248, 0.1);
+            padding: 4px 10px;
+            border-radius: 8px;
+            width: fit-content;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+        .step-box h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 0.7rem;
+        }
+        .step-box p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* --- CALL TO ACTION FINALE --- */
+        .cs-cta-banner {
+            background: linear-gradient(135deg, #0A0F1D 0%, #0D1424 50%, #172554 100%);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 28px;
+            padding: 4.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 3rem;
+            box-shadow: 0 35px 80px rgba(0, 0, 0, 0.6);
+            margin: 5rem 0 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .cs-cta-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 450px;
+            height: 450px;
+            background: var(--primary);
+            filter: blur(120px);
+            opacity: 0.25;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .cs-cta-content {
+            max-width: 680px;
+            position: relative;
+            z-index: 2;
+        }
+        .cs-cta-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+        .cs-cta-content h2 {
+            font-size: clamp(2.1rem, 3.8vw, 3.2rem);
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+        .cs-cta-content p {
+            font-size: 1.1rem;
+            color: #94A3B8;
+            line-height: 1.65;
+            margin: 0;
+        }
+        .btn-cta {
+            background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+            color: #FFFFFF;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.05rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
+            white-space: nowrap;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+        .btn-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 45px rgba(37, 99, 235, 0.6);
+        }
+
+        /* --- NAVIGAZIONE TRA I CASE STUDY --- */
+        .cs-nav-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 4rem;
+        }
+        .btn-nav-proj {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #CBD5E1;
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.25s ease;
+        }
+        .btn-nav-proj:hover {
+            background: rgba(37, 99, 235, 0.2);
+            color: #FFFFFF;
+            border-color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* --- FOOTER VERTEX --- */
+        footer {
+            background: #04060B;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 3.5rem 6%;
+            margin-top: 6rem;
+        }
+        .footer-inner {
+            max-width: 1350px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .footer-inner p {
+            color: #64748B;
+            font-size: 0.92rem;
+        }
+        .footer-social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .footer-social-links a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+        .footer-social-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 1024px) {
+            .cs-meta-bar { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .social-assets-grid { grid-template-columns: repeat(2, 1fr); }
+            .reels-showcase-grid { grid-template-columns: 1fr; padding: 2.5rem 1.8rem; }
+            .process-steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .cs-cta-banner { flex-direction: column; text-align: center; padding: 3.5rem 2rem; }
+        }
+
+        @media (max-width: 900px) {
+            .hamburger { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: rgba(6, 9, 17, 0.98);
+                backdrop-filter: blur(25px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2.2rem;
+                z-index: 100;
+                transition: right 0.35s ease;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.4rem; font-weight: 600; color: #FFFFFF; }
+        }
+
+        @media (max-width: 640px) {
+            .cs-hero { padding: 6.8rem 5% 3rem; }
+            .cs-cover-wrap { aspect-ratio: 16/10; margin-bottom: 3.5rem; border-radius: 18px; }
+            .cs-cover-overlay { padding: 1.8rem 1.4rem; }
+            .cs-meta-bar { grid-template-columns: 1fr; padding: 1.4rem 1.2rem; border-radius: 16px; }
+            .kpi-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .social-assets-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .ig-mockup-wrapper { padding: 1.2rem 0.8rem; border-radius: 20px; }
+            .ig-header { padding: 1.2rem 1rem; }
+            .ig-profile-top { gap: 1rem; }
+            .ig-avatar-ring { width: 68px; height: 68px; }
+            .process-steps-grid { grid-template-columns: 1fr; }
+            .cs-nav-row { flex-direction: column; align-items: stretch; text-align: center; }
+            .btn-nav-proj { justify-content: center; }
+            .btn-cta { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR VERTEX -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="logo_clean.png" alt="VERTEX Studio Logo">
+        </a>
+        
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#progetti" class="nav-back-pill" onclick="toggleMenu()">&larr; Tutti i Progetti</a></li>
+            <li><a href="index.html#servizi" onclick="toggleMenu()">Servizi</a></li>
+            <li><a href="chi-siamo.html" onclick="toggleMenu()">Chi Siamo</a></li>
+            <li><a href="#contatti-case" style="color: var(--accent-cyan);" onclick="toggleMenu()">Richiedi Strategia</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION CASE STUDY -->
+    <header class="cs-hero">
+        <div class="cs-breadcrumbs">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <a href="index.html#progetti">Progetti Selezionati</a>
+            <span>/</span>
+            <strong style="color: #FFFFFF;">AURA Lounge Bar</strong>
+        </div>
+
+        <div class="cs-hero-badge">
+            <span>Social Media Strategy &bull; Visual Identity &bull; Reels 4K</span>
+        </div>
+
+        <h1>
+            AURA Lounge: <br>
+            <span class="gradient-text">Identità Visiva &amp; Dominio Social</span>
+        </div>
+
+        <p class="cs-hero-desc">
+            Come abbiamo trasformato un concept lounge &amp; cocktail bar in un fenomeno social su Instagram e TikTok: direzione artistica del feed 3x3, format video reels cinematografici ad alta ritenzione e campagne visive che hanno generato il +280% di prenotazioni da clienti reali.
+        </p>
+
+        <!-- BARRA METADATI PROGETTO -->
+        <div class="cs-meta-bar">
+            <div class="cs-meta-col">
+                <span class="cs-meta-label">Cliente</span>
+                <span class="cs-meta-val">AURA Milano</span>
+            </div>
+            <div class="cs-meta-col">
+                <span class="cs-meta-label">Settore</span>
+                <span class="cs-meta-val">Cocktail Lounge &amp; Hospitality</span>
+            </div>
+            <div class="cs-meta-col">
+                <span class="cs-meta-label">Servizi Erogati</span>
+                <span class="cs-meta-val">Social Strategy &bull; Video Reels &bull; Graphic Feed</span>
+            </div>
+            <div class="cs-meta-col">
+                <span class="cs-meta-label">Piattaforme</span>
+                <span class="cs-meta-val">Instagram &bull; TikTok &bull; Meta Ads</span>
+            </div>
+        </div>
+
+        <!-- HERO COVER SHOWCASE -->
+        <div class="cs-cover-wrap">
+            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
+                 alt="AURA Lounge Bar - Social Atmosphere" 
+                 class="cs-cover-img">
+            <div class="cs-cover-overlay">
+                <div class="cs-cover-tag">
+                    <span>AURA // DARK MOOD &bull; AMBER GLOW &bull; CINE-GRADE ASSETS</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CORPO PRINCIPALE CASE STUDY -->
+    <main class="cs-body">
+
+        <!-- 01. IL CLIENTE & IL CONTESTO -->
+        <section class="cs-section">
+            <div class="cs-section-header">
+                <div class="cs-num-badge">01</div>
+                <h2>Il Cliente &amp; La Sfida Iniziale</h2>
+            </div>
+            <p class="cs-text-p">
+                <strong>AURA</strong> è un concept cocktail bar e lounge situato nel cuore della movida metropolitana, caratterizzato da un'atmosfera immersiva con luci soffuse, architettura brutalista e signature drinks di altissima mixology artigianale.
+            </p>
+            <p class="cs-text-p">
+                Nonostante la qualità eccezionale del locale, il loro profilo social era statico e disorganizzato: foto scattate con smartphone in condizioni di luce scarsa, nessun piano editoriale strutturato, zero video ad alta ritenzione e una comunicazione che non trasmetteva l'esclusività dell'esperienza fisica.
+            </p>
+            <p class="cs-text-p">
+                <strong>L'obiettivo di VERTEX:</strong> ricostruire da zero l'intero ecosistema visivo del brand su Instagram e TikTok, trasformando il feed in una galleria di lusso irresistibile e i Reels in un catalizzatore costante di nuovi clienti e tavoli prenotati.
+            </p>
+        </section>
+
+        <!-- 02. I RISULTATI NUMERICI (KPI) -->
+        <section class="cs-section">
+            <div class="cs-section-header">
+                <div class="cs-num-badge">02</div>
+                <h2>L'Impatto dei Risultati (Metriche Reali a 90 Giorni)</h2>
+            </div>
+            <p class="cs-text-p">
+                Un design social curato non serve solo per l'estetica: è uno strumento di conversione commerciale ad altissima precisione. Ecco le metriche certificate registrate nei primi 3 mesi di gestione VERTEX:
+            </p>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-num">+280%</div>
+                    <div class="kpi-label">Crescita Reach Organica Mensile</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-num">68.5k</div>
+                    <div class="kpi-label">Visualizzazioni Medie per Reel</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-num">+140%</div>
+                    <div class="kpi-label">Prenotazioni da Link Instagram</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-num">4.9x</div>
+                    <div class="kpi-label">Interazioni e Post Salvati</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. IL FEED INSTAGRAM MOCKUP INTERATTIVO 3x3 -->
+        <section class="cs-section">
+            <div class="cs-section-header">
+                <div class="cs-num-badge">03</div>
+                <h2>La Griglia Editoriale: Feed 3x3 Armonico</h2>
+            </div>
+            <p class="cs-text-p">
+                Abbiamo progettato un layout a scacchiera studiato per combinare <strong>Cocktail Macro Shot</strong>, <strong>Post Grafici Tipografici Minimali</strong> e <strong>Reel Cover Cinematografiche</strong>. Ogni riga di 3 post racconta un capitolo della serata senza mai creare confusione visiva:
+            </p>
+
+            <!-- SIMULATORE MOCKUP SMARTPHONE INSTAGRAM -->
+            <div class="ig-mockup-wrapper">
+                <div class="ig-phone-frame">
+                    <!-- Header Profilo -->
+                    <div class="ig-header">
+                        <div class="ig-profile-top">
+                            <div class="ig-avatar-ring">
+                                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                                     alt="Aura Logo Avatar" class="ig-avatar-img">
+                            </div>
+                            <div class="ig-stats-row">
+                                <div class="ig-stat-col">
+                                    <strong>84</strong>
+                                    <span>post</span>
+                                </div>
+                                <div class="ig-stat-col">
+                                    <strong>24.6k</strong>
+                                    <span>follower</span>
+                                </div>
+                                <div class="ig-stat-col">
+                                    <strong>312</strong>
+                                    <span>seguiti</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bio Professionale -->
+                        <div class="ig-bio">
+                            <h4>AURA &bull; Cocktail &amp; Sound Experience</h4>
+                            <p>
+                                🍸 Craft Mixology &bull; Ambient Nightlife &bull; Vinyl Sets<br>
+                                📍 Navigli District, Milano | Mar - Dom 19:00 - 02:00<br>
+                                🥂 <a href="#prenota">Prenota il tuo tavolo esclusivo qui &darr;</a>
+                            </p>
+                        </div>
+
+                        <!-- Stories in Evidenza (Highlights) -->
+                        <div class="ig-highlights">
+                            <div class="ig-highlight-item">
+                                <div class="ig-highlight-circle">🍸</div>
+                                <span>Signature</span>
+                            </div>
+                            <div class="ig-highlight-item">
+                                <div class="ig-highlight-circle">🎧</div>
+                                <span>DJ Sets</span>
+                            </div>
+                            <div class="ig-highlight-item">
+                                <div class="ig-highlight-circle">🌙</div>
+                                <span>Atmosphere</span>
+                            </div>
+                            <div class="ig-highlight-item">
+                                <div class="ig-highlight-circle">📜</div>
+                                <span>Menù QR</span>
+                            </div>
+                            <div class="ig-highlight-item">
+                                <div class="ig-highlight-circle">✨</div>
+                                <span>Eventi</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feed Tabs -->
+                    <div class="ig-feed-tabs">
+                        <div class="ig-tab active">▦ POST</div>
+                        <div class="ig-tab">▷ REELS</div>
+                        <div class="ig-tab">📇 TAGGATI</div>
+                    </div>
+
+                    <!-- GRIGLIA 3x3 DI 9 POST STRATEGICI -->
+                    <div class="ig-grid-3x3">
+                        <!-- Post 1: Cocktail Macro -->
+                        <div class="ig-post-item">
+                            <span class="ig-post-badge">🍸</span>
+                            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Old Fashioned">
+                            <div class="ig-post-overlay">
+                                <span>❤️ 1,420</span>
+                                <span>💬 68</span>
+                            </div>
+                        </div>
+
+                        <!-- Post 2: Grafica Tipografica Minimal -->
+                        <div class="ig-post-item" style="background: #080D1A; display: flex; align-items: center; justify-content: center; padding: 15px;">
+                            <div style="border: 1px solid rgba(56, 189, 248, 0.4); width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 12px; text-align: center;">
+                                <span class="mono" style="font-size: 0.65rem; color: #38BDF8; letter-spacing: 2px;">THE SIGNATURE</span>
+                                <h5 class="outfit" style="color: #FFF; font-size: 0.95rem; font-weight: 800; margin: 4px 0;">SMOKED NEGRONI</h5>
+                                <p style="font-size: 0.65rem; color: #94A3B8; margin: 0;">Gin &bull; Vermouth Rosso &bull; Bitter</p>
+                            </div>
+                            <div class="ig-post-overlay">
+                                <span>❤️ 980</span>
+                                <span>💬 44</span>
+                            </div>
+                        </div>
+
+                        <!-- Post 3: Atmosphere Bar -->
+                        <div class="ig-post-item">
+                            <span class="ig-post-badge">▷</span>
+                            <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lounge Interior">
+                            <div class="ig-post-overlay">
+                                <span>❤️ 2,850</span>
+                                <span>💬 112</span>
+                            </div>
+                        </div>
+
+                        <!-- Post 4: Reel Cover Bartender -->
+                        <div class="ig-post-item">
+                            <span class="ig-post-badge">▷ 42k</span>
+                            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bartender Action">
+                            <div class="ig-post-overlay">
+                                <span>❤️ 3,410</span>
+                                <span>💬 145</span>
+                            </div>
+                        </div>
+
+                        <!-- Post 5: Grafica Serata Speciale -->
+                        <div class="ig-post-item" style="background: linear-gradient(135deg, #0F172A, #1E1B4B); display: flex; align-items: center; justify-content: center; padding: 15px;">
+                            <div style="text-align: center;">
+                                <span style="font-size: 0.65rem; color: #C084FC; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">FRIDAY SESSION</span>
+                                <h5 class="outfit" style="color: #FFF; font-size: 1.1rem; font-weight: 900; margin: 4px 0;">VINYL DREAMS</h5>
+                                <span class="mono" style="font-size: 0.65rem; color: #38BDF8;">DEEP AMBIENT SET</span>
+                            </div>
+                            <div class="ig-post-overlay">
+                                <span>❤️ 1,890</span>
+                                <span>💬 87</span>
+                            </div>
+                        </div>
+
+                        <!-- Post 6: Dettaglio Ingredienti -->
+                        <div class="ig-post-item">
+                            <img src="https://images.unsplash.com/photo-1527061011665-3652c757a4d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Fresh Cocktail">
+                            <div class="ig-post-overlay">
+                                <span>❤️ 1,230</span>
+                                <span>💬 52</span>
+                            </div>
+                        </div>
+
+                        <!-- Post 7: Grafica Quote Mood -->
+                        <div class="ig-post-item" style="background: #070B14; display: flex; align-items: center; justify-content: center; padding: 15px;">
+                            <div style="border-left: 2px solid #38BDF8; padding-left: 10px; text-align: left;">
+                                <p class="outfit" style="color: #FFF; font-size: 0.82rem; font-weight: 600; margin: 0; line-height: 1.35;">
+                                    "La notte inizia quando il primo bicchiere tocca il marmo."
+                                </p>
+                                <span class="mono" style="font-size: 0.6rem; color: #64748B;">— AURA VIBES</span>
+                            </div>
+                            <div class="ig-post-overlay">
+                                <span>❤️ 2,120</span>
+                                <span>💬 98</span>
+                            </div>
+                        </div>
+
+                        <!-- Post 8: Dettaglio Calice & Fumo -->
+                        <div class="ig-post-item">
+                            <span class="ig-post-badge">▷ 84k</span>
+                            <img src="https://images.unsplash.com/photo-1560512823-829485b8bf24?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Smoking cocktail">
+                            <div class="ig-post-overlay">
+                                <span>❤️ 4,680</span>
+                                <span>💬 190</span>
+                            </div>
+                        </div>
+
+                        <!-- Post 9: Bancone & Crowd -->
+                        <div class="ig-post-item">
+                            <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Crowd Night">
+                            <div class="ig-post-overlay">
+                                <span>❤️ 1,760</span>
+                                <span>💬 76</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. DETTAGLIO GRAFICHE SOCIAL (CAROSELLI & FORMAT VERTICALI) -->
+        <section class="cs-section">
+            <div class="cs-section-header">
+                <div class="cs-num-badge">04</div>
+                <h2>I Format Grafici ad Alta Conversione</h2>
+            </div>
+            <p class="cs-text-p">
+                Ogni tipologia di post è stata ingegnerizzata con una specifica funzione algoritmica: i caroselli massimizzano il tempo di permanenza sullo schermo, i post evento guidano i messaggi privati in direct per le liste tavoli, mentre le grafiche menù invitano all'azione.
+            </p>
+
+            <div class="social-assets-grid">
+                <!-- Card 1: Carosello Educational -->
+                <div class="social-asset-card">
+                    <div class="asset-img-wrap">
+                        <span class="asset-badge">Carosello 4:5</span>
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Carosello Form">
+                    </div>
+                    <div class="asset-info">
+                        <h3>Guida alla Mixology d'Autore</h3>
+                        <p>Format educativo a 5 slide che svela gli estratti botanici e il processo d'infusione. Questo post ha generato oltre 1.200 salvataggi da utenti profilati.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Poster Serata Evento -->
+                <div class="social-asset-card">
+                    <div class="asset-img-wrap">
+                        <span class="asset-badge">Event Poster</span>
+                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Event Poster">
+                    </div>
+                    <div class="asset-info">
+                        <h3>Locandina Digitale DJ Guest</h3>
+                        <p>Tipografia svizzera ad alto contrasto con texture metalliche e dettagli data/orario ottimizzati per la lettura rapida nelle Instagram Stories.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Menù Cocktail Reveal -->
+                <div class="social-asset-card">
+                    <div class="asset-img-wrap">
+                        <span class="asset-badge">Menu Promo</span>
+                        <img src="https://images.unsplash.com/photo-1560512823-829485b8bf24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Menu Reveal">
+                    </div>
+                    <div class="asset-info">
+                        <h3>Lancio Menù Stagionale</h3>
+                        <p>Asset grafico per promuovere la nuova carta drink d'autunno collegata direttamente tramite adesivo link al sistema di prenotazione online.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05. REELS & VIDEO PRODUZIONE 9:16 -->
+        <section class="cs-section">
+            <div class="cs-section-header">
+                <div class="cs-num-badge">05</div>
+                <h2>Reels &amp; Video ad Altissima Ritenzione (TikTok / IG)</h2>
+            </div>
+            <p class="cs-text-p">
+                L'algoritmo di Meta e TikTok premia i video che trattengono lo spettatore oltre i primi 3 secondi. Per AURA abbiamo applicato le stesse tecniche del video montaggio cinematografico moderno:
+            </p>
+
+            <div class="reels-showcase-grid">
+                <!-- Telefono Mockup Reel 9:16 -->
+                <div class="reel-phone-mockup">
+                    <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Reel Video Preview">
+                    <div class="reel-overlay-ui">
+                        <div class="reel-top-bar">
+                            <span>Reels</span>
+                            <div class="reel-sound-badge">♫ Audio Originale AURA</div>
+                        </div>
+                        <div class="reel-bottom-info">
+                            <div class="reel-author">
+                                <span>@aura.milano</span>
+                                <span style="background: #2563EB; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px;">Segui</span>
+                            </div>
+                            <div class="reel-hook-title">
+                                "Il cocktail che richiede 48 ore di distillazione lenta..." 🍸✨
+                            </div>
+                            <div class="reel-stats-pill">
+                                <span>▶ 112.4k views</span>
+                                <span>❤️ 8.9k</span>
+                                <span>💬 340</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spiegazione Strategia Reel -->
+                <div class="reels-desc-col">
+                    <span class="mono" style="color: var(--accent-cyan); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;">La Formula di Successo</span>
+                    <h3>Hook nei primi 1.5 secondi e Sound Design d'impatto.</h3>
+                    <p class="cs-text-p">
+                        Niente riprese amatoriali traballanti: riprese a 60fps in penombra con stabilizzazione ottica, color grading caldo-aranciato sui cocktail e tagli a tempo con sound effects ASMR (il tintinnio del ghiaccio, lo shaker metallico, il versamento del liquore).
+                    </p>
+                    <ul class="reels-features-list">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <div>
+                                <strong>Visual Hook Immediato:</strong> Titoli dinamici a video studiati per fermare lo scroll nei primi 2 secondi.
+                            </div>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <div>
+                                <strong>Color Grading Coerente:</strong> Esaltazione dei riflessi ambrati e delle ombre profonde per una firma visiva inconfondibile.
+                            </div>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <div>
+                                <strong>Call To Action Finale Naturale:</strong> Invito esplicito a salvare il post o a condividere il reel con chi deve offrirti il drink.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06. IL NOSTRO METODO DI GESTIONE -->
+        <section class="cs-section">
+            <div class="cs-section-header">
+                <div class="cs-num-badge">06</div>
+                <h2>Come Lavoriamo: Il Metodo VERTEX</h2>
+            </div>
+            <p class="cs-text-p">
+                Non pubblichiamo post casuali. Ogni mese seguiamo un processo rigoroso e condiviso con il cliente per garantire risultati e zero stress operativo:
+            </p>
+
+            <div class="process-steps-grid">
+                <div class="step-box">
+                    <div class="step-num">STEP 01</div>
+                    <h4>Analisi &amp; Moodboard</h4>
+                    <p>Definiamo la palette cromatica, i font ufficiali, il tone of voice e il benchmark dei migliori competitor internazionali.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">STEP 02</div>
+                    <h4>Shooting &amp; Design</h4>
+                    <p>Sessione di shooting professionale sul posto e creazione di tutti i template grafici (post, stories, caroselli, reel cover).</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">STEP 03</div>
+                    <h4>Piano Editoriale</h4>
+                    <p>Concordiamo il calendario mensile in anticipo. Nessuna sorpresa: ogni copy, grafica e video viene approvato prima del deploy.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">STEP 04</div>
+                    <h4>Report &amp; Crescita</h4>
+                    <p>Analisi delle metriche, ottimizzazione costante dell'algoritmo e strategia per trasformare i follower in clienti effettivi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION BANNER -->
+        <section class="cs-cta-banner" id="contatti-case">
+            <div class="cs-cta-content">
+                <span class="cs-cta-tag">Eleva la tua presenza visiva</span>
+                <h2>Vuoi trasformare i tuoi canali social in una calamita di clienti?</h2>
+                <p>
+                    Parla direttamente con noi due: sviluppiamo la strategia visiva, le grafiche e i video reels su misura per dominare il tuo settore.
+                </p>
+            </div>
+            <div>
+                <a href="mailto:vertexstudio@outlook.it" class="btn-cta">
+                    Richiedi Studio Strategico &rarr;
+                </a>
+            </div>
+        </section>
+
+        <!-- NAVIGAZIONE PROGETTI -->
+        <div class="cs-nav-row">
+            <a href="case-study-tecnometal.html" class="btn-nav-proj">
+                &larr; Progetto Precedente: TecnoMetal CNC
+            </a>
+            <a href="case-study-aerofit.html" class="btn-nav-proj">
+                Prossimo Progetto: AeroFit Sportswear &rarr;
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER VERTEX -->
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <strong style="color: #FFFFFF; font-size: 1.1rem; letter-spacing: -0.5px;">VERTEX STUDIO</strong>
+                <p>&copy; 2026. Progetto digitale e identità visive su misura.</p>
+            </div>
+            <div class="footer-social-links">
+                <a href="index.html">Home</a>
+                <a href="chi-siamo.html">Chi Siamo</a>
+                <a href="https://www.instagram.com/vertexstudioweb/" target="_blank">Instagram</a>
+                <a href="mailto:vertexstudio@outlook.it">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT MENU MOBILE -->
+    <script>
+        function toggleMenu() {
+            if(window.innerWidth > 900) return;
+            const nav = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            nav.classList.toggle('active');
+            hamburger.innerHTML = nav.classList.contains('active') ? '✕' : '☰';
+        }
+    </script>
+</body>
+</html>
