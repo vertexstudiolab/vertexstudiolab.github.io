@@ -636,13 +636,13 @@
             background: #111520;
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 18px;
-            padding: 2.5rem;
+            padding: 2rem 1.8rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
             position: relative;
-            min-height: 580px;
+            min-height: 600px;
         }
         .preview-top-toolbar {
             width: 100%;
@@ -651,6 +651,8 @@
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             padding-bottom: 1rem;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         .preview-model-tag {
             font-family: 'JetBrains Mono', monospace;
@@ -664,107 +666,181 @@
         }
         .preview-render-badge {
             background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             color: #94A3B8;
-            padding: 3px 10px;
+            padding: 4px 10px;
             border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .preview-render-badge .badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #10B981;
+            box-shadow: 0 0 8px #10B981;
+            animation: pulse 1.8s infinite;
         }
 
-        /* Simulatore Maglia Reale */
-        .shirt-stage {
+        /* SELETTORE VISTA FRONTE / RETRO (TABS 3D) */
+        .view-switcher-bar {
+            display: inline-flex;
+            background: rgba(7, 9, 14, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 4px;
+            border-radius: 30px;
+            margin-top: 1.2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             position: relative;
-            width: 320px;
-            height: 420px;
-            margin: 2rem 0;
+            z-index: 5;
+        }
+        .view-tab-btn {
+            background: transparent;
+            border: none;
+            color: #94A3B8;
+            padding: 7px 18px;
+            border-radius: 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+        }
+        .view-tab-btn:hover {
+            color: #FFFFFF;
+        }
+        .view-tab-btn.active {
+            background: var(--primary);
+            color: #07090E;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        /* PALCOSCENICO DELLA MAGLIA 3D (FLIP CARD STAGE) */
+        .jersey-stage-box {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            height: 470px;
+            margin: 1.2rem auto;
+            perspective: 1200px;
+            -webkit-perspective: 1200px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .shirt-color-fill {
-            position: absolute;
-            top: 11%;
-            left: 15%;
-            width: 70%;
-            height: 77%;
-            background-color: var(--primary);
-            border-radius: 20px;
-            z-index: 1;
-            transition: background-color 0.4s ease;
-        }
-        .shirt-photorealistic-png {
-            position: relative;
-            z-index: 2;
+        .jersey-flipper {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            pointer-events: none;
-            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+            position: relative;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .jersey-stage-box.flipped .jersey-flipper {
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+        }
+        .jersey-side-face {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .face-back {
+            transform: rotateY(0deg);
+            -webkit-transform: rotateY(0deg);
+            z-index: 2;
+        }
+        .face-front {
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+            z-index: 1;
+        }
+        .jersey-stage-box.flipped .face-front {
+            z-index: 3;
+        }
+        .jersey-stage-box.flipped .face-back {
+            z-index: 1;
+        }
+        .jersey-svg-element {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 18px 35px rgba(0, 0, 0, 0.7));
+            user-select: none;
+            -webkit-user-select: none;
         }
 
-        /* Stampa Custom ad alta fedeltà */
-        .shirt-print-canvas {
+        /* Pulsante Rapido Gira Maglia Mobile/Desktop */
+        .btn-quick-flip {
             position: absolute;
-            top: 31%;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            z-index: 10;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(7, 9, 14, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 4px;
-            mix-blend-mode: color-burn;
-            opacity: 0.88;
-            transform: rotate(-0.5deg);
+            justify-content: center;
+            cursor: pointer;
+            z-index: 20;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(8px);
         }
-        .shirt-brand-crest {
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 4px;
-            color: #111111;
-        }
-        #stageShirtName {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.8rem;
-            color: #111111;
-            letter-spacing: 3px;
-            line-height: 1;
-            text-transform: uppercase;
-        }
-        #stageShirtNumber {
-            font-family: 'Black Ops One', sans-serif;
-            font-size: 5.6rem;
-            color: #111111;
-            line-height: 0.9;
+        .btn-quick-flip:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: rotate(180deg) scale(1.1);
+            box-shadow: 0 0 15px var(--primary-glow);
         }
 
         .preview-footer-note {
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             color: #64748B;
             text-align: center;
-            max-width: 85%;
+            max-width: 90%;
             font-family: 'JetBrains Mono', monospace;
+            margin-top: 0.5rem;
         }
 
         /* Colonna Destra: Controlli del Configuratore */
         .controls-workbench {
             display: flex;
             flex-direction: column;
-            gap: 1.8rem;
+            gap: 1.6rem;
         }
         .controls-group-title {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-family: 'JetBrains Mono', monospace;
             color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 1.5px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 0.7rem;
+            justify-content: space-between;
+            margin-bottom: 0.65rem;
+        }
+        .controls-group-title span.group-sub {
+            font-size: 0.72rem;
+            color: #64748B;
+            text-transform: none;
+            letter-spacing: 0;
         }
 
         /* 1. Selezione Colore Base */
@@ -1460,16 +1536,19 @@
         /* --- RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 1024px) {
             .products-showcase-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-            .configurator-desk { grid-template-columns: 1fr; padding: 2rem; }
+            .configurator-desk { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; }
             .steps-flow-grid { grid-template-columns: repeat(2, 1fr); }
-            .editorial-bento-grid { grid-template-columns: 1fr; }
+            .editorial-bento-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .bento-big-feature { grid-column: 1 / -1; grid-row: auto; }
-            .built-team-wrap { grid-template-columns: 1fr; }
+            .built-team-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
             .footer-grid-aerofit { grid-template-columns: 1fr 1fr; gap: 2rem; }
         }
 
         @media (max-width: 900px) {
-            .hamburger { display: block; }
+            nav { padding: 0.9rem 5%; }
+            .hamburger { display: block; z-index: 105; }
+            .btn-nav-custom { display: none; } /* Nascosto dalla barra superiore su mobile per non affollare */
+            
             .nav-links {
                 position: fixed;
                 top: 0;
@@ -1478,30 +1557,160 @@
                 height: 100vh;
                 background: rgba(7, 9, 14, 0.98);
                 backdrop-filter: blur(25px);
+                -webkit-backdrop-filter: blur(25px);
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                gap: 2.2rem;
-                z-index: 100;
-                transition: right 0.35s ease;
+                gap: 1.8rem;
+                z-index: 102;
+                transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
                 border-left: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 2rem;
             }
             .nav-links.active { right: 0; }
-            .nav-links a { font-size: 1.4rem; font-weight: 700; }
+            .nav-links a { font-size: 1.35rem; font-weight: 800; letter-spacing: 0.5px; }
+            .nav-mobile-close {
+                position: absolute;
+                top: 22px;
+                right: 25px;
+                font-size: 2rem;
+                color: #94A3B8;
+                cursor: pointer;
+            }
+            .nav-mobile-cta {
+                display: block !important;
+                margin-top: 1rem;
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
         }
 
         @media (max-width: 640px) {
-            .top-ticker { flex-direction: column; gap: 4px; text-align: center; }
-            .hero-athletic { padding: 6.5rem 5% 4rem; }
-            .hero-content h1 { font-size: 2.8rem; }
-            .products-showcase-grid { grid-template-columns: 1fr; }
-            .steps-flow-grid { grid-template-columns: 1fr; }
-            .inputs-split-row { grid-template-columns: 1fr; }
-            .model-selector-grid { grid-template-columns: 1fr; }
-            .cart-drawer { width: 100%; right: -100%; }
-            .footer-grid-aerofit { grid-template-columns: 1fr; }
-            .built-team-gallery { grid-template-columns: 1fr; }
+            .top-ticker {
+                flex-direction: column;
+                gap: 6px;
+                text-align: center;
+                padding: 8px 4%;
+                font-size: 0.7rem;
+            }
+            .hero-athletic {
+                padding: 4.5rem 5% 3.5rem;
+                min-height: auto;
+            }
+            .hero-content h1 {
+                font-size: clamp(2.2rem, 8.8vw, 3.4rem);
+                letter-spacing: -1px;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.9rem;
+                margin-bottom: 2.5rem;
+            }
+            .btn-hero-primary, .btn-hero-secondary {
+                width: 100%;
+                justify-content: center;
+                padding: 15px 24px;
+                font-size: 1rem;
+            }
+            .hero-specs-strip {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.6rem;
+                padding-top: 1.5rem;
+                text-align: center;
+            }
+            .hero-spec-val { font-size: 1.25rem; }
+            .hero-spec-lbl { font-size: 0.65rem; }
+
+            /* Sezione Collezione su Mobile */
+            .collection-section { padding: 4.5rem 4%; }
+            .products-showcase-grid { grid-template-columns: 1fr; gap: 1.4rem; }
+
+            /* Sezione Configuratore su Mobile */
+            .configurator-station { padding: 4.5rem 3.5%; }
+            .configurator-desk {
+                padding: 1.2rem;
+                border-radius: 18px;
+            }
+            .preview-workbench {
+                padding: 1.2rem 0.8rem;
+                min-height: auto;
+                border-radius: 14px;
+            }
+            .jersey-stage-box {
+                max-width: 320px;
+                height: 400px;
+                margin: 1rem auto;
+            }
+            .view-switcher-bar {
+                margin-top: 0.8rem;
+            }
+            .view-tab-btn {
+                padding: 6px 14px;
+                font-size: 0.72rem;
+            }
+            .inputs-split-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .model-selector-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
+            }
+            .model-pill-opt {
+                padding: 8px 4px;
+                font-size: 0.75rem;
+            }
+            .size-selector-row {
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                gap: 5px;
+            }
+            .size-btn {
+                padding: 8px 2px;
+                font-size: 0.78rem;
+            }
+            .config-summary-card {
+                padding: 1.2rem;
+            }
+            .summary-price { font-size: 1.5rem; }
+
+            /* Sezioni Contenuto su Mobile */
+            .how-it-works-section { padding: 4.5rem 4%; }
+            .steps-flow-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+            .step-flow-card { padding: 1.8rem 1.4rem; }
+
+            .materials-editorial-section { padding: 4.5rem 4%; }
+            .bento-big-img-wrap { height: 240px; }
+            .bento-big-body { padding: 1.5rem 1.2rem; }
+            .bento-side-img { height: 180px; }
+            .bento-side-body { padding: 1.4rem 1.2rem; }
+
+            .built-team-section { padding: 4.5rem 4%; }
+            .built-team-gallery { grid-template-columns: 1fr; gap: 1.2rem; }
             .team-img-card:first-child, .team-img-card:last-child { transform: none; }
+
+            .cta-final-section { padding: 5rem 4%; }
+            .cta-final-wrap h2 { font-size: 2.2rem; }
+            .cta-btn-group { flex-direction: column; width: 100%; gap: 10px; }
+            .cta-btn-group a { width: 100%; justify-content: center; }
+
+            .cart-drawer { width: 100%; right: -100%; padding: 1.6rem 1.2rem; }
+            .footer-grid-aerofit { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        @media (max-width: 380px) {
+            .jersey-stage-box {
+                max-width: 280px;
+                height: 355px;
+            }
+            .model-selector-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1527,14 +1736,20 @@
             <span class="logo-badge">LAB 2026</span>
         </a>
 
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Menu di navigazione">☰</div>
 
         <ul class="nav-links" id="navLinks">
+            <div class="nav-mobile-close" onclick="toggleMenu()">&times;</div>
             <li><a href="#collezione" onclick="toggleMenu()">Collezione</a></li>
             <li><a href="#configuratore" onclick="toggleMenu()">Configuratore</a></li>
             <li><a href="#come-funziona" onclick="toggleMenu()">Come Funziona</a></li>
             <li><a href="#materiali" onclick="toggleMenu()">Materiali</a></li>
             <li><a href="#per-i-team" onclick="toggleMenu()">Per i Team</a></li>
+            <li class="nav-mobile-cta" style="display:none;">
+                <a href="#configuratore" class="btn-hero-primary" onclick="toggleMenu()" style="width:100%; justify-content:center; padding:14px; font-size:0.95rem;">
+                    Configura la Divisa &rarr;
+                </a>
+            </li>
         </ul>
 
         <div class="nav-actions">
@@ -1717,59 +1932,418 @@
     <section class="configurator-station" id="configuratore">
         <div class="configurator-station-wrap">
             <div class="config-header-center">
-                <span class="section-tag-inline">Studio 3D Live</span>
+                <span class="section-tag-inline">Studio 3D Live Engine</span>
                 <h2>Configura la tua divisa in <span>tempo reale</span>.</h2>
                 <p>
-                    Seleziona il colore base del tuo club, scegli lo stile tipografico, digita nome e numero dell'atleta: guarda il risultato fondersi istantaneamente sul capo prima dell'ordine.
+                    Visualizza il kit da gara con resa fotorealistica. Personalizza colore principale, finiture sartoriali, nome e numero dell'atleta: la grafica si fonde istantaneamente con le pieghe e la trama traspirante della maglia.
                 </p>
             </div>
 
             <div class="configurator-desk">
-                <!-- Colonna Sinistra: Preview Stage -->
+                <!-- Colonna Sinistra: Preview Stage Fotorealistico -->
                 <div class="preview-workbench">
                     <div class="preview-top-toolbar">
                         <div class="preview-model-tag">
                             <span style="color:#CCFF00;">●</span>
                             <span id="activeModelLabel">MAGLIA GARA MATCH PRO</span>
                         </div>
-                        <div class="preview-render-badge">VISTA LIVE 4K</div>
+                        <div class="preview-render-badge">
+                            <span class="badge-dot"></span>
+                            <span>RENDER 3D VETTORIALE LIVE</span>
+                        </div>
                     </div>
 
-                    <!-- Palcoscenico della Maglia con Realismo Dinamico -->
-                    <div class="shirt-stage">
-                        <div class="shirt-color-fill" id="stageColorFill"></div>
-                        <img src="shirt_template.png" alt="AeroFit T-Shirt" class="shirt-photorealistic-png" onerror="this.onerror=null;this.src='https://www.freeiconspng.com/uploads/blank-t-shirt-png-14.png';">
-                        
-                        <div class="shirt-print-canvas" id="stagePrintCanvas">
-                            <div class="shirt-brand-crest">AEROFIT PRO</div>
-                            <div id="stageShirtName">AEROFIT</div>
-                            <div id="stageShirtNumber">10</div>
+                    <!-- TABS SELETTORE VISTA FRONTE / RETRO -->
+                    <div class="view-switcher-bar">
+                        <button type="button" class="view-tab-btn active" id="tabViewBack" onclick="impostaVistaMaglia('retro')">
+                            <span>🔄 RETRO (Nome &amp; Numero)</span>
+                        </button>
+                        <button type="button" class="view-tab-btn" id="tabViewFront" onclick="impostaVistaMaglia('fronte')">
+                            <span>👕 FRONTE (Stemma &amp; Sponsor)</span>
+                        </button>
+                    </div>
+
+                    <!-- PALCOSCENICO DELLA MAGLIA CON ROTAZIONE 3D FLIP -->
+                    <div class="jersey-stage-box" id="jerseyStageBox">
+                        <button type="button" class="btn-quick-flip" onclick="invertiVistaMaglia()" title="Gira Maglia (Fronte/Retro)">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 21h5v-5"></path></svg>
+                        </button>
+
+                        <div class="jersey-flipper">
+                            <!-- ============================================== -->
+                            <!-- VISTA RETRO: NOME ATLETA E NUMERO DA GARA -->
+                            <!-- ============================================== -->
+                            <div class="jersey-side-face face-back">
+                                <svg class="jersey-svg-element" id="svgJerseyBack" viewBox="0 0 500 580" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <!-- Trama Tecnica a Nido d'Ape Microforata (HyperBreath™) -->
+                                        <pattern id="meshTextureBack" width="10" height="10" patternUnits="userSpaceOnUse">
+                                            <circle cx="3" cy="3" r="1.15" fill="#000000" fill-opacity="0.2" />
+                                            <circle cx="8" cy="8" r="1.15" fill="#000000" fill-opacity="0.2" />
+                                            <circle cx="3" cy="3.5" r="0.55" fill="#ffffff" fill-opacity="0.1" />
+                                            <circle cx="8" cy="8.5" r="0.55" fill="#ffffff" fill-opacity="0.1" />
+                                        </pattern>
+
+                                        <!-- Illuminazione 3D Volumetrica della Muscolatura -->
+                                        <linearGradient id="lightingBack" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#000000" stop-opacity="0.45" />
+                                            <stop offset="15%" stop-color="#ffffff" stop-opacity="0.08" />
+                                            <stop offset="35%" stop-color="#000000" stop-opacity="0.04" />
+                                            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.22" />
+                                            <stop offset="65%" stop-color="#000000" stop-opacity="0.04" />
+                                            <stop offset="85%" stop-color="#ffffff" stop-opacity="0.08" />
+                                            <stop offset="100%" stop-color="#000000" stop-opacity="0.48" />
+                                        </linearGradient>
+
+                                        <!-- Gradiente di Profondità ed Effetto Caduta Tessuto -->
+                                        <linearGradient id="depthGradientBack" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.16" />
+                                            <stop offset="25%" stop-color="#ffffff" stop-opacity="0.04" />
+                                            <stop offset="60%" stop-color="#000000" stop-opacity="0" />
+                                            <stop offset="85%" stop-color="#000000" stop-opacity="0.22" />
+                                            <stop offset="100%" stop-color="#000000" stop-opacity="0.55" />
+                                        </linearGradient>
+
+                                        <!-- Ombreggiatura Manica Sinistra -->
+                                        <linearGradient id="sleeveLeftGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1" />
+                                            <stop offset="60%" stop-color="#000000" stop-opacity="0.1" />
+                                            <stop offset="100%" stop-color="#000000" stop-opacity="0.4" />
+                                        </linearGradient>
+
+                                        <!-- Ombreggiatura Manica Destra -->
+                                        <linearGradient id="sleeveRightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1" />
+                                            <stop offset="60%" stop-color="#000000" stop-opacity="0.1" />
+                                            <stop offset="100%" stop-color="#000000" stop-opacity="0.4" />
+                                        </linearGradient>
+
+                                        <!-- Filtro Termoapplicato 3D Vinilico (Heat-Press) -->
+                                        <filter id="heatPressBack" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="0" dy="4" stdDeviation="3.2" flood-color="#000000" flood-opacity="0.5" />
+                                            <feDropShadow dx="0" dy="1" stdDeviation="0.8" flood-color="#ffffff" flood-opacity="0.25" />
+                                        </filter>
+
+                                        <!-- Tracciato Curvo per il Nome dell'Atleta sulle Spalle -->
+                                        <path id="nameArchBack" d="M 125 180 Q 250 148 375 180" fill="none" />
+                                    </defs>
+
+                                    <!-- OMBRA A TERRA SOTTO LA MAGLIA -->
+                                    <ellipse cx="250" cy="552" rx="175" ry="16" fill="#000000" opacity="0.65" filter="blur(12px)" />
+
+                                    <!-- INTERNO DEL COLLETTO POSTERIORE -->
+                                    <path d="M 188 64 Q 250 48 312 64 Q 250 82 188 64 Z" fill="#0A0D14" />
+                                    <text x="250" y="62" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7" fill="#64748B" font-weight="600" letter-spacing="1">AEROFIT • PRO MATCH LAB • M</text>
+
+                                    <!-- CORPO BASE & MANICHE DELLA MAGLIA (COLORE SOCIALE) -->
+                                    <path id="svgJerseyBodyBack" d="
+                                        M 188 64 
+                                        Q 250 78 312 64 
+                                        L 368 82 
+                                        L 472 178 
+                                        L 418 238 
+                                        L 374 204 
+                                        L 372 498 
+                                        Q 250 528 128 498 
+                                        L 126 204 
+                                        L 82 238 
+                                        L 28 178 
+                                        L 132 82 
+                                        Z" 
+                                        fill="#CCFF00" />
+
+                                    <!-- SFUMATURE SULLE MANICHE -->
+                                    <path d="M 132 82 L 28 178 L 82 238 L 126 204 Z" fill="url(#sleeveLeftGrad)" />
+                                    <path d="M 368 82 L 472 178 L 418 238 L 374 204 Z" fill="url(#sleeveRightGrad)" />
+
+                                    <!-- OVERLAY TRAMA TRASPIRANTE HYPERBREATH -->
+                                    <path d="
+                                        M 188 64 Q 250 78 312 64 L 368 82 L 472 178 L 418 238 L 374 204 L 372 498 Q 250 528 128 498 L 126 204 L 82 238 L 28 178 L 132 82 Z" 
+                                        fill="url(#meshTextureBack)" />
+
+                                    <!-- LUCE E PIEGHE VOLUMETRICHE -->
+                                    <path d="
+                                        M 188 64 Q 250 78 312 64 L 368 82 L 472 178 L 418 238 L 374 204 L 372 498 Q 250 528 128 498 L 126 204 L 82 238 L 28 178 L 132 82 Z" 
+                                        fill="url(#lightingBack)" />
+                                    <path d="
+                                        M 188 64 Q 250 78 312 64 L 368 82 L 472 178 L 418 238 L 374 204 L 372 498 Q 250 528 128 498 L 126 204 L 82 238 L 28 178 L 132 82 Z" 
+                                        fill="url(#depthGradientBack)" />
+
+                                    <!-- PANNELLI TRASPIRANTI LATERALI (MESH ACCENT) -->
+                                    <g id="svgSidePanelsBack" fill="#11141D">
+                                        <path d="M 126 208 L 166 244 L 164 492 Q 145 495 128 498 Z" opacity="0.9" />
+                                        <path d="M 374 208 L 334 244 L 336 492 Q 355 495 372 498 Z" opacity="0.9" />
+                                    </g>
+                                    <path d="M 126 208 L 166 244 L 164 492 Q 145 495 128 498 Z" fill="url(#meshTextureBack)" />
+                                    <path d="M 374 208 L 334 244 L 336 492 Q 355 495 372 498 Z" fill="url(#meshTextureBack)" />
+
+                                    <!-- BORDI DELLE MANICHE (RIFINITURE) -->
+                                    <g id="svgSleeveCuffsBack" fill="#11141D">
+                                        <path d="M 28 178 L 82 238 L 94 228 L 42 166 Z" />
+                                        <path d="M 472 178 L 418 238 L 406 228 L 458 166 Z" />
+                                    </g>
+
+                                    <!-- COSTINA DEL COLLETTO POSTERIORE -->
+                                    <path id="svgCollarBack" d="M 188 64 Q 250 78 312 64 Q 250 52 188 64 Z" fill="#11141D" />
+                                    <!-- Nastro Tricolore Sulle Spalle -->
+                                    <g transform="translate(242, 60)">
+                                        <rect x="0" y="0" width="5" height="11" fill="#009246" />
+                                        <rect x="5" y="0" width="5" height="11" fill="#FFFFFF" />
+                                        <rect x="10" y="0" width="5" height="11" fill="#CE2B37" />
+                                    </g>
+
+                                    <!-- CUCITURE RAGLAN E PIEGHE DEL TESSUTO -->
+                                    <path d="M 188 64 Q 198 132 126 204" stroke="rgba(0,0,0,0.3)" stroke-width="1.8" stroke-dasharray="4,2" fill="none" />
+                                    <path d="M 312 64 Q 302 132 374 204" stroke="rgba(0,0,0,0.3)" stroke-width="1.8" stroke-dasharray="4,2" fill="none" />
+                                    <path d="M 250 160 Q 253 280 250 485" stroke="rgba(0,0,0,0.18)" stroke-width="3" filter="blur(2px)" fill="none" />
+                                    <path d="M 195 240 Q 215 320 200 420" stroke="rgba(0,0,0,0.12)" stroke-width="2.5" filter="blur(1.5px)" fill="none" />
+                                    <path d="M 305 240 Q 285 320 300 420" stroke="rgba(0,0,0,0.12)" stroke-width="2.5" filter="blur(1.5px)" fill="none" />
+                                    <path d="M 128 485 Q 250 515 372 485" stroke="rgba(0,0,0,0.22)" stroke-width="1.5" stroke-dasharray="5,2" fill="none" />
+
+                                    <!-- STAMPA PERSONALIZZATA POSTERIORE: NOME E NUMERO -->
+                                    <g id="svgPrintGroupBack">
+                                        <!-- 1. NOME ATLETA AD ARCO SULLE SPALLE -->
+                                        <text font-family="'Outfit', 'Bebas Neue', sans-serif" font-weight="900" font-size="32" letter-spacing="5" fill="#11141D" filter="url(#heatPressBack)" id="svgTextElemBack">
+                                            <textPath href="#nameArchBack" startOffset="50%" text-anchor="middle" id="svgBackPlayerName">AEROFIT</textPath>
+                                        </text>
+
+                                        <!-- 2. GRANDE NUMERO DI GARA (DOPPIO STRATO CON BORDO E TAGLIO LASER) -->
+                                        <!-- Bordo Esterno Sagomato -->
+                                        <text x="250" y="365" text-anchor="middle" font-family="'Black Ops One', sans-serif" font-weight="900" font-size="160" 
+                                              fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" filter="url(#heatPressBack)" id="svgBackNumberBorder">10</text>
+                                        <!-- Corpo Principale -->
+                                        <text x="250" y="365" text-anchor="middle" font-family="'Black Ops One', sans-serif" font-weight="900" font-size="160" 
+                                              fill="#11141D" id="svgBackNumberFill">10</text>
+                                        <!-- Righetta di Traspirazione Taglio Laser Interna -->
+                                        <text x="250" y="365" text-anchor="middle" font-family="'Black Ops One', sans-serif" font-weight="900" font-size="160" 
+                                              fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-dasharray="3,5" id="svgBackNumberStripe">10</text>
+                                    </g>
+
+                                    <!-- BADGE SARTORIALE OLOGRAFICO (BORDO INFERIORE) -->
+                                    <g transform="translate(142, 456)">
+                                        <rect width="44" height="24" rx="4" fill="#0B0E17" stroke="#CCFF00" stroke-width="1" />
+                                        <text x="22" y="10" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="900" fill="#CCFF00">AEROFIT</text>
+                                        <text x="22" y="18" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="4.5" fill="#94A3B8">LAB 2026 #918</text>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- ============================================== -->
+                            <!-- VISTA FRONTE: STEMMA CLUB, LOGO E SPONSOR -->
+                            <!-- ============================================== -->
+                            <div class="jersey-side-face face-front">
+                                <svg class="jersey-svg-element" id="svgJerseyFront" viewBox="0 0 500 580" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <!-- Trama Tecnica a Nido d'Ape Microforata (HyperBreath™) -->
+                                        <pattern id="meshTextureFront" width="10" height="10" patternUnits="userSpaceOnUse">
+                                            <circle cx="3" cy="3" r="1.15" fill="#000000" fill-opacity="0.2" />
+                                            <circle cx="8" cy="8" r="1.15" fill="#000000" fill-opacity="0.2" />
+                                            <circle cx="3" cy="3.5" r="0.55" fill="#ffffff" fill-opacity="0.1" />
+                                            <circle cx="8" cy="8.5" r="0.55" fill="#ffffff" fill-opacity="0.1" />
+                                        </pattern>
+
+                                        <!-- Luce Toracica Frontale Volumetrica -->
+                                        <linearGradient id="lightingFront" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#000000" stop-opacity="0.45" />
+                                            <stop offset="18%" stop-color="#ffffff" stop-opacity="0.1" />
+                                            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.25" />
+                                            <stop offset="82%" stop-color="#ffffff" stop-opacity="0.1" />
+                                            <stop offset="100%" stop-color="#000000" stop-opacity="0.5" />
+                                        </linearGradient>
+
+                                        <!-- Ombreggiatura Manica Sinistra -->
+                                        <linearGradient id="sleeveLeftGradFront" x1="100%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1" />
+                                            <stop offset="60%" stop-color="#000000" stop-opacity="0.1" />
+                                            <stop offset="100%" stop-color="#000000" stop-opacity="0.4" />
+                                        </linearGradient>
+
+                                        <!-- Ombreggiatura Manica Destra -->
+                                        <linearGradient id="sleeveRightGradFront" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1" />
+                                            <stop offset="60%" stop-color="#000000" stop-opacity="0.1" />
+                                            <stop offset="100%" stop-color="#000000" stop-opacity="0.4" />
+                                        </linearGradient>
+
+                                        <!-- Gradiente di Profondità ed Effetto Caduta Tessuto -->
+                                        <linearGradient id="depthGradientFront" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.16" />
+                                            <stop offset="25%" stop-color="#ffffff" stop-opacity="0.04" />
+                                            <stop offset="60%" stop-color="#000000" stop-opacity="0" />
+                                            <stop offset="85%" stop-color="#000000" stop-opacity="0.22" />
+                                            <stop offset="100%" stop-color="#000000" stop-opacity="0.55" />
+                                        </linearGradient>
+
+                                        <!-- Filtro Termoapplicato 3D Vinilico (Heat-Press) Frontale -->
+                                        <filter id="heatPressFront" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="0" dy="4" stdDeviation="3.2" flood-color="#000000" flood-opacity="0.5" />
+                                            <feDropShadow dx="0" dy="1" stdDeviation="0.8" flood-color="#ffffff" flood-opacity="0.25" />
+                                        </filter>
+
+                                        <!-- Gradiente Oro Metallizzato per Stemma -->
+                                        <linearGradient id="crestGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#FDE047" />
+                                            <stop offset="50%" stop-color="#EAB308" />
+                                            <stop offset="100%" stop-color="#A16207" />
+                                        </linearGradient>
+                                    </defs>
+
+                                    <!-- OMBRA A TERRA -->
+                                    <ellipse cx="250" cy="552" rx="175" ry="16" fill="#000000" opacity="0.65" filter="blur(12px)" />
+
+                                    <!-- INTERNO COLLETTO VISIBILE DAL DAVANTI -->
+                                    <path d="M 188 64 Q 250 82 312 64 Q 250 52 188 64 Z" fill="#0A0D14" />
+                                    <text x="250" y="78" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7" fill="#64748B" font-weight="700">AEROFIT • SARTORIA SPORTIVA • M</text>
+
+                                    <!-- CORPO BASE ANTERIORE -->
+                                    <path id="svgJerseyBodyFront" d="
+                                        M 188 64 
+                                        Q 250 115 312 64 
+                                        L 368 82 
+                                        L 472 178 
+                                        L 418 238 
+                                        L 374 204 
+                                        L 372 498 
+                                        Q 250 528 128 498 
+                                        L 126 204 
+                                        L 82 238 
+                                        L 28 178 
+                                        L 132 82 
+                                        Z" 
+                                        fill="#CCFF00" />
+
+                                    <!-- SFUMATURE MANICHE -->
+                                    <path d="M 132 82 L 28 178 L 82 238 L 126 204 Z" fill="url(#sleeveLeftGradFront)" />
+                                    <path d="M 368 82 L 472 178 L 418 238 L 374 204 Z" fill="url(#sleeveRightGradFront)" />
+
+                                    <!-- TRAMA TECNICA TRASPIRANTE -->
+                                    <path d="
+                                        M 188 64 Q 250 115 312 64 L 368 82 L 472 178 L 418 238 L 374 204 L 372 498 Q 250 528 128 498 L 126 204 L 82 238 L 28 178 L 132 82 Z" 
+                                        fill="url(#meshTextureFront)" />
+
+                                    <!-- LUCE TORACICA E OMBREGGIATURA -->
+                                    <path d="
+                                        M 188 64 Q 250 115 312 64 L 368 82 L 472 178 L 418 238 L 374 204 L 372 498 Q 250 528 128 498 L 126 204 L 82 238 L 28 178 L 132 82 Z" 
+                                        fill="url(#lightingFront)" />
+                                    <path d="
+                                        M 188 64 Q 250 115 312 64 L 368 82 L 472 178 L 418 238 L 374 204 L 372 498 Q 250 528 128 498 L 126 204 L 82 238 L 28 178 L 132 82 Z" 
+                                        fill="url(#depthGradientFront)" />
+
+                                    <!-- PANNELLI LATERALI ANTERIORI -->
+                                    <g id="svgSidePanelsFront" fill="#11141D">
+                                        <path d="M 126 208 L 166 244 L 164 492 Q 145 495 128 498 Z" opacity="0.9" />
+                                        <path d="M 374 208 L 334 244 L 336 492 Q 355 495 372 498 Z" opacity="0.9" />
+                                    </g>
+                                    <path d="M 126 208 L 166 244 L 164 492 Q 145 495 128 498 Z" fill="url(#meshTextureFront)" />
+                                    <path d="M 374 208 L 334 244 L 336 492 Q 355 495 372 498 Z" fill="url(#meshTextureFront)" />
+
+                                    <!-- BORDI DELLE MANICHE ANTERIORI -->
+                                    <g id="svgSleeveCuffsFront" fill="#11141D">
+                                        <path d="M 28 178 L 82 238 L 94 228 L 42 166 Z" />
+                                        <path d="M 472 178 L 418 238 L 406 228 L 458 166 Z" />
+                                    </g>
+
+                                    <!-- COLLARE A V ANTERIORE IN MAGLIA ELASTICA -->
+                                    <path id="svgCollarFront" d="
+                                        M 188 64 
+                                        Q 250 118 312 64 
+                                        L 304 74 
+                                        Q 250 126 196 74 
+                                        Z" 
+                                        fill="#11141D" />
+
+                                    <!-- CUCITURE TORACE -->
+                                    <path d="M 188 64 Q 198 132 126 204" stroke="rgba(0,0,0,0.3)" stroke-width="1.8" stroke-dasharray="4,2" fill="none" />
+                                    <path d="M 312 64 Q 302 132 374 204" stroke="rgba(0,0,0,0.3)" stroke-width="1.8" stroke-dasharray="4,2" fill="none" />
+                                    <path d="M 175 160 Q 250 185 325 160" stroke="rgba(0,0,0,0.12)" stroke-width="2" filter="blur(1px)" fill="none" />
+                                    <path d="M 250 140 L 250 490" stroke="rgba(0,0,0,0.12)" stroke-width="2" filter="blur(1.5px)" fill="none" />
+
+                                    <!-- STEMMA CLUB SILICONE 3D (PETTO SINISTRO) -->
+                                    <g transform="translate(300, 128)" filter="url(#heatPressFront)">
+                                        <!-- Scudo Esterno con Riflesso -->
+                                        <path d="M 0 0 L 32 0 Q 32 24 16 38 Q 0 24 0 0 Z" fill="#0D111A" stroke="#FFFFFF" stroke-width="2" />
+                                        <!-- Stella Dorata dei Campioni -->
+                                        <polygon points="16,-7 18,-2 23,-2 19,1 21,6 16,3 11,6 13,1 9,-2 14,-2" fill="url(#crestGold)" />
+                                        <!-- Stendardo Interno Volt -->
+                                        <path d="M 3 6 L 29 6 Q 29 22 16 34 Q 3 22 3 6 Z" fill="#CCFF00" opacity="0.9" />
+                                        <!-- Monogramma Ufficiale -->
+                                        <text x="16" y="23" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="900" font-size="12" fill="#07090E">FC</text>
+                                    </g>
+
+                                    <!-- LOGO TECNICO AEROFIT (PETTO DESTRO) -->
+                                    <g transform="translate(170, 134)" filter="url(#heatPressFront)">
+                                        <path d="M 0 0 L 14 -10 L 28 0 L 14 -4 Z" fill="#11141D" id="svgFrontLogoMark" />
+                                        <text x="14" y="10" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="900" font-size="8" letter-spacing="1.5" fill="#11141D" id="svgFrontLogoText">AEROFIT</text>
+                                    </g>
+
+                                    <!-- SPONSOR PRINCIPALE CENTRO PETTO -->
+                                    <g transform="translate(250, 275)" filter="url(#heatPressFront)">
+                                        <rect x="-85" y="-18" width="170" height="36" rx="6" fill="#11141D" opacity="0.08" />
+                                        <text x="0" y="4" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="900" font-size="28" letter-spacing="4" fill="#11141D" id="svgFrontSponsor">VERTEX PRO</text>
+                                        <text x="0" y="15" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="700" letter-spacing="3" fill="#11141D" opacity="0.75">PERFORMANCE LAB</text>
+                                    </g>
+
+                                    <!-- NUMERO GARA ANTERIORE MINIATURA -->
+                                    <text x="250" y="215" text-anchor="middle" font-family="'Black Ops One', sans-serif" font-weight="900" font-size="34" fill="#11141D" stroke="#FFFFFF" stroke-width="2" filter="url(#heatPressFront)" id="svgFrontSmallNumber">10</text>
+
+                                    <!-- BADGE OLOGRAFICO UFFICIALE SERIE A (BORDO INFERIORE) -->
+                                    <g transform="translate(315, 456)">
+                                        <rect width="45" height="24" rx="4" fill="#0B0E17" stroke="#38BDF8" stroke-width="1" />
+                                        <text x="22.5" y="10" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="5.5" font-weight="900" fill="#38BDF8">OFFICIAL KIT</text>
+                                        <text x="22.5" y="18" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="4.5" fill="#94A3B8">MATCH DAY ADV</text>
+                                    </g>
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
                     <div class="preview-footer-note">
-                        💡 L'anteprima visualizza proporzioni reali. Prima della stampa, il nostro team di grafici invierà una scheda tecnica PDF ad alta risoluzione con centratura millimetrica.
+                        💡 Visualizzazione in proporzioni reali e texture microforata attiva. Puoi girare la maglia in ogni momento per controllare sia il fronte con lo sponsor che il retro con nome e numero.
                     </div>
                 </div>
 
                 <!-- Colonna Destra: Pannello Controlli Professionale -->
                 <div class="controls-workbench">
-                    <!-- 1. Colore Base del Club -->
+                    <!-- 1. Colore Principale Maglia -->
                     <div>
-                        <div class="controls-group-title">1. Colore Sociale del Club</div>
+                        <div class="controls-group-title">
+                            <span>1. Colore Base del Club</span>
+                            <span class="group-sub" id="lblColorePrincipale">Volt Lime</span>
+                        </div>
                         <div class="color-palette-selector">
-                            <button class="color-swatch-btn active" style="background: #CCFF00;" title="Volt Lime" onclick="cambiaColore('#CCFF00', '#111111', 'color-burn', this, 'Volt Lime')"></button>
-                            <button class="color-swatch-btn" style="background: #FFFFFF;" title="Bianco Ghiaccio" onclick="cambiaColore('#FFFFFF', '#111111', 'color-burn', this, 'Bianco Ghiaccio')"></button>
-                            <button class="color-swatch-btn" style="background: #11141D;" title="Stealth Black" onclick="cambiaColore('#11141D', '#E2E8F0', 'normal', this, 'Stealth Black')"></button>
-                            <button class="color-swatch-btn" style="background: #EF4444;" title="Crimson Red" onclick="cambiaColore('#EF4444', '#111111', 'color-burn', this, 'Crimson Red')"></button>
-                            <button class="color-swatch-btn" style="background: #2563EB;" title="Royal Blue" onclick="cambiaColore('#2563EB', '#FFFFFF', 'normal', this, 'Royal Blue')"></button>
-                            <button class="color-swatch-btn" style="background: #EAB308;" title="Gold Trophy" onclick="cambiaColore('#EAB308', '#111111', 'color-burn', this, 'Gold Trophy')"></button>
+                            <button type="button" class="color-swatch-btn active" style="background: #CCFF00;" title="Volt Lime" onclick="cambiaColore('#CCFF00', this, 'Volt Lime')"></button>
+                            <button type="button" class="color-swatch-btn" style="background: #11141D;" title="Stealth Black" onclick="cambiaColore('#11141D', this, 'Stealth Black')"></button>
+                            <button type="button" class="color-swatch-btn" style="background: #FFFFFF;" title="Bianco Ghiaccio" onclick="cambiaColore('#FFFFFF', this, 'Bianco Ghiaccio')"></button>
+                            <button type="button" class="color-swatch-btn" style="background: #2563EB;" title="Royal Blue" onclick="cambiaColore('#2563EB', this, 'Royal Blue')"></button>
+                            <button type="button" class="color-swatch-btn" style="background: #EF4444;" title="Crimson Red" onclick="cambiaColore('#EF4444', this, 'Crimson Red')"></button>
+                            <button type="button" class="color-swatch-btn" style="background: #EAB308;" title="Gold Trophy" onclick="cambiaColore('#EAB308', this, 'Gold Trophy')"></button>
+                            <button type="button" class="color-swatch-btn" style="background: #FF6B00;" title="Arancio Fluo" onclick="cambiaColore('#FF6B00', this, 'Arancio Fluo')"></button>
+                            <button type="button" class="color-swatch-btn" style="background: #1E293B;" title="Navy Blue" onclick="cambiaColore('#1E293B', this, 'Navy Blue')"></button>
                         </div>
                     </div>
 
-                    <!-- 2. Selezione Modello -->
+                    <!-- 2. Colore Rifiniture (Colletto & Maniche) -->
                     <div>
-                        <div class="controls-group-title">2. Modello Divisa</div>
+                        <div class="controls-group-title">
+                            <span>2. Rifiniture (Colletto &amp; Cuffs)</span>
+                            <span class="group-sub" id="lblColoreDettagli">Nero Stealth</span>
+                        </div>
+                        <div class="color-palette-selector">
+                            <button type="button" class="color-swatch-btn active" style="background: #11141D;" title="Nero Stealth" onclick="cambiaColoreDettagli('#11141D', this, 'Nero Stealth')"></button>
+                            <button type="button" class="color-swatch-btn" style="background: #CCFF00;" title="Volt Lime" onclick="cambiaColoreDettagli('#CCFF00', this, 'Volt Lime')"></button>
+                            <button type="button" class="color-swatch-btn" style="background: #FFFFFF;" title="Bianco Neve" onclick="cambiaColoreDettagli('#FFFFFF', this, 'Bianco Neve')"></button>
+                            <button type="button" class="color-swatch-btn" style="background: #EAB308;" title="Oro Metallizzato" onclick="cambiaColoreDettagli('#EAB308', this, 'Oro Metallizzato')"></button>
+                            <button type="button" class="color-swatch-btn" style="background: #2563EB;" title="Royal Blue" onclick="cambiaColoreDettagli('#2563EB', this, 'Royal Blue')"></button>
+                            <button type="button" class="color-swatch-btn" style="background: #EF4444;" title="Crimson Red" onclick="cambiaColoreDettagli('#EF4444', this, 'Crimson Red')"></button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Selezione Modello -->
+                    <div>
+                        <div class="controls-group-title">
+                            <span>3. Modello Divisa</span>
+                            <span class="group-sub">Tessuto Tecnico Ufficiale</span>
+                        </div>
                         <div class="model-selector-grid">
                             <div class="model-pill-opt active" onclick="selezionaModello('Maglia Gara Match Pro', 24.90, this)">Match Pro</div>
                             <div class="model-pill-opt" onclick="selezionaModello('T-Shirt Training Tech', 19.90, this)">Training Tee</div>
@@ -1777,35 +2351,44 @@
                         </div>
                     </div>
 
-                    <!-- 3. Tipografia dei Numeri -->
-                    <div>
-                        <div class="controls-group-title">3. Tipografia Sportiva</div>
-                        <select class="cfg-select" id="fontSelectBox" onchange="aggiornaDatiStampa()">
-                            <option value="'Bebas Neue', sans-serif">Modern Athletic (Bebas Bold)</option>
-                            <option value="'Black Ops One', sans-serif">Squadra Tattica (Black Ops)</option>
-                            <option value="'Teko', sans-serif">Vertical High-Speed (Teko)</option>
-                            <option value="'Outfit', sans-serif">Classico Geometrico (Outfit)</option>
-                        </select>
-                    </div>
-
                     <!-- 4. Nome e Numero -->
                     <div>
-                        <div class="controls-group-title">4. Personalizzazione Atleta</div>
+                        <div class="controls-group-title">
+                            <span>4. Personalizzazione Atleta</span>
+                            <span class="group-sub">Resa Termoapplicata 3D</span>
+                        </div>
                         <div class="inputs-split-row">
                             <div class="cfg-input-box">
-                                <label>Nome Squadra o Atleta</label>
-                                <input type="text" class="cfg-text-input" id="cfgInputName" placeholder="Es. AEROFIT" value="AEROFIT" maxlength="12" oninput="aggiornaDatiStampa()">
+                                <label for="cfgInputName">Nome Giocatore o Club</label>
+                                <input type="text" class="cfg-text-input" id="cfgInputName" placeholder="Es. AEROFIT" value="AEROFIT" maxlength="14" oninput="aggiornaDatiStampa()" autocomplete="off">
                             </div>
                             <div class="cfg-input-box">
-                                <label>Numero (0-99)</label>
+                                <label for="cfgInputNum">Numero (0-99)</label>
                                 <input type="number" class="cfg-text-input" id="cfgInputNum" placeholder="10" value="10" min="0" max="99" oninput="aggiornaDatiStampa()">
                             </div>
                         </div>
                     </div>
 
-                    <!-- 5. Taglia -->
+                    <!-- 5. Tipografia & Stile Stampa -->
                     <div>
-                        <div class="controls-group-title">5. Taglia di Partenza</div>
+                        <div class="controls-group-title">
+                            <span>5. Tipografia dei Numeri</span>
+                            <span class="group-sub">Font Ufficiali da Campionato</span>
+                        </div>
+                        <select class="cfg-select" id="fontSelectBox" onchange="aggiornaDatiStampa()">
+                            <option value="'Bebas Neue', sans-serif">Modern Athletic (Serie A Style)</option>
+                            <option value="'Black Ops One', sans-serif" selected>Squadra Tattica (Taglio Tecnico)</option>
+                            <option value="'Teko', sans-serif">Speed Condensed (Aerodinamico Alto)</option>
+                            <option value="'Outfit', sans-serif">Classico Geometrico (Clean Pro)</option>
+                        </select>
+                    </div>
+
+                    <!-- 6. Taglia -->
+                    <div>
+                        <div class="controls-group-title">
+                            <span>6. Taglia di Partenza</span>
+                            <span class="group-sub">Fit Ergonomico Unisex</span>
+                        </div>
                         <div class="size-selector-row">
                             <div class="size-btn" onclick="selezionaTaglia('XS', this)">XS</div>
                             <div class="size-btn" onclick="selezionaTaglia('S', this)">S</div>
@@ -1820,17 +2403,22 @@
                     <div class="config-summary-card">
                         <div class="summary-flex-row">
                             <div>
-                                <span class="summary-lead-time">TEMPO STIMATO: 5-7 GG LAVORATIVI</span>
+                                <span class="summary-lead-time">SPEDIZIONE CAMPIONI IN 48H</span>
                                 <div style="font-size: 0.82rem; color: #E2E8F0; margin-top: 2px;">
-                                    Bozza grafica PDF inclusa &bull; Nessun minimo obbligatorio
+                                    Bozza grafica PDF 4K inclusa &bull; Nessun minimo d'ordine
                                 </div>
                             </div>
                             <div class="summary-price" id="summaryPriceTag">€ 24.90</div>
                         </div>
 
-                        <button class="btn-add-team-cart" onclick="aggiungiProdottoConfigurato()">
+                        <button type="button" class="btn-add-team-cart" onclick="aggiungiProdottoConfigurato()">
                             <span>Aggiungi al Carrello</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                        </button>
+
+                        <button type="button" class="btn-download-mockup" onclick="scaricaBozzaMaglia()" style="width:100%; background:transparent; color:#CBD5E1; border:1px solid rgba(255,255,255,0.2); padding:12px; border-radius:8px; font-family:'Outfit',sans-serif; font-size:0.88rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; cursor:pointer; transition:all 0.25s ease; display:flex; align-items:center; justify-content:center; gap:8px; margin-top:10px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            <span>Scarica Bozza Maglia HD</span>
                         </button>
                     </div>
                 </div>
@@ -2114,24 +2702,54 @@
             prezzo: 24.90,
             coloreNome: 'Volt Lime',
             coloreHex: '#CCFF00',
+            coloreDettagliNome: 'Nero Stealth',
+            coloreDettagliHex: '#11141D',
+            coloreStampaHex: '#11141D',
+            coloreStampaBordoHex: '#FFFFFF',
             nomeAtleta: 'AEROFIT',
             numeroAtleta: '10',
-            fontFam: "'Bebas Neue', sans-serif",
-            taglia: 'M'
+            fontFam: "'Black Ops One', sans-serif",
+            taglia: 'M',
+            vista: 'retro'
         };
 
         let carrelloArticoli = [];
 
         // Riferimenti DOM
-        const stageColorFill = document.getElementById('stageColorFill');
-        const stageShirtName = document.getElementById('stageShirtName');
-        const stageShirtNumber = document.getElementById('stageShirtNumber');
-        const stagePrintCanvas = document.getElementById('stagePrintCanvas');
+        const jerseyStageBox = document.getElementById('jerseyStageBox');
+        const tabViewBack = document.getElementById('tabViewBack');
+        const tabViewFront = document.getElementById('tabViewFront');
+
+        const svgJerseyBack = document.getElementById('svgJerseyBack');
+        const svgJerseyFront = document.getElementById('svgJerseyFront');
+
+        const svgJerseyBodyBack = document.getElementById('svgJerseyBodyBack');
+        const svgJerseyBodyFront = document.getElementById('svgJerseyBodyFront');
+        const svgCollarBack = document.getElementById('svgCollarBack');
+        const svgCollarFront = document.getElementById('svgCollarFront');
+        const svgSleeveCuffsBack = document.getElementById('svgSleeveCuffsBack');
+        const svgSleeveCuffsFront = document.getElementById('svgSleeveCuffsFront');
+        const svgSidePanelsBack = document.getElementById('svgSidePanelsBack');
+        const svgSidePanelsFront = document.getElementById('svgSidePanelsFront');
+
+        const svgBackPlayerName = document.getElementById('svgBackPlayerName');
+        const svgTextElemBack = document.getElementById('svgTextElemBack');
+        const svgBackNumberBorder = document.getElementById('svgBackNumberBorder');
+        const svgBackNumberFill = document.getElementById('svgBackNumberFill');
+        const svgBackNumberStripe = document.getElementById('svgBackNumberStripe');
+
+        const svgFrontLogoMark = document.getElementById('svgFrontLogoMark');
+        const svgFrontLogoText = document.getElementById('svgFrontLogoText');
+        const svgFrontSponsor = document.getElementById('svgFrontSponsor');
+        const svgFrontSmallNumber = document.getElementById('svgFrontSmallNumber');
+
         const cfgInputName = document.getElementById('cfgInputName');
         const cfgInputNum = document.getElementById('cfgInputNum');
         const fontSelectBox = document.getElementById('fontSelectBox');
         const activeModelLabel = document.getElementById('activeModelLabel');
         const summaryPriceTag = document.getElementById('summaryPriceTag');
+        const lblColorePrincipale = document.getElementById('lblColorePrincipale');
+        const lblColoreDettagli = document.getElementById('lblColoreDettagli');
 
         const cartDrawer = document.getElementById('cartDrawer');
         const cartBackdrop = document.getElementById('cartBackdrop');
@@ -2140,13 +2758,38 @@
         const cartFeedContainer = document.getElementById('cartFeedContainer');
         const cartGrandTotal = document.getElementById('cartGrandTotal');
 
+        // Imposta Vista Maglia (Fronte / Retro)
+        function impostaVistaMaglia(vista) {
+            statoConfiguratore.vista = vista;
+            if (vista === 'fronte') {
+                jerseyStageBox.classList.add('flipped');
+                tabViewFront.classList.add('active');
+                tabViewBack.classList.remove('active');
+            } else {
+                jerseyStageBox.classList.remove('flipped');
+                tabViewBack.classList.add('active');
+                tabViewFront.classList.remove('active');
+            }
+        }
+
+        // Inverti Vista Rapida con Bottone Circolare
+        function invertiVistaMaglia() {
+            if (statoConfiguratore.vista === 'retro') {
+                impostaVistaMaglia('fronte');
+            } else {
+                impostaVistaMaglia('retro');
+            }
+        }
+
         // Toggle Menu Mobile
         function toggleMenu() {
-            if (window.innerWidth > 900) return;
             const nav = document.getElementById('navLinks');
             const hamburger = document.querySelector('.hamburger');
+            if (!nav) return;
             nav.classList.toggle('active');
-            hamburger.innerHTML = nav.classList.contains('active') ? '✕' : '☰';
+            if (hamburger) {
+                hamburger.innerHTML = nav.classList.contains('active') ? '✕' : '☰';
+            }
         }
 
         // Toggle Carrello
@@ -2155,17 +2798,61 @@
             cartBackdrop.classList.toggle('open');
         }
 
-        // Cambio Colore in tempo reale
-        function cambiaColore(hex, textColor, blendMode, element, nomeColore) {
+        // Calcola luminosità colore per contrasto automatico
+        function isDarkColor(hex) {
+            const cleanHex = hex.replace('#', '');
+            const r = parseInt(cleanHex.substring(0, 2), 16);
+            const g = parseInt(cleanHex.substring(2, 4), 16);
+            const b = parseInt(cleanHex.substring(4, 6), 16);
+            const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+            return brightness < 128;
+        }
+
+        // Cambio Colore Principale Maglia
+        function cambiaColore(hex, element, nomeColore) {
             statoConfiguratore.coloreHex = hex;
             statoConfiguratore.coloreNome = nomeColore;
-            stageColorFill.style.backgroundColor = hex;
 
-            stageShirtName.style.color = textColor;
-            stageShirtNumber.style.color = textColor;
-            stagePrintCanvas.style.mixBlendMode = blendMode;
+            if (lblColorePrincipale) lblColorePrincipale.innerText = nomeColore;
+            if (svgJerseyBodyBack) svgJerseyBodyBack.setAttribute('fill', hex);
+            if (svgJerseyBodyFront) svgJerseyBodyFront.setAttribute('fill', hex);
 
-            document.querySelectorAll('.color-swatch-btn').forEach(b => b.classList.remove('active'));
+            // Adattamento intelligente del contrasto per scritte e sponsor
+            const dark = isDarkColor(hex);
+            if (dark) {
+                statoConfiguratore.coloreStampaHex = '#FFFFFF';
+                statoConfiguratore.coloreStampaBordoHex = '#11141D';
+            } else {
+                statoConfiguratore.coloreStampaHex = '#11141D';
+                statoConfiguratore.coloreStampaBordoHex = '#FFFFFF';
+            }
+
+            // Aggiorna dettagli frontali (logo e sponsor)
+            const contrastPrint = dark ? '#FFFFFF' : '#11141D';
+            if (svgFrontLogoMark) svgFrontLogoMark.setAttribute('fill', contrastPrint);
+            if (svgFrontLogoText) svgFrontLogoText.setAttribute('fill', contrastPrint);
+            if (svgFrontSponsor) svgFrontSponsor.setAttribute('fill', contrastPrint);
+
+            document.querySelectorAll('.controls-workbench > div:nth-child(1) .color-swatch-btn').forEach(b => b.classList.remove('active'));
+            if (element) element.classList.add('active');
+
+            aggiornaDatiStampa();
+        }
+
+        // Cambio Colore Rifiniture (Colletto, Maniche e Inserti)
+        function cambiaColoreDettagli(hex, element, nomeColore) {
+            statoConfiguratore.coloreDettagliHex = hex;
+            statoConfiguratore.coloreDettagliNome = nomeColore;
+
+            if (lblColoreDettagli) lblColoreDettagli.innerText = nomeColore;
+            if (svgCollarBack) svgCollarBack.setAttribute('fill', hex);
+            if (svgCollarFront) svgCollarFront.setAttribute('fill', hex);
+            if (svgSleeveCuffsBack) svgSleeveCuffsBack.setAttribute('fill', hex);
+            if (svgSleeveCuffsFront) svgSleeveCuffsFront.setAttribute('fill', hex);
+            if (svgSidePanelsBack) svgSidePanelsBack.setAttribute('fill', hex);
+            if (svgSidePanelsFront) svgSidePanelsFront.setAttribute('fill', hex);
+
+            document.querySelectorAll('.controls-workbench > div:nth-child(2) .color-swatch-btn').forEach(b => b.classList.remove('active'));
             if (element) element.classList.add('active');
         }
 
@@ -2173,8 +2860,8 @@
         function selezionaModello(nomeModello, prezzo, element) {
             statoConfiguratore.modello = nomeModello;
             statoConfiguratore.prezzo = prezzo;
-            activeModelLabel.innerText = nomeModello.toUpperCase();
-            summaryPriceTag.innerText = `€ ${prezzo.toFixed(2)}`;
+            if (activeModelLabel) activeModelLabel.innerText = nomeModello.toUpperCase();
+            if (summaryPriceTag) summaryPriceTag.innerText = `€ ${prezzo.toFixed(2)}`;
 
             if (element) {
                 document.querySelectorAll('.model-pill-opt').forEach(m => m.classList.remove('active'));
@@ -2189,26 +2876,136 @@
             if (element) element.classList.add('active');
         }
 
-        // Aggiorna Dati di Stampa (Nome, Numero, Font)
+        // Aggiorna Dati di Stampa (Nome, Numero, Font con centratura millimetrica)
         function aggiornaDatiStampa() {
-            const nome = cfgInputName.value.toUpperCase() || 'AEROFIT';
-            const num = cfgInputNum.value || '10';
-            const font = fontSelectBox.value;
+            let rawNome = cfgInputName ? cfgInputName.value.trim().toUpperCase() : 'AEROFIT';
+            let nome = rawNome !== '' ? rawNome : '';
 
-            statoConfiguratore.nomeAtleta = nome;
-            statoConfiguratore.numeroAtleta = num;
+            let rawNum = cfgInputNum ? cfgInputNum.value.trim() : '10';
+            let num = rawNum;
+            if (num !== '') {
+                if (!isNaN(num)) {
+                    num = String(Math.abs(parseInt(num, 10)) % 100);
+                }
+            }
+
+            const font = fontSelectBox ? fontSelectBox.value : "'Black Ops One', sans-serif";
+
+            statoConfiguratore.nomeAtleta = nome || 'AEROFIT';
+            statoConfiguratore.numeroAtleta = num !== '' ? num : '10';
             statoConfiguratore.fontFam = font;
 
-            stageShirtName.innerText = nome;
-            stageShirtNumber.innerText = num;
-            stageShirtName.style.fontFamily = font;
+            // Aggiorna Testo del Nome sul retro
+            if (svgBackPlayerName) svgBackPlayerName.textContent = nome;
+
+            // Adattamento proporzionale dinamico del font per evitare sforamenti
+            if (svgTextElemBack) {
+                if (nome.length <= 6) {
+                    svgTextElemBack.setAttribute('font-size', '34');
+                    svgTextElemBack.setAttribute('letter-spacing', '6');
+                } else if (nome.length <= 9) {
+                    svgTextElemBack.setAttribute('font-size', '28');
+                    svgTextElemBack.setAttribute('letter-spacing', '4');
+                } else if (nome.length <= 12) {
+                    svgTextElemBack.setAttribute('font-size', '23');
+                    svgTextElemBack.setAttribute('letter-spacing', '2.5');
+                } else {
+                    svgTextElemBack.setAttribute('font-size', '19');
+                    svgTextElemBack.setAttribute('letter-spacing', '1.5');
+                }
+                svgTextElemBack.setAttribute('fill', statoConfiguratore.coloreStampaHex);
+            }
+
+            // Aggiorna Numeri sul Retro
+            if (svgBackNumberBorder) {
+                svgBackNumberBorder.textContent = num;
+                svgBackNumberBorder.setAttribute('font-family', font);
+                svgBackNumberBorder.setAttribute('stroke', statoConfiguratore.coloreStampaBordoHex);
+            }
+            if (svgBackNumberFill) {
+                svgBackNumberFill.textContent = num;
+                svgBackNumberFill.setAttribute('font-family', font);
+                svgBackNumberFill.setAttribute('fill', statoConfiguratore.coloreStampaHex);
+            }
+            if (svgBackNumberStripe) {
+                svgBackNumberStripe.textContent = num;
+                svgBackNumberStripe.setAttribute('font-family', font);
+                const dark = isDarkColor(statoConfiguratore.coloreHex);
+                svgBackNumberStripe.setAttribute('stroke', dark ? 'rgba(0,0,0,0.28)' : 'rgba(255,255,255,0.4)');
+            }
+
+            // Aggiorna Numero Piccolo sul Fronte
+            if (svgFrontSmallNumber) {
+                svgFrontSmallNumber.textContent = num;
+                svgFrontSmallNumber.setAttribute('font-family', font);
+                svgFrontSmallNumber.setAttribute('fill', statoConfiguratore.coloreStampaHex);
+                svgFrontSmallNumber.setAttribute('stroke', statoConfiguratore.coloreStampaBordoHex);
+            }
+        }
+
+        // Scarica Rendering HD della Maglia in PNG
+        function scaricaBozzaMaglia() {
+            const svgToExport = statoConfiguratore.vista === 'fronte' ? svgJerseyFront : svgJerseyBack;
+            if (!svgToExport) return;
+
+            const serializer = new XMLSerializer();
+            let svgString = serializer.serializeToString(svgToExport);
+
+            // Aggiunge stili e namespace espliciti
+            if (!svgString.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)) {
+                svgString = svgString.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = 1000;
+            canvas.height = 1160;
+            const ctx = canvas.getContext('2d');
+
+            const img = new Image();
+            const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+            const URL = window.URL || window.webkitURL || window;
+            const blobURL = URL.createObjectURL(svgBlob);
+
+            img.onload = function() {
+                // Sfondo elegante dark studio
+                ctx.fillStyle = '#07090E';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                // Watermark e specifica tecnica
+                ctx.fillStyle = '#CCFF00';
+                ctx.font = 'bold 24px "Outfit", sans-serif';
+                ctx.fillText('AEROFIT™ CUSTOM SPORTSWEAR LAB', 40, 60);
+
+                ctx.fillStyle = '#94A3B8';
+                ctx.font = '16px "JetBrains Mono", monospace';
+                ctx.fillText(`MODELLO: ${statoConfiguratore.modello.toUpperCase()} | TAGLIA: ${statoConfiguratore.taglia}`, 40, 95);
+                ctx.fillText(`ATLETA: ${statoConfiguratore.nomeAtleta} #${statoConfiguratore.numeroAtleta} | VISTA: ${statoConfiguratore.vista.toUpperCase()}`, 40, 120);
+
+                URL.revokeObjectURL(blobURL);
+
+                const a = document.createElement('a');
+                a.download = `AeroFit-Divisa-${statoConfiguratore.nomeAtleta}-${statoConfiguratore.numeroAtleta}-${statoConfiguratore.vista}.png`;
+                a.href = canvas.toDataURL('image/png');
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            };
+
+            img.onerror = function(err) {
+                console.error("Errore esportazione mockup:", err);
+                URL.revokeObjectURL(blobURL);
+                alert("Non è stato possibile salvare la bozza in questo ambiente browser.");
+            };
+
+            img.src = blobURL;
         }
 
         // Aggiungi al Carrello
         function aggiungiProdottoConfigurato() {
             const nuovoArticolo = {
                 titolo: statoConfiguratore.modello,
-                colore: statoConfiguratore.coloreNome,
+                colore: `${statoConfiguratore.coloreNome} / ${statoConfiguratore.coloreDettagliNome}`,
                 nome: statoConfiguratore.nomeAtleta,
                 numero: statoConfiguratore.numeroAtleta,
                 taglia: statoConfiguratore.taglia,
@@ -2271,6 +3068,27 @@
             }
             alert(`Grazie per aver configurato il tuo ordine per ${carrelloArticoli.length} capi! Un designer di VERTEX ti invierà la bozza tecnica ad alta risoluzione via email.`);
         }
+
+        // Inizializzazione al caricamento ed Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            aggiornaDatiStampa();
+
+            // Auto rotazione al retro quando l'utente clicca su nome o numero per massimo feedback visivo
+            if (cfgInputName) {
+                cfgInputName.addEventListener('focus', () => {
+                    if (statoConfiguratore.vista !== 'retro') {
+                        impostaVistaMaglia('retro');
+                    }
+                });
+            }
+            if (cfgInputNum) {
+                cfgInputNum.addEventListener('focus', () => {
+                    if (statoConfiguratore.vista !== 'retro') {
+                        impostaVistaMaglia('retro');
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
