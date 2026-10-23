@@ -41,11 +41,24 @@
             scroll-behavior: smooth;
         }
 
+        html {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
         body {
             background-color: var(--dark-900);
             color: var(--text-main);
             overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            position: relative;
             line-height: 1.6;
+        }
+
+        body.nav-open, body.cart-open {
+            overflow: hidden;
         }
 
         h1, h2, h3, h4, .outfit {
@@ -221,9 +234,51 @@
 
         .hamburger {
             display: none;
-            font-size: 1.8rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             color: #FFFFFF;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
             cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0;
+            transition: all 0.25s ease;
+            position: relative;
+            outline: none;
+            touch-action: manipulation;
+            flex-shrink: 0;
+        }
+        .hamburger:hover, .hamburger:active {
+            border-color: var(--primary);
+        }
+        .hamburger-line {
+            width: 20px;
+            height: 2px;
+            background: #FFFFFF;
+            border-radius: 2px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+            background: var(--primary);
+        }
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+            background: var(--primary);
+        }
+
+        .nav-drawer-header,
+        .nav-backdrop,
+        .nav-mobile-cta {
+            display: none;
         }
 
         /* --- 1. HERO INIZIALE --- */
@@ -1388,21 +1443,28 @@
         .cart-drawer {
             position: fixed;
             top: 0;
-            right: -450px;
-            width: 450px;
+            right: 0;
+            width: 100%;
+            max-width: 440px;
             height: 100%;
+            height: 100dvh;
             background: #0D111A;
             border-left: 1px solid var(--border-dark);
             z-index: 2001;
-            padding: 2.2rem;
+            padding: 2.2rem 1.8rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateX(100%);
+            visibility: hidden;
+            pointer-events: none;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
             box-shadow: -20px 0 60px rgba(0, 0, 0, 0.8);
         }
         .cart-drawer.open {
-            right: 0;
+            transform: translateX(0);
+            visibility: visible;
+            pointer-events: auto;
         }
         .cart-drawer-header {
             display: flex;
@@ -1419,10 +1481,19 @@
             font-size: 1.8rem;
             color: #94A3B8;
             cursor: pointer;
-            transition: color 0.2s;
+            transition: all 0.2s;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            line-height: 1;
         }
         .close-cart-btn:hover {
             color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.1);
         }
         .cart-items-feed {
             flex-grow: 1;
@@ -1562,44 +1633,117 @@
         }
 
         @media (max-width: 900px) {
-            nav { padding: 0.9rem 5%; }
-            .hamburger { display: block; z-index: 105; }
-            .btn-nav-custom { display: none; } /* Nascosto dalla barra superiore su mobile per non affollare */
+            nav { padding: 0.8rem 4%; }
+            .nav-actions { gap: 8px; }
+            .btn-nav-custom { display: none; }
+            .hamburger { display: flex; }
             
+            .nav-backdrop {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.72);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                z-index: 1005;
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+            }
+            .nav-backdrop.active {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+
             .nav-links {
                 position: fixed;
                 top: 0;
-                right: -100%;
-                width: 100%;
-                height: 100vh;
-                background: rgba(7, 9, 14, 0.98);
-                backdrop-filter: blur(25px);
-                -webkit-backdrop-filter: blur(25px);
+                right: 0;
+                width: 85%;
+                max-width: 360px;
+                height: 100%;
+                height: 100dvh;
+                background: #0B0E17;
+                border-left: 1px solid rgba(204, 255, 0, 0.2);
+                box-shadow: -20px 0 60px rgba(0, 0, 0, 0.9);
                 flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                gap: 1.2rem;
+                z-index: 1010;
+                padding: 1.8rem 1.6rem;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                transform: translateX(100%);
+                visibility: hidden;
+                pointer-events: none;
+                transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+                visibility: visible;
+                pointer-events: auto;
+            }
+
+            .nav-drawer-header {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+                padding-bottom: 1.2rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                margin-bottom: 0.6rem;
+            }
+            .nav-drawer-close {
+                background: rgba(255, 255, 255, 0.06);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                color: #FFFFFF;
+                width: 38px;
+                height: 38px;
+                border-radius: 6px;
+                font-size: 1.6rem;
+                display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 1.8rem;
-                z-index: 102;
-                transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-                border-left: 1px solid rgba(255, 255, 255, 0.1);
-                padding: 2rem;
-            }
-            .nav-links.active { right: 0; }
-            .nav-links a { font-size: 1.35rem; font-weight: 800; letter-spacing: 0.5px; }
-            .nav-mobile-close {
-                position: absolute;
-                top: 22px;
-                right: 25px;
-                font-size: 2rem;
-                color: #94A3B8;
                 cursor: pointer;
+                transition: all 0.2s ease;
+                line-height: 1;
+            }
+            .nav-drawer-close:hover, .nav-drawer-close:active {
+                border-color: var(--primary);
+                color: var(--primary);
+            }
+
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+                padding-bottom: 0.8rem;
+            }
+            .nav-links li:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+            .nav-links a {
+                font-size: 1.15rem;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                padding: 4px 0;
+                color: #E2E8F0;
+            }
+            .nav-links a:hover, .nav-links a:active {
+                color: var(--primary);
             }
             .nav-mobile-cta {
                 display: block !important;
                 margin-top: 1rem;
                 width: 100%;
-                max-width: 280px;
-                text-align: center;
+                border-bottom: none !important;
             }
         }
 
@@ -1660,17 +1804,29 @@
                 min-height: auto;
                 border-radius: 14px;
             }
+            .view-switcher-bar {
+                display: flex;
+                width: 100%;
+                max-width: 320px;
+                margin: 0.8rem auto 0;
+                padding: 3px;
+                border-radius: 30px;
+            }
+            .view-tab-btn {
+                flex: 1;
+                padding: 8px 4px;
+                font-size: 0.72rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+                white-space: nowrap;
+            }
+            .tab-sub { display: none; }
             .jersey-stage-box {
                 max-width: 320px;
                 height: 400px;
                 margin: 1rem auto;
-            }
-            .view-switcher-bar {
-                margin-top: 0.8rem;
-            }
-            .view-tab-btn {
-                padding: 6px 14px;
-                font-size: 0.72rem;
             }
             .inputs-split-row {
                 grid-template-columns: 1fr;
@@ -1718,16 +1874,25 @@
             .cta-btn-group { flex-direction: column; width: 100%; gap: 10px; }
             .cta-btn-group a { width: 100%; justify-content: center; }
 
-            .cart-drawer { width: 100%; right: -100%; padding: 1.6rem 1.2rem; }
+            .cart-drawer { width: 100%; max-width: 100%; padding: 1.6rem 1.2rem; }
             .footer-grid-aerofit { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text { font-size: 1.45rem; }
+            .logo-badge { font-size: 0.6rem; padding: 2px 5px; }
+            .btn-cart-nav { padding: 8px 12px; font-size: 0.8rem; gap: 6px; height: 44px; }
+            .btn-cart-nav .cart-text { display: none; }
+            .hamburger { width: 44px; height: 44px; }
         }
 
         @media (max-width: 380px) {
             .jersey-stage-box {
-                max-width: 280px;
-                height: 355px;
+                max-width: 275px;
+                height: 350px;
             }
             .model-selector-grid { grid-template-columns: 1fr; }
+            .size-selector-row { grid-template-columns: repeat(3, 1fr); gap: 6px; }
         }
     </style>
 </head>
@@ -1753,32 +1918,42 @@
             <span class="logo-badge">LAB 2026</span>
         </a>
 
-        <div class="hamburger" onclick="toggleMenu()" aria-label="Menu di navigazione">☰</div>
-
+        <!-- Desktop Navigation Links / Mobile Slide Drawer -->
         <ul class="nav-links" id="navLinks">
-            <div class="nav-mobile-close" onclick="toggleMenu()">&times;</div>
+            <div class="nav-drawer-header">
+                <div class="logo-text">AERO<span>FIT</span> <span class="logo-badge">LAB</span></div>
+                <button type="button" class="nav-drawer-close" onclick="toggleMenu()" aria-label="Chiudi menu">&times;</button>
+            </div>
             <li><a href="#collezione" onclick="toggleMenu()">Collezione</a></li>
             <li><a href="#configuratore" onclick="toggleMenu()">Configuratore</a></li>
             <li><a href="#come-funziona" onclick="toggleMenu()">Come Funziona</a></li>
             <li><a href="#materiali" onclick="toggleMenu()">Materiali</a></li>
             <li><a href="#per-i-team" onclick="toggleMenu()">Per i Team</a></li>
-            <li class="nav-mobile-cta" style="display:none;">
+            <li class="nav-mobile-cta">
                 <a href="#configuratore" class="btn-hero-primary" onclick="toggleMenu()" style="width:100%; justify-content:center; padding:14px; font-size:0.95rem;">
                     Configura la Divisa &rarr;
                 </a>
             </li>
         </ul>
 
+        <!-- Right Side Nav Actions: Cart and Hamburger side-by-side on the right -->
         <div class="nav-actions">
             <a href="#configuratore" class="btn-nav-custom">
                 <span>Personalizza Ora</span> &rarr;
             </a>
-            <button class="btn-cart-nav" onclick="toggleCarrello()">
-                <span>Carrello</span>
+            <button class="btn-cart-nav" onclick="toggleCarrello()" aria-label="Visualizza carrello">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+                <span class="cart-text">Carrello</span>
                 <span class="cart-pill" id="cartCountBadge">0</span>
+            </button>
+            <button type="button" class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menu di navigazione">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
             </button>
         </div>
     </nav>
+    <div class="nav-backdrop" id="navBackdrop" onclick="toggleMenu()"></div>
 
     <!-- 1. HERO INIZIALE -->
     <header class="hero-athletic">
@@ -1973,10 +2148,10 @@
                     <!-- TABS SELETTORE VISTA FRONTE / RETRO -->
                     <div class="view-switcher-bar">
                         <button type="button" class="view-tab-btn active" id="tabViewBack" onclick="impostaVistaMaglia('retro')">
-                            <span>🔄 RETRO (Nome &amp; Numero)</span>
+                            <span>🔄 Retro <span class="tab-sub">(Dati)</span></span>
                         </button>
                         <button type="button" class="view-tab-btn" id="tabViewFront" onclick="impostaVistaMaglia('fronte')">
-                            <span>👕 FRONTE (Stemma &amp; Sponsor)</span>
+                            <span>👕 Fronte <span class="tab-sub">(Club)</span></span>
                         </button>
                     </div>
 
@@ -2864,19 +3039,27 @@
 
         // Toggle Menu Mobile
         function toggleMenu() {
+            if (window.innerWidth > 900) return;
             const nav = document.getElementById('navLinks');
-            const hamburger = document.querySelector('.hamburger');
+            const hamburger = document.getElementById('hamburgerBtn');
+            const backdrop = document.getElementById('navBackdrop');
             if (!nav) return;
-            nav.classList.toggle('active');
-            if (hamburger) {
-                hamburger.innerHTML = nav.classList.contains('active') ? '✕' : '☰';
-            }
+            const isActive = nav.classList.toggle('active');
+            if (hamburger) hamburger.classList.toggle('active', isActive);
+            if (backdrop) backdrop.classList.toggle('active', isActive);
+            document.body.classList.toggle('nav-open', isActive);
         }
 
         // Toggle Carrello
         function toggleCarrello() {
-            cartDrawer.classList.toggle('open');
-            cartBackdrop.classList.toggle('open');
+            const isOpen = cartDrawer.classList.toggle('open');
+            cartBackdrop.classList.toggle('open', isOpen);
+            document.body.classList.toggle('cart-open', isOpen);
+            // Se il menu di navigazione è aperto, chiudilo
+            const nav = document.getElementById('navLinks');
+            if (nav && nav.classList.contains('active')) {
+                toggleMenu();
+            }
         }
 
         // Calcola luminosità colore per contrasto automatico
