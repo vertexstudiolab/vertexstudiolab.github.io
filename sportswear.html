@@ -275,9 +275,8 @@
             background: var(--primary);
         }
 
-        .nav-drawer-header,
-        .nav-backdrop,
-        .nav-mobile-cta {
+        .nav-drawer,
+        .nav-drawer-backdrop {
             display: none;
         }
 
@@ -1637,27 +1636,29 @@
             .nav-actions { gap: 8px; }
             .btn-nav-custom { display: none; }
             .hamburger { display: flex; }
+            .desktop-only { display: none !important; }
             
-            .nav-backdrop {
+            .nav-drawer-backdrop {
                 display: block;
                 position: fixed;
                 inset: 0;
                 background: rgba(0, 0, 0, 0.72);
                 backdrop-filter: blur(8px);
                 -webkit-backdrop-filter: blur(8px);
-                z-index: 1005;
+                z-index: 2010;
                 opacity: 0;
                 visibility: hidden;
                 pointer-events: none;
                 transition: opacity 0.3s ease, visibility 0.3s ease;
             }
-            .nav-backdrop.active {
+            .nav-drawer-backdrop.active {
                 opacity: 1;
                 visibility: visible;
                 pointer-events: auto;
             }
 
-            .nav-links {
+            .nav-drawer {
+                display: flex;
                 position: fixed;
                 top: 0;
                 right: 0;
@@ -1666,22 +1667,21 @@
                 height: 100%;
                 height: 100dvh;
                 background: #0B0E17;
-                border-left: 1px solid rgba(204, 255, 0, 0.2);
-                box-shadow: -20px 0 60px rgba(0, 0, 0, 0.9);
+                border-left: 1px solid rgba(204, 255, 0, 0.25);
+                box-shadow: -20px 0 60px rgba(0, 0, 0, 0.95);
+                z-index: 2015;
                 flex-direction: column;
-                align-items: flex-start;
                 justify-content: flex-start;
-                gap: 1.2rem;
-                z-index: 1010;
+                gap: 1.4rem;
                 padding: 1.8rem 1.6rem;
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
                 transform: translateX(100%);
                 visibility: hidden;
                 pointer-events: none;
                 transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
-            .nav-links.active {
+            .nav-drawer.active {
                 transform: translateX(0);
                 visibility: visible;
                 pointer-events: auto;
@@ -1694,7 +1694,8 @@
                 align-items: center;
                 padding-bottom: 1.2rem;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-                margin-bottom: 0.6rem;
+                margin-bottom: 0.4rem;
+                flex-shrink: 0;
             }
             .nav-drawer-close {
                 background: rgba(255, 255, 255, 0.06);
@@ -1716,16 +1717,23 @@
                 color: var(--primary);
             }
 
-            .nav-links li {
+            .nav-drawer-links {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            .nav-drawer-links li {
                 width: 100%;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-                padding-bottom: 0.8rem;
+                padding-bottom: 0.75rem;
             }
-            .nav-links li:last-child {
+            .nav-drawer-links li:last-child {
                 border-bottom: none;
                 padding-bottom: 0;
             }
-            .nav-links a {
+            .nav-drawer-links a {
                 font-size: 1.15rem;
                 font-weight: 700;
                 letter-spacing: 0.5px;
@@ -1733,17 +1741,29 @@
                 align-items: center;
                 justify-content: space-between;
                 width: 100%;
-                padding: 4px 0;
+                padding: 10px 0;
                 color: #E2E8F0;
+                text-decoration: none;
+                transition: color 0.2s ease;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
             }
-            .nav-links a:hover, .nav-links a:active {
+            .nav-drawer-links a span:last-child {
+                color: var(--primary);
+                font-size: 0.95rem;
+                transition: transform 0.2s ease;
+            }
+            .nav-drawer-links a:hover, .nav-drawer-links a:active {
                 color: var(--primary);
             }
-            .nav-mobile-cta {
-                display: block !important;
-                margin-top: 1rem;
+            .nav-drawer-links a:hover span:last-child {
+                transform: translateX(4px);
+            }
+            .nav-drawer-cta {
+                margin-top: auto;
+                padding-top: 1.2rem;
                 width: 100%;
-                border-bottom: none !important;
+                flex-shrink: 0;
             }
         }
 
@@ -1918,22 +1938,13 @@
             <span class="logo-badge">LAB 2026</span>
         </a>
 
-        <!-- Desktop Navigation Links / Mobile Slide Drawer -->
-        <ul class="nav-links" id="navLinks">
-            <div class="nav-drawer-header">
-                <div class="logo-text">AERO<span>FIT</span> <span class="logo-badge">LAB</span></div>
-                <button type="button" class="nav-drawer-close" onclick="toggleMenu()" aria-label="Chiudi menu">&times;</button>
-            </div>
-            <li><a href="#collezione" onclick="toggleMenu()">Collezione</a></li>
-            <li><a href="#configuratore" onclick="toggleMenu()">Configuratore</a></li>
-            <li><a href="#come-funziona" onclick="toggleMenu()">Come Funziona</a></li>
-            <li><a href="#materiali" onclick="toggleMenu()">Materiali</a></li>
-            <li><a href="#per-i-team" onclick="toggleMenu()">Per i Team</a></li>
-            <li class="nav-mobile-cta">
-                <a href="#configuratore" class="btn-hero-primary" onclick="toggleMenu()" style="width:100%; justify-content:center; padding:14px; font-size:0.95rem;">
-                    Configura la Divisa &rarr;
-                </a>
-            </li>
+        <!-- Desktop Navigation Links (Visibili solo su Desktop) -->
+        <ul class="nav-links desktop-only">
+            <li><a href="#collezione">Collezione</a></li>
+            <li><a href="#configuratore">Configuratore</a></li>
+            <li><a href="#come-funziona">Come Funziona</a></li>
+            <li><a href="#materiali">Materiali</a></li>
+            <li><a href="#per-i-team">Per i Team</a></li>
         </ul>
 
         <!-- Right Side Nav Actions: Cart and Hamburger side-by-side on the right -->
@@ -1953,7 +1964,27 @@
             </button>
         </div>
     </nav>
-    <div class="nav-backdrop" id="navBackdrop" onclick="toggleMenu()"></div>
+
+    <!-- MENU DRAWER LATERALE MOBILE (NEL BODY, Z-INDEX SUPERIORE AL BACKDROP) -->
+    <div class="nav-drawer-backdrop" id="navBackdrop" onclick="toggleMenu()"></div>
+    <aside class="nav-drawer" id="navDrawer" aria-label="Menu di navigazione mobile">
+        <div class="nav-drawer-header">
+            <div class="logo-text">AERO<span>FIT</span> <span class="logo-badge">LAB 2026</span></div>
+            <button type="button" class="nav-drawer-close" onclick="toggleMenu()" aria-label="Chiudi menu">&times;</button>
+        </div>
+        <ul class="nav-drawer-links">
+            <li><a href="#collezione" onclick="toggleMenu()"><span>Collezione</span> <span>&rarr;</span></a></li>
+            <li><a href="#configuratore" onclick="toggleMenu()"><span>Configuratore 3D</span> <span>&rarr;</span></a></li>
+            <li><a href="#come-funziona" onclick="toggleMenu()"><span>Come Funziona</span> <span>&rarr;</span></a></li>
+            <li><a href="#materiali" onclick="toggleMenu()"><span>Dettagli &amp; Materiali</span> <span>&rarr;</span></a></li>
+            <li><a href="#per-i-team" onclick="toggleMenu()"><span>Built For Your Team</span> <span>&rarr;</span></a></li>
+        </ul>
+        <div class="nav-drawer-cta">
+            <a href="#configuratore" class="btn-hero-primary" onclick="toggleMenu()" style="width:100%; justify-content:center; padding:15px; font-size:0.95rem;">
+                Configura la Divisa &rarr;
+            </a>
+        </div>
+    </aside>
 
     <!-- 1. HERO INIZIALE -->
     <header class="hero-athletic">
@@ -3039,12 +3070,11 @@
 
         // Toggle Menu Mobile
         function toggleMenu() {
-            if (window.innerWidth > 900) return;
-            const nav = document.getElementById('navLinks');
+            const drawer = document.getElementById('navDrawer');
             const hamburger = document.getElementById('hamburgerBtn');
             const backdrop = document.getElementById('navBackdrop');
-            if (!nav) return;
-            const isActive = nav.classList.toggle('active');
+            if (!drawer) return;
+            const isActive = drawer.classList.toggle('active');
             if (hamburger) hamburger.classList.toggle('active', isActive);
             if (backdrop) backdrop.classList.toggle('active', isActive);
             document.body.classList.toggle('nav-open', isActive);
@@ -3056,8 +3086,8 @@
             cartBackdrop.classList.toggle('open', isOpen);
             document.body.classList.toggle('cart-open', isOpen);
             // Se il menu di navigazione è aperto, chiudilo
-            const nav = document.getElementById('navLinks');
-            if (nav && nav.classList.contains('active')) {
+            const drawer = document.getElementById('navDrawer');
+            if (drawer && drawer.classList.contains('active')) {
                 toggleMenu();
             }
         }
