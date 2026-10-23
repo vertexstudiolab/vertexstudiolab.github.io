@@ -797,10 +797,13 @@
             transform-style: preserve-3d;
             -webkit-transform-style: preserve-3d;
             transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+            will-change: transform;
         }
         .jersey-stage-box.flipped .jersey-flipper {
-            transform: rotateY(180deg);
-            -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg) translate3d(0, 0, 0);
+            -webkit-transform: rotateY(180deg) translate3d(0, 0, 0);
         }
         .jersey-side-face {
             width: 100%;
@@ -814,15 +817,18 @@
             align-items: center;
             justify-content: center;
             transition: opacity 0.28s ease, visibility 0.28s ease;
+            transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+            will-change: transform, opacity;
         }
         .face-back {
-            transform: rotateY(0deg);
-            -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg) translate3d(0, 0, 0);
+            -webkit-transform: rotateY(0deg) translate3d(0, 0, 0);
             z-index: 2;
         }
         .face-front {
-            transform: rotateY(180deg);
-            -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg) translate3d(0, 0, 0);
+            -webkit-transform: rotateY(180deg) translate3d(0, 0, 0);
             z-index: 1;
         }
         .jersey-stage-box.flipped .face-front {
@@ -850,9 +856,10 @@
         .jersey-svg-element {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 22px 40px rgba(0, 0, 0, 0.75));
             user-select: none;
             -webkit-user-select: none;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
         /* Pulsante Rapido Gira Maglia Mobile/Desktop */
@@ -2206,16 +2213,30 @@
             .collection-section { padding: 4.5rem 4%; }
             .products-showcase-grid { grid-template-columns: 1fr; gap: 1.4rem; }
 
-            /* Sezione Configuratore su Mobile */
+            /* Sezione Configuratore su Mobile - Ottimizzazione 60 FPS */
             .configurator-station { padding: 4.5rem 3.5%; }
             .configurator-desk {
                 padding: 1.2rem;
                 border-radius: 18px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
             }
             .preview-workbench {
                 padding: 1.2rem 0.8rem;
                 min-height: auto;
                 border-radius: 14px;
+                box-shadow: none !important;
+            }
+            .preview-workbench.ambience-stadium,
+            .preview-workbench.ambience-cyber {
+                box-shadow: none !important;
+            }
+            .jersey-svg-element {
+                filter: none !important;
+            }
+            .btn-quick-flip {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: #0B0E17 !important;
             }
             .view-switcher-bar {
                 display: flex;
@@ -2751,10 +2772,16 @@
                                             <stop offset="100%" stop-color="#000000" stop-opacity="0.45" />
                                         </linearGradient>
 
-                                        <!-- Filtro Termoapplicato 3D Vinilico con Smussatura Rilievo e Luce -->
-                                        <filter id="heatPressBack" x="-30%" y="-30%" width="160%" height="160%">
-                                            <feDropShadow dx="0" dy="4.5" stdDeviation="3.5" flood-color="#000000" flood-opacity="0.65" />
-                                            <feDropShadow dx="0" dy="-1.2" stdDeviation="0.8" flood-color="#ffffff" flood-opacity="0.4" />
+                                        <!-- Ombra a Terra Hardware Accelerated (Zero CPU cost) -->
+                                        <radialGradient id="groundShadowGrad" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="#000000" stop-opacity="0.65" />
+                                            <stop offset="65%" stop-color="#000000" stop-opacity="0.25" />
+                                            <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+                                        </radialGradient>
+
+                                        <!-- Filtro Termoapplicato 3D Vinilico Ottimizzato GPU -->
+                                        <filter id="heatPressBack" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="0" dy="2.5" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.55" />
                                         </filter>
 
                                         <!-- Satin Specular Sheen per Vinile Termosaldato -->
@@ -2775,7 +2802,7 @@
                                     </defs>
 
                                     <!-- OMBRA A TERRA SOTTO LA MAGLIA -->
-                                    <ellipse cx="250" cy="552" rx="175" ry="16" fill="#000000" opacity="0.7" filter="blur(14px)" />
+                                    <ellipse cx="250" cy="552" rx="175" ry="16" fill="url(#groundShadowGrad)" />
 
                                     <!-- INTERNO DEL COLLETTO POSTERIORE -->
                                     <path d="M 188 64 Q 250 48 312 64 Q 250 82 188 64 Z" fill="#0A0D14" />
@@ -2823,12 +2850,12 @@
                                         M 188 64 Q 250 78 312 64 L 368 82 L 472 178 L 418 238 L 374 204 L 372 498 Q 250 528 128 498 L 126 204 L 82 238 L 28 178 L 132 82 Z" 
                                         fill="url(#depthGradientBack)" />
 
-                                    <!-- PIEGHE ANATOMICHE SCHIENA & COLONNA VERTEBRALE -->
-                                    <path d="M 250 140 Q 252 300 250 495" stroke="rgba(0,0,0,0.22)" stroke-width="4.5" filter="blur(3px)" fill="none" />
-                                    <path d="M 135 210 Q 170 330 145 480" stroke="rgba(0,0,0,0.18)" stroke-width="4" filter="blur(3.5px)" fill="none" />
-                                    <path d="M 365 210 Q 330 330 355 480" stroke="rgba(0,0,0,0.18)" stroke-width="4" filter="blur(3.5px)" fill="none" />
-                                    <path d="M 132 204 Q 165 220 185 240" stroke="rgba(0,0,0,0.14)" stroke-width="2.5" filter="blur(1.5px)" fill="none" />
-                                    <path d="M 368 204 Q 335 220 315 240" stroke="rgba(0,0,0,0.14)" stroke-width="2.5" filter="blur(1.5px)" fill="none" />
+                                    <!-- PIEGHE ANATOMICHE SCHIENA & COLONNA VERTEBRALE (GPU ACCELERATED) -->
+                                    <path d="M 250 140 Q 252 300 250 495" stroke="rgba(0,0,0,0.14)" stroke-width="3" stroke-linecap="round" fill="none" />
+                                    <path d="M 135 210 Q 170 330 145 480" stroke="rgba(0,0,0,0.1)" stroke-width="3" stroke-linecap="round" fill="none" />
+                                    <path d="M 365 210 Q 330 330 355 480" stroke="rgba(0,0,0,0.1)" stroke-width="3" stroke-linecap="round" fill="none" />
+                                    <path d="M 132 204 Q 165 220 185 240" stroke="rgba(0,0,0,0.08)" stroke-width="2" stroke-linecap="round" fill="none" />
+                                    <path d="M 368 204 Q 335 220 315 240" stroke="rgba(0,0,0,0.08)" stroke-width="2" stroke-linecap="round" fill="none" />
 
                                     <!-- PANNELLI TRASPIRANTI LATERALI (MESH ACCENT) -->
                                     <g id="svgSidePanelsBack" fill="#11141D">
@@ -2992,10 +3019,16 @@
                                             <stop offset="100%" stop-color="#000000" stop-opacity="0.6" />
                                         </linearGradient>
 
-                                        <!-- Filtro Termoapplicato 3D Vinilico (Heat-Press) Frontale -->
-                                        <filter id="heatPressFront" x="-25%" y="-25%" width="150%" height="150%">
-                                            <feDropShadow dx="0" dy="4" stdDeviation="3.2" flood-color="#000000" flood-opacity="0.6" />
-                                            <feDropShadow dx="0" dy="-1" stdDeviation="0.6" flood-color="#ffffff" flood-opacity="0.35" />
+                                        <!-- Ombra a Terra Hardware Accelerated (Zero CPU cost) -->
+                                        <radialGradient id="groundShadowGradFront" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="#000000" stop-opacity="0.65" />
+                                            <stop offset="65%" stop-color="#000000" stop-opacity="0.25" />
+                                            <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+                                        </radialGradient>
+
+                                        <!-- Filtro Termoapplicato 3D Vinilico Ottimizzato GPU -->
+                                        <filter id="heatPressFront" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="0" dy="2.5" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.55" />
                                         </filter>
 
                                         <!-- Gradiente Oro Metallizzato per Stemma e Stella Campioni -->
@@ -3021,7 +3054,7 @@
                                     </defs>
 
                                     <!-- OMBRA A TERRA -->
-                                    <ellipse cx="250" cy="552" rx="175" ry="16" fill="#000000" opacity="0.7" filter="blur(14px)" />
+                                    <ellipse cx="250" cy="552" rx="175" ry="16" fill="url(#groundShadowGradFront)" />
 
                                     <!-- INTERNO COLLETTO VISIBILE DAL DAVANTI -->
                                     <path d="M 188 64 Q 250 82 312 64 Q 250 52 188 64 Z" fill="#0A0D14" />
@@ -3069,13 +3102,13 @@
                                         M 188 64 Q 250 115 312 64 L 368 82 L 472 178 L 418 238 L 374 204 L 372 498 Q 250 528 128 498 L 126 204 L 82 238 L 28 178 L 132 82 Z" 
                                         fill="url(#depthGradientFront)" />
 
-                                    <!-- PIEGHE ANATOMICHE PETTORALI & RAGGRINZIMENTO TESSUTO -->
-                                    <path d="M 160 175 Q 250 205 340 175" stroke="rgba(0,0,0,0.18)" stroke-width="4.5" filter="blur(3.5px)" fill="none" />
-                                    <path d="M 250 125 L 250 225" stroke="rgba(0,0,0,0.15)" stroke-width="3" filter="blur(2.5px)" fill="none" />
-                                    <path d="M 165 330 Q 250 355 335 330" stroke="rgba(0,0,0,0.12)" stroke-width="3.5" filter="blur(2.5px)" fill="none" />
-                                    <path d="M 175 420 Q 250 440 325 420" stroke="rgba(0,0,0,0.12)" stroke-width="3.5" filter="blur(2.5px)" fill="none" />
-                                    <path d="M 126 204 Q 155 225 175 250" stroke="rgba(0,0,0,0.15)" stroke-width="2" filter="blur(1.5px)" fill="none" />
-                                    <path d="M 374 204 Q 345 225 325 250" stroke="rgba(0,0,0,0.15)" stroke-width="2" filter="blur(1.5px)" fill="none" />
+                                    <!-- PIEGHE ANATOMICHE PETTORALI & RAGGRINZIMENTO TESSUTO (GPU ACCELERATED) -->
+                                    <path d="M 160 175 Q 250 205 340 175" stroke="rgba(0,0,0,0.12)" stroke-width="3" stroke-linecap="round" fill="none" />
+                                    <path d="M 250 125 L 250 225" stroke="rgba(0,0,0,0.09)" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                                    <path d="M 165 330 Q 250 355 335 330" stroke="rgba(0,0,0,0.08)" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                                    <path d="M 175 420 Q 250 440 325 420" stroke="rgba(0,0,0,0.08)" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                                    <path d="M 126 204 Q 155 225 175 250" stroke="rgba(0,0,0,0.08)" stroke-width="2" stroke-linecap="round" fill="none" />
+                                    <path d="M 374 204 Q 345 225 325 250" stroke="rgba(0,0,0,0.08)" stroke-width="2" stroke-linecap="round" fill="none" />
 
                                     <!-- PANNELLI LATERALI ANTERIORI -->
                                     <g id="svgSidePanelsFront" fill="#11141D">
